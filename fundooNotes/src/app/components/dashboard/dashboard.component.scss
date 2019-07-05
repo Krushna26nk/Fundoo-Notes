@@ -6,6 +6,23 @@
     display: flex;
     flex-direction: row;
 }
+
+.avatar{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-image: url('../../../assets/images/nature.jpeg');
+    background-size: cover;
+    position: relative;
+    border: 1px solid;
+    left: 25%;
+    top: 0%;
+}
+
+#modalC{
+    position: absolute;
+}
+
 .header-image{
     height: 3rem;
 }
@@ -16,15 +33,18 @@
 
 .cardDiv{
     margin-left: 8%;
+    text-decoration: none;
 }
 
-.searchCard{
+#toolbarSearch{
    height: 0rem;
    width: 33rem;
    display: flex;
    flex-direction: row;
    align-items: center;
    top: -5px;
+   border-radius: 15px;
+   box-shadow: 0px 1px 5px rgba(0, 0,0,0.2);
 
 }
 .searchinput{
@@ -71,5 +91,28 @@
     left: 15%;
 }
 .active{
-    background-color: rgb(253, 216, 167);
+    background-color: #FEEFC3;
+}
+
+.listItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+#sidenavList{
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding:5px 15px 5px 15px;
+    font-size: 10px;
+}
+
+.listIcons{
+position: relative;
+right: 8px;
+}
+
+.listNames{
+    font-size: 15px;
 }

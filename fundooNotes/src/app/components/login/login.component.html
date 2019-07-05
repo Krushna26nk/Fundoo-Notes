@@ -1,0 +1,49 @@
+<div class="mainDiv">
+
+    <mat-card class="mainCard">
+      <mat-card-header>
+        <div mat-card-avatar class="cardHeader-image"></div>
+        <mat-card-title class="cardTitle"> 
+          <span> A </span>  
+          <span> D </span>
+          <span> M </span>
+          <span> I </span>
+          <span> N </span>
+        </mat-card-title>
+      </mat-card-header>
+     
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" >
+    
+                
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Email" >
+                  </mat-form-field>
+                
+    
+                
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" placeholder="Password" >
+                  </mat-form-field>
+                
+    
+    
+          <div class="btnlogin">
+               <button mat-raised-button color="primary" type="submit">Log In</button>
+          </div>
+    
+    
+      </form>
+    
+      <span class="forgetPass" style="font-size:15px;color:blue" routerLink="/forget" > Forget Password ?</span> <br><br>
+              <p id="registerPara"> 
+                
+                <span> New User ? </span>
+                <span routerLink="/register">REGISTER-HERE</span>
+                <!-- <span routerLink="/reset">RESET PASSWORD</span> -->
+              </p>
+    </mat-card>
+    
+    
+    </div>

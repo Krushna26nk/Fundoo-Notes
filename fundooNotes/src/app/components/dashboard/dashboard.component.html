@@ -10,12 +10,12 @@
             <img src="../../../assets/images/download.png" class="header-image" alt="">
           </div>
           <div class="fundooName">
-            <span>FUNDOO</span>
+            <span id="heading">{{headingName}}</span>
           </div>
       </div>
 
       <div class="cardDiv">
-        <mat-card class="searchCard" style="box-shadow: none;">
+        <mat-card id="toolbarSearch">
            <i class="material-icons">search</i> <input matInput class="searchinput" placeholder="Search">
         </mat-card>
       </div>
@@ -24,7 +24,13 @@
         <i id="viewIcons" class="material-icons" style="display: none;">view_stream</i>
         <i id="viewIcons" class="material-icons" style="display: none;">view_module</i>
       </div>
-    
+
+      
+      <div [matMenuTriggerFor]="modalCard" class="avatar"></div>
+      <mat-menu id="modalC" #modalCard>
+       <h5>Email</h5>
+       <button mat-button >Sign Out</button>
+      </mat-menu>
     </mat-toolbar>
 
 </div>
@@ -33,18 +39,42 @@
 
   <mat-sidenav #sidenav mode="side" class="sidenavigation">
     <mat-nav-list class="listItems">
-      <div id="sidenavList">
-        <mat-list-item routerLink="notes"> Notes </mat-list-item>
+      
+      <div id="sidenavList" class="active">
+          <mat-list-item class="sidelist"  (click)='getName()' routerLink="notes"> 
+            <span><mat-icon class="listIcons">lightbulb_outline</mat-icon></span> 
+            <span  #sidenavList1 class="listNames"> Notes </span> 
+          </mat-list-item>
       </div>
+
       <div id="sidenavList">
-          <mat-list-item routerLink="archives"> Archieves </mat-list-item>
+          <mat-list-item class="sidelist" routerLink="remainder">
+              <span><mat-icon class="listIcons">notifications_none</mat-icon></span>
+              <span class="listNames"> Remainder </span> 
+          </mat-list-item>
       </div>
+
       <div id="sidenavList">
-          <mat-list-item routerLink="trash"> Trash </mat-list-item>
+          <mat-list-item class="sidelist" routerLink="label"> 
+            <span><mat-icon class="listIcons">label_outline</mat-icon></span> 
+            <span class="listNames" > Edit Labels </span>   
+          </mat-list-item>
       </div>
+      
       <div id="sidenavList">
-          <mat-list-item routerLink="notes"> Notes </mat-list-item>
+          <mat-list-item class="sidelist" routerLink="archives"> 
+            <span><mat-icon class="listIcons">archive</mat-icon> </span> 
+            <span class="listNames"> Archives </span> 
+          </mat-list-item>
       </div>
+
+      <div id="sidenavList">
+          <mat-list-item class="sidelist" routerLink="trash"> 
+            <span><mat-icon class="listIcons">delete_outline</mat-icon></span> 
+            <span class="listNames"> Trash </span> 
+          </mat-list-item>
+      </div>
+
 
     </mat-nav-list>
   </mat-sidenav>

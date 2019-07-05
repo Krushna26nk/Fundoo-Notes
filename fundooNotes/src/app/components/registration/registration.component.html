@@ -1,0 +1,69 @@
+<div class="mainDiv">
+
+    <mat-card class="mainCard">
+        <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+                <mat-card-title class="matCardTitle">
+                <span>REGISTRATION</span>
+            </mat-card-title>
+        </mat-card-header>
+    
+        <form class="form" [formGroup]="dataForm" (ngSubmit)="onRegister()">
+    
+    
+            <div>
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label> Name </mat-label>
+                          <input matInput formControlName="firstName"  placeholder="Enter your First Name">                 
+                          <!-- <mat-error *ngIf="name.invalid">{{firstNameError()}}</mat-error> -->
+                        </mat-form-field>
+            </div>
+            <div>
+                        <mat-form-field appearance="outline" class="full-width">
+                                <mat-label >Last Name</mat-label>
+                                <input matInput  formControlName="lastName"  placeholder="Enter your last name">                    
+                                <!-- <mat-error *ngIf="lastName.invalid">{{lastNameError()}}</mat-error> -->
+                        </mat-form-field>
+            </div>      
+            
+            <div>
+                        
+                        <mat-radio-group formControlName="service" aria-label="Select an option">
+                          <mat-label>Services :- </mat-label>
+                          <mat-radio-button  value="Advance">Advance</mat-radio-button>&nbsp;
+                          <mat-radio-button  value="Basic">Basic</mat-radio-button>
+                        </mat-radio-group>
+    
+            </div>
+            
+            <div>
+    
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Email</mat-label>
+                          <input matInput  formControlName="email"  placeholder="Email">
+                          <!-- <mat-error *ngIf="email.invalid">{{emailError()}}</mat-error> -->
+                        </mat-form-field>
+            </div>       
+            <div>
+    
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Password</mat-label>
+                          <input matInput name="password"  formControlName="password"  placeholder="Password">
+                          <!-- <mat-error *ngIf="password.invalid">{{passwordError()}}</mat-error> -->
+                        </mat-form-field>
+            </div>
+            <div>
+    
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Confirm Password</mat-label>
+                  <input matInput formControlName ="confirmPassword"  placeholder="Confirm Password">
+                  <!-- <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordError()}}</mat-error> -->
+                </mat-form-field>
+    
+            </div>
+    
+                     <button id="btnReg" mat-raised-button type="submit">Register</button>  
+        </form>
+    </mat-card>
+    </div>
+    
