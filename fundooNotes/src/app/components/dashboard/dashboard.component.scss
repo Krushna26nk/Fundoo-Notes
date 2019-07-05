@@ -1,0 +1,75 @@
+.toolbar{
+    border-bottom: 1px solid rgba(168, 166, 166,0.5);
+    height: 4rem;
+}
+.toolbar-div{
+    display: flex;
+    flex-direction: row;
+}
+.header-image{
+    height: 3rem;
+}
+.fundooHeader{
+    display: flex;
+    flex-direction: row;
+}
+
+.cardDiv{
+    margin-left: 8%;
+}
+
+.searchCard{
+   height: 0rem;
+   width: 33rem;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   top: -5px;
+
+}
+.searchinput{
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 2rem;
+    margin-left: 2%;
+    font-size: 18px;
+}
+
+#viewIcons{
+ font-size: 40px;   
+}
+
+ /* side navigation css start.*/
+
+.sidenavContent{
+    width: 80%;
+    position: absolute;
+    // left: 15%;
+    // border: 1px solid;
+}
+
+.sideNavContainer{
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+
+
+.sidenavigation{
+    
+    // border: 1px solid orchid;
+    width: 20%;
+    height: 100%;
+}
+.routerOutlet{
+    position: relative;
+    left: 15%;
+}
+.active{
+    background-color: rgb(253, 216, 167);
+}

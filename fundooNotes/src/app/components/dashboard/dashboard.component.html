@@ -1,0 +1,56 @@
+<div class="toolbar-div">
+  
+    <mat-toolbar class="toolbar">
+      <div>
+        <i (click)="sidenav.toggle()" class="material-icons"> dehaze  </i>
+      </div>
+
+      <div class="fundooHeader">
+          <div>
+            <img src="../../../assets/images/download.png" class="header-image" alt="">
+          </div>
+          <div class="fundooName">
+            <span>FUNDOO</span>
+          </div>
+      </div>
+
+      <div class="cardDiv">
+        <mat-card class="searchCard" style="box-shadow: none;">
+           <i class="material-icons">search</i> <input matInput class="searchinput" placeholder="Search">
+        </mat-card>
+      </div>
+
+      <div>
+        <i id="viewIcons" class="material-icons" style="display: none;">view_stream</i>
+        <i id="viewIcons" class="material-icons" style="display: none;">view_module</i>
+      </div>
+    
+    </mat-toolbar>
+
+</div>
+
+<mat-sidenav-container class="sideNavContainer">
+
+  <mat-sidenav #sidenav mode="side" class="sidenavigation">
+    <mat-nav-list class="listItems">
+      <div id="sidenavList">
+        <mat-list-item routerLink="notes"> Notes </mat-list-item>
+      </div>
+      <div id="sidenavList">
+          <mat-list-item routerLink="archives"> Archieves </mat-list-item>
+      </div>
+      <div id="sidenavList">
+          <mat-list-item routerLink="trash"> Trash </mat-list-item>
+      </div>
+      <div id="sidenavList">
+          <mat-list-item routerLink="notes"> Notes </mat-list-item>
+      </div>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenavContent">
+      <router-outlet class="routerOutlet"></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
