@@ -1,16 +1,20 @@
-<div class="mainDiv">
+<mat-card style="position: absolute;width: 50%;box-shadow: 1px 1px 5px;">
 
-    <mat-card class="mainCard">
-        <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-                <mat-card-title class="matCardTitle">
-                <span>REGISTRATION</span>
-            </mat-card-title>
-        </mat-card-header>
-    
+  <div class="row">
+      <mat-card-header>
+              <mat-card-title class="matCardTitle">
+              <span>F </span><span> U </span><span> N </span><span> D </span><span> O </span><span> O </span>
+          </mat-card-title>
+          <mat-card-subtitle>Create Your Fundoo Account</mat-card-subtitle>
+      </mat-card-header>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-7" style="">
         <form class="form" [formGroup]="dataForm" (ngSubmit)="onRegister()">
-    
-    
+            
+            
             <div>
                         <mat-form-field appearance="outline" class="full-width">
                           <mat-label> Name </mat-label>
@@ -19,7 +23,7 @@
                         </mat-form-field>
             </div>
             <div>
-                        <mat-form-field appearance="outline" class="full-width">
+                        <mat-form-field  appearance="outline" class="full-width">
                                 <mat-label >Last Name</mat-label>
                                 <input matInput  formControlName="lastName"  placeholder="Enter your last name">                    
                                 <!-- <mat-error *ngIf="lastName.invalid">{{lastNameError()}}</mat-error> -->
@@ -33,37 +37,48 @@
                           <mat-radio-button  value="Advance">Advance</mat-radio-button>&nbsp;
                           <mat-radio-button  value="Basic">Basic</mat-radio-button>
                         </mat-radio-group>
-    
+
             </div>
             
             <div>
-    
-                        <mat-form-field appearance="outline" class="full-width">
+
+                        <mat-form-field style="width: 100%" appearance="outline" class="full-width1">
                           <mat-label>Email</mat-label>
                           <input matInput  formControlName="email"  placeholder="Email">
                           <!-- <mat-error *ngIf="email.invalid">{{emailError()}}</mat-error> -->
                         </mat-form-field>
             </div>       
             <div>
-    
-                        <mat-form-field appearance="outline" class="full-width">
+
+                        <mat-form-field appearance="outline" class="full-width1">
                           <mat-label>Password</mat-label>
                           <input matInput name="password"  formControlName="password"  placeholder="Password">
                           <!-- <mat-error *ngIf="password.invalid">{{passwordError()}}</mat-error> -->
                         </mat-form-field>
             </div>
             <div>
-    
-                <mat-form-field appearance="outline" class="full-width">
+
+                <mat-form-field appearance="outline" class="full-width1">
                   <mat-label>Confirm Password</mat-label>
                   <input matInput formControlName ="confirmPassword"  placeholder="Confirm Password">
                   <!-- <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordError()}}</mat-error> -->
                 </mat-form-field>
-    
+
             </div>
-    
-                     <button id="btnReg" mat-raised-button type="submit">Register</button>  
+
+                    <button id="btnReg" mat-raised-button style="background-color:rgba(67, 172, 224,1);border-radius: 7px;" type="submit">SignUp</button>  
+        
         </form>
-    </mat-card>
     </div>
-    
+    <div class="col-md-5" style="">
+      <img src="../../../assets/images/92dcbaeee96e.png" style="height:220px;" alt="">
+      
+      <div style="width: 100%;text-align:center;">
+          <p>One Acoount</p>
+          <p>All Can Fundoo Manage</p>
+      </div>
+
+    </div>      
+
+  </div>
+</mat-card>

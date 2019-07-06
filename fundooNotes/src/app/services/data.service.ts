@@ -15,7 +15,7 @@ export class DataService {
   
       var res = data.id;
       console.log('token in login',res);
-      localStorage.setItem('token in login id ',res);
+      localStorage.setItem('token',res);
       
       var res1 = data.firstName;
       console.log(res1);

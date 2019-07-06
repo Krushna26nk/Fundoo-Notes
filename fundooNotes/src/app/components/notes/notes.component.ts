@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Note } from 'src/app/modal/note';
+import { UserService } from 'src/app/services/user.service';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-notes',
@@ -8,7 +11,60 @@ import { CloseScrollStrategy } from '@angular/cdk/overlay';
 })
 export class NotesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService:UserService,private noteService:NoteService) { }
+
+  note: Note = new Note;
+  token =localStorage.getItem('token');
+  open=false;
+
+  cardArray = this.noteService.dataArray;
+ 
+  card = new FormGroup({
+    title : new FormControl(''),
+    description : new FormControl('') 
+  })
+
+  titleValue =this.card.controls.title;
+  descriptionValue =this.card.controls.description;
+
+  ngOnInit() {
+    this.getNote();
+  }
+  getNote(){
+
+    this.userService.getNote(this.token)
+    console.log(this.token);
+    // var sampledata = this.noteService.dataArray;
+    
+    // this.cardArray =sampledata;
+    console.log("array fetch in note compponent",this.cardArray);
+  }
+
+  onSubmit(){
+    this.note = this.card.value;
+    console.log(this.note);
+    
+    if(this.titleValue.value == undefined || this.titleValue.value == null){
+      return false
+    }
+    else if( this.descriptionValue.value == undefined || this.descriptionValue.value == null){
+      return false
+    }
+    else{
+      this.userService.addNote(this.note,this.token);
+    }
+  }
+
+  // openDescription(){
+  //   if(this.open){
+  //     return 'block'
+  //   }
+  //   else{
+  //     return 'none'
+  //   }
+
+  // }
+
   onNotification(){
     console.log('click on notification');
   }
@@ -26,7 +82,5 @@ export class NotesComponent implements OnInit {
     console.log('click on archive');
   }
 
-  ngOnInit() {
-  }
 
 }

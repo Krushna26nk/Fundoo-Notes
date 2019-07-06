@@ -1,8 +1,9 @@
 <div class="mainCard">
 
-  <mat-card class="beforeNoteCard">
-    <p> <input type="text" placeholder="Title" name="" id="input" >  </p>
-    <p> <input type="text" placeholder="Take a note..."   id="input">
+  <mat-card [formGroup]="card" class="beforeNoteCard">
+
+    <p> <input type="text" placeholder="Title" name="" formControlName="title" id="input" >  </p>
+    <p> <input type="text" placeholder="Take a note..." formControlName="description"  id="input">
        <span id="icons"> <mat-icon>check_box</mat-icon> </span>
        <span id="icons"> <mat-icon>brush</mat-icon> </span>
        <span id="icons"> <mat-icon>image</mat-icon> </span>
@@ -15,12 +16,38 @@
       <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
       <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
 
+      <button mat-button (click)="onSubmit()" style="float: right;font-size:17px">CLOSE</button>
+
     </div>
 
   </mat-card>
 
-</div>
 
-<div>
 
 </div>
+
+<mat-card style="position: relative;float:right;padding-right: 10px;" class="beforeNoteCard1" *ngFor="let items of cardArray; let i = index">
+  <!-- <mat-card-header>
+  <mat-card-title>
+    {{ items.title }}
+  </mat-card-title>
+
+  <mat-card-subtitle>
+     {{ items.description }}
+  </mat-card-subtitle>
+</mat-card-header> -->
+  
+    <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p>
+    <p> <input type="text" aria-label="Take a note..." value="{{items.description}}" id="input">   </p>
+
+    <div class="mainIcons">
+      <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
+      <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
+      <mat-icon matTooltip="Change Color" (click)="onColor()">palette</mat-icon>
+      <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
+      <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
+
+    </div>
+
+
+</mat-card>
