@@ -18,8 +18,8 @@ export class UserService {
   }
 
   onRegistration(data){
-    var url='user/';
-    this.dataService.postData(this.baseurl+url,data);
+    var url='user/userSignUp';
+    this.dataService.post(this.baseurl+url,data);
   }
 
   /**

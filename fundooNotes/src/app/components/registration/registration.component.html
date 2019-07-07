@@ -1,4 +1,4 @@
-<mat-card style="position: absolute;width: 50%;box-shadow: 1px 1px 5px;">
+<mat-card style="position: relative;width: 45%;box-shadow: 1px 1px 5px;margin:auto">
 
   <div class="row">
       <mat-card-header>
@@ -11,7 +11,7 @@
 
   <div class="row">
 
-    <div class="col-md-7" style="">
+    <div class="col-md-6" style="">
         <form class="form" [formGroup]="dataForm" (ngSubmit)="onRegister()">
             
             
@@ -69,9 +69,11 @@
                     <button id="btnReg" mat-raised-button style="background-color:rgba(67, 172, 224,1);border-radius: 7px;" type="submit">SignUp</button>  
         
         </form>
+
+        <p  style="position: relative;top:1%;color:blue;" >Sign In Instead</p>
     </div>
-    <div class="col-md-5" style="">
-      <img src="../../../assets/images/92dcbaeee96e.png" style="height:220px;" alt="">
+    <div class="col-md-4" style="">
+      <img src="../../../assets/images/92dcbaeee96e.png" style="height:15%;" alt="">
       
       <div style="width: 100%;text-align:center;">
           <p>One Acoount</p>

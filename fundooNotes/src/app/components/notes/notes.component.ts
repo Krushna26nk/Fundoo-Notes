@@ -18,6 +18,10 @@ export class NotesComponent implements OnInit {
   open=false;
 
   cardArray = this.noteService.dataArray;
+
+  colors : [
+    {'#659DBD','#FC4445','#3FEEE6','#B1A296','#4E4E50','#AFD275','#EE4C7C','#D79922'}
+  ]
  
   card = new FormGroup({
     title : new FormControl(''),

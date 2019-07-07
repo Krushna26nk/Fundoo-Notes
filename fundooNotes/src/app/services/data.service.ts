@@ -41,4 +41,23 @@ export class DataService {
     
   });
   }
+
+  post(url,data){
+    this.http.post(url,data).subscribe(
+      data =>{
+      console.log('response data',data);
+      
+      this.snackbar.open('Successfull','',{duration: 2000});
+      this.router.navigateByUrl('login');
+    },
+    error => {
+      this.snackbar.open('unsuccessfull attemp','End Now',{duration:2000});
+      console.log('Error in unsuccesfull attemp',error);
+      
+    });
+    // error =>{
+    //   this.snackbar.open('something went wrong','',{duration:2000});
+    // }
+  }
+
 }

@@ -19,19 +19,21 @@ import { RemainderComponent } from './components/remainder/remainder.component';
 import { LabelsComponent } from './components/labels/labels.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 const routes:Routes =[
-  { path:'',component:LoginComponent},
-  { path:'login',component:LoginComponent},
-  { path:'registration',component:RegistrationComponent},
-  {path:'dashboard',component:DashboardComponent,children:[
-    { path:'',component : NotesComponent},
-    { path:'notes',component : NotesComponent},
-    { path:'archives',component:ArchievComponent},
-    { path:'trash',component:TrashComponent},
-    { path:'label', component:LabelsComponent},
-    { path:'remainder',component:RemainderComponent}
-  ]},
+  { path:'',component:RegistrationComponent},
+  // { path:'login',component:LoginComponent},
+  // { path:'registration',component:RegistrationComponent},
+  // {path:'dashboard',component:DashboardComponent,children:[
+  //   { path:'',component : NotesComponent},
+  //   { path:'notes',component : NotesComponent},
+  //   { path:'archives',component:ArchievComponent},
+  //   { path:'trash',component:TrashComponent},
+  //   { path:'label', component:LabelsComponent},
+  //   { path:'remainder',component:RemainderComponent}
+  // ]},
   
 ]
 
@@ -45,7 +47,9 @@ const routes:Routes =[
     RemainderComponent,
     LabelsComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ForgetpasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes),MatTooltipModule,ReactiveFormsModule,HttpClientModule,

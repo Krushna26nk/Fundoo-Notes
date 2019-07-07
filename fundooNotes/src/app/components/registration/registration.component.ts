@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/modal/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService :UserService, private router:Router,private snackbar : MatSnackBar) { }
 
   userData: User = new User;
 
@@ -26,7 +29,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   onRegister(){
+    if(this.dataForm.controls.password.value != this.dataForm.controls.confirmPassword.value) throw 'Password and confirm password must be same.'
     
+    this.userService.onRegistration(this.userData);
   }
 
 }

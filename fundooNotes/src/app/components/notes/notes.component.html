@@ -12,7 +12,14 @@
     <div class="mainIcons">
       <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
       <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
-      <mat-icon matTooltip="Change Color" (click)="onColor()">palette</mat-icon>
+      <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu" (click)="onColor()">palette</mat-icon>
+          <mat-menu #menu="matMenu">
+            <div mat-menu-item>
+                <mat-card *ngFor="let color of colors" >
+                    {{color}}
+                </mat-card>
+            </div>
+          </mat-menu>
       <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
       <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
 
@@ -26,28 +33,32 @@
 
 </div>
 
-<mat-card style="position: relative;float:right;padding-right: 10px;" class="beforeNoteCard1" *ngFor="let items of cardArray; let i = index">
-  <!-- <mat-card-header>
-  <mat-card-title>
-    {{ items.title }}
-  </mat-card-title>
-
-  <mat-card-subtitle>
-     {{ items.description }}
-  </mat-card-subtitle>
-</mat-card-header> -->
-  
-    <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p>
-    <p> <input type="text" aria-label="Take a note..." value="{{items.description}}" id="input">   </p>
-
-    <div class="mainIcons">
-      <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
-      <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
-      <mat-icon matTooltip="Change Color" (click)="onColor()">palette</mat-icon>
-      <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
-      <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
-
-    </div>
 
 
-</mat-card>
+<div>
+    <mat-card style="position:relative;float: left;padding-right: 10px;" class="beforeNoteCard1" *ngFor="let items of cardArray; let i = index">
+        <!-- <mat-card-header>
+        <mat-card-title>
+          {{ items.title }}
+        </mat-card-title>
+      
+        <mat-card-subtitle>
+           {{ items.description }}
+        </mat-card-subtitle>
+      </mat-card-header> -->
+        
+          <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p>
+          <p> <input type="text" aria-label="Take a note..." value="{{items.description}}" id="input">   </p>
+      
+          <div class="mainIcons">
+            <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
+            <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
+            <mat-icon matTooltip="Change Color" (click)="onColor()">palette</mat-icon>
+            <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
+            <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
+      
+          </div>
+      
+      
+      </mat-card>
+</div>
