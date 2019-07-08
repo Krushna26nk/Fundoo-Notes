@@ -29,9 +29,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   onRegister(){
-    if(this.dataForm.controls.password.value != this.dataForm.controls.confirmPassword.value) throw 'Password and confirm password must be same.'
+    this.userData = this.dataForm.value;
+    console.log(this.userData);
     
+    if(this.dataForm.controls.password.value != this.dataForm.controls.confirmPassword.value) throw 'Password and confirm password must be same.'
+    else{
     this.userService.onRegistration(this.userData);
+    }
   }
 
 }

@@ -24,16 +24,18 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
-  // { path:'login',component:LoginComponent},
-  // { path:'registration',component:RegistrationComponent},
-  // {path:'dashboard',component:DashboardComponent,children:[
-  //   { path:'',component : NotesComponent},
-  //   { path:'notes',component : NotesComponent},
-  //   { path:'archives',component:ArchievComponent},
-  //   { path:'trash',component:TrashComponent},
-  //   { path:'label', component:LabelsComponent},
-  //   { path:'remainder',component:RemainderComponent}
-  // ]},
+  { path:'register',component:RegistrationComponent},
+  { path:'login',component:LoginComponent},
+  { path:'forget',component:ForgetpasswordComponent},
+  { path:'reset',component:ResetpasswordComponent},
+  {path:'dashboard',component:DashboardComponent,children:[
+    { path:'',component : NotesComponent},
+    { path:'notes',component : NotesComponent},
+    { path:'archives',component:ArchievComponent},
+    { path:'trash',component:TrashComponent},
+    { path:'label', component:LabelsComponent},
+    { path:'remainder',component:RemainderComponent}
+  ]},
   
 ]
 

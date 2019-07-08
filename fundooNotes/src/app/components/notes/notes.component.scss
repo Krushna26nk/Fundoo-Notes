@@ -44,9 +44,9 @@
     font-size: 18px;
     width: 50%;
 }
-#icons{
-    display: none;
-}
+// #icons{
+//     display: none;
+// }
 
 .mainIcons mat-icon{
     padding: 0px 15px 0px;
@@ -55,4 +55,15 @@
 }
 .mainIcons mat-icon:hover{
     cursor: pointer;
+}
+
+
+#color{
+    position: relative;
+    float: left;
+    // float: inline-start;
+    height: 25px;
+    width: 25px;
+    // box-sizing: border-box;
+    border-radius: 100%;
 }
