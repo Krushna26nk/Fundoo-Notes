@@ -11,6 +11,7 @@ export class UserService {
   constructor(private dataService:DataService, private noteService:NoteService) { }
 
   baseurl = environment.baseUrl;
+  prevData : string[] = [];
 
   onLogin(data){
     var url='user/login';
@@ -45,4 +46,12 @@ export class UserService {
       }
     });
   }
+
+
+  trashNote(userId,noteid){
+    var url='notes/trashNotes';
+    this.noteService.trashNote(this.baseurl+url,userId,noteid);
+  }
+
+
 }

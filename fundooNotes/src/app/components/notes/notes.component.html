@@ -3,7 +3,7 @@
   <mat-card [ngStyle]="{'background':color}" [formGroup]="card" class="beforeNoteCard">
 
     <p> <input type="text" *ngIf="showIcons" placeholder="Title" name="" formControlName="title" id="input" >  </p>
-    <p> <input type="text" (click)="showIcons = !showIcons" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">
+    <p> <input type="text" (click)="showIcons = true" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">
        <span id="icons" *ngIf="showIcon" > <mat-icon>check_box</mat-icon> </span>
        <span id="icons" *ngIf="showIcon" > <mat-icon>brush</mat-icon> </span>
        <span id="icons" *ngIf="showIcon" > <mat-icon>image</mat-icon> </span>
@@ -35,8 +35,8 @@
 
 
 
-<div>
-    <mat-card *ngFor="let items of cardArray; let i = index"  [ngStyle]="{'background':items.color}" style="position:relative;float: left;padding-right: 10px;" class="beforeNoteCard1" >
+<div style="position: relative;margin-left:10%">
+    <mat-card  *ngFor="let items of cardArray; let i = index"  [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;" class="beforeNoteCard1" >
         <!-- <mat-card-header>
         <mat-card-title>
           {{ items.title }}
@@ -48,7 +48,7 @@
       </mat-card-header> -->
         
           <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p>
-          <p> <input type="text" aria-label="Take a note..." value="{{items.description}}" id="input">   </p>
+          <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p>
       
           <div class="mainIcons">
             <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
@@ -65,7 +65,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menulist>
-                <button mat-menu-item>     <span (click)="trashNote()" >Delete Note</span>         </button>
+                <button mat-menu-item>     <span (click)="trashNote(items.user.userId,items.id)" >Delete Note</span>         </button>
                 <button mat-menu-item>     <span>Add Label</span>         </button>
 
             </mat-menu>

@@ -13,7 +13,7 @@ export class NoteService {
   postNote(url,data,token){
     this.http.post(url,data,token).subscribe(data =>{
       console.log('Note Add Response',data);
-      
+       
     })
   }
 
@@ -22,7 +22,7 @@ export class NoteService {
       var fetchData=data.json().data.data
 
       fetchData.forEach(element => {
-        console.log(element);
+        // console.log(element);
         this.dataArray.push(element);
       });
 
@@ -34,6 +34,13 @@ export class NoteService {
     });
     console.log(sample);
     
+  }
+
+  trashNote(url,userid,noteid){
+    this.http.post(url,userid,noteid).subscribe(data =>{
+      console.log(data);
+      
+    })
   }
 
 }

@@ -8,7 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule} from '@angular/material';
-import {MatCardModule,MatButtonModule,MatRadioModule} from '@angular/material';
+import {MatCardModule,MatButtonModule,MatRadioModule,MatDialogModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { EditnotesComponent } from './components/editnotes/editnotes.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -51,12 +52,16 @@ const routes:Routes =[
     LoginComponent,
     RegistrationComponent,
     ForgetpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    EditnotesComponent
   ],
+  entryComponents:[EditnotesComponent],
   imports: [
-    BrowserModule,HttpModule,RouterModule.forRoot(routes),MatTooltipModule,ReactiveFormsModule,HttpClientModule,
+    BrowserModule,HttpModule,RouterModule.forRoot(routes,{
+      onSameUrlNavigation: 'reload'
+    }),MatTooltipModule,ReactiveFormsModule,HttpClientModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
-    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule
+    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

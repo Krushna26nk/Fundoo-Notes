@@ -3,7 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Note } from 'src/app/modal/note';
 import { UserService } from 'src/app/services/user.service';
 import { NoteService } from 'src/app/services/note.service';
-import { forEach } from '@angular/router/src/utils/collection';
+import { MatDialog } from '@angular/material';
+import { EditnotesComponent } from '../editnotes/editnotes.component';
 
 @Component({
   selector: 'app-notes',
@@ -26,10 +27,16 @@ export class NotesComponent implements OnInit {
 
 
   cardArray = this.noteService.dataArray;
-
+  
+  /**
+   * color input string array for color pallete
+   */
   colors : string[] = [
     '#659DBD','#FC4445','#3FEEE6','#B1A296','#4E4E50','#AFD275','#EE4C7C','#D79922'
   ]
+
+  public isSelected : string;
+
  
   card = new FormGroup({
     title : new FormControl(''),
@@ -44,6 +51,11 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
     this.getNote();
   }
+
+
+  /**
+   * @description onClose() method for displayinig the opening note animation  on click event
+   */
 
             onClose(){
               
@@ -60,20 +72,27 @@ export class NotesComponent implements OnInit {
               }
             }
 
-  toggleCard(){
-    this.showIcons = !this.showIcons;
-  }
+  // toggleCard(){
+  //   this.showIcons = !this.showIcons;
+  // }
 
-  openCardToggle(){
-    this.toggleCard();
-    if(this.showIcons){
-      return 'none';
-    }
-    else{
+  // openCardToggle(){
+  //   this.toggleCard();
+  //   if(this.showIcons){
+  //     return 'none';
+  //   }
+  //   else{
 
-    }
-  }
+  //   }
+  // }
 
+
+
+/**
+ * 
+ * @param color the color param get by the selected through the color palette.
+ * @description to fetch the user selected colo by USING EB+VENT EMMITER...
+ */
 
             changeColor(color){
             this.color = color;
@@ -81,23 +100,10 @@ export class NotesComponent implements OnInit {
             }
 
 
-trashNote(){
 
-  console.log();
-}
-
-
-
-  getNote(){
-
-    this.userService.getNote(this.token)
-    console.log(this.token);
-    // var sampledata = this.noteService.dataArray;
-    
-    // this.cardArray =sampledata;
-    console.log("array fetch in note compponent",this.cardArray);
-  }
-
+  /**
+   * @description onsubmit() method to add the particular note into the databses by checking is it empty or not.
+   */
 
 
               onSubmit(){
@@ -124,7 +130,39 @@ trashNote(){
               }
 
 
+
+
+/**
+ * @description to fetch all the note by using http services
+ *   services : userservice and note service
+ */
+
+
+
+  getNote(){
+
+    this.userService.getNote(this.token)
+    console.log(this.token);
+    // var sampledata = this.noteService.dataArray;
+    
+    // this.cardArray =sampledata;
+    console.log("array fetch in note component",this.cardArray);
+  }
+
+
+
+
+/**
+ * @description trashNOte () method for the temparary deleting the notes and store it into the trash
+ * @param noteid id of the particular norte stored while adding into the database.
+ * @param userId id of the particular user which note is belongs to.
+ */
+
+trashNote(userId,noteid){
+  this.userService.trashNote(userId,noteid);
+  console.log(noteid);
+  console.log(userId);
   
-
-
+}
+  
 }
