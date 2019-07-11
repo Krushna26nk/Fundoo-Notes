@@ -1,3 +1,21 @@
-<p>
-  trash works!
-</p>
+<mat-card class="card" *ngFor="let items of trashedNoteList; let i = index"    [ngStyle]="{'background':items.color}" style="position:relative;float: left;" >
+
+  <p>
+    {{items.title}}
+  </p>
+  <p>
+    {{items.description}}
+  </p>
+  <div class="mainIcons">
+            <button mat-icon-button [matMenuTriggerFor]="menulist" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menulist>
+                <button mat-menu-item>     <span (click)="deleteForever(items)" >Delete Forever Note</span>         </button>
+                <button mat-menu-item>     <span (click)="restore(items)" >Restore</span>         </button>
+
+            </mat-menu>
+  </div>
+
+
+</mat-card>

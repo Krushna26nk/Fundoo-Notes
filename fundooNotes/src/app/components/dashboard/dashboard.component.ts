@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 import { NoteService } from 'src/app/services/note.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,11 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  parentMessage = 'message from parent'
 
   @ViewChild('sidenavList1') sidenavList:ElementRef;
 
-  constructor(private noteService:NoteService) { }
+  constructor(private noteService:NoteService,private router:Router) { }
 
   // cardArray : any =[
   //   {'title':''},
@@ -26,15 +28,11 @@ export class DashboardComponent implements OnInit {
       
   }
 
-  // getNote(){
-  //   this.cardArray = this.noteService.dataArray;
-  //   console.log("dashboard data",this.cardArray);
-    
-  // }
 
   ngOnInit() {
 
     // this.getNote();
+    // jQuery to handle the active class onclick on the sidenav list 
 
     $('.listItems div').on('click',function(){
       if($(this).hasClass('active')){
@@ -47,6 +45,14 @@ export class DashboardComponent implements OnInit {
     })
 
 
+  }
+
+  // sign out method to clear the previouse log in localstorage data.
+
+  signOut(){
+    localStorage.removeItem('token');
+    localStorage.clear();
+    this.router.navigateByUrl('login');
   }
 
 }

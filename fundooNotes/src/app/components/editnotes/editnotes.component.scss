@@ -1,0 +1,22 @@
+input{
+    width: 100%;
+    height: 35px;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+}
+
+.mainIcons{
+    display: flex;
+}
+.mainIcons mat-icon{
+    padding-left: 5%
+}
+
+.card{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    overflow-y: hidden;
+}

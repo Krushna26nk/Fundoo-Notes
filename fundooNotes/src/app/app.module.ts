@@ -22,6 +22,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
+import { EditlabelsComponent } from './components/editlabels/editlabels.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -53,7 +54,8 @@ const routes:Routes =[
     RegistrationComponent,
     ForgetpasswordComponent,
     ResetpasswordComponent,
-    EditnotesComponent
+    EditnotesComponent,
+    EditlabelsComponent
   ],
   entryComponents:[EditnotesComponent],
   imports: [

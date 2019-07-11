@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/modal/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UrlService } from 'src/app/services/url.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private userService :UserService, private router:Router,private snackbar : MatSnackBar) { }
+  constructor(private urlService :UrlService, private router:Router,private snackbar : MatSnackBar) { }
 
   userData: User = new User;
 
@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
     
     if(this.dataForm.controls.password.value != this.dataForm.controls.confirmPassword.value) throw 'Password and confirm password must be same.'
     else{
-    this.userService.onRegistration(this.userData);
+    this.urlService.onRegistration(this.userData);
     }
   }
 

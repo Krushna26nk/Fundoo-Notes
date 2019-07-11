@@ -1,25 +1,32 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Note } from 'src/app/modal/note';
-import { UserService } from 'src/app/services/user.service';
+import { UrlService } from 'src/app/services/url.service';
 import { NoteService } from 'src/app/services/note.service';
 import { MatDialog } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
-
+import { RefreshService } from 'src/app/services/refresh.service';
+import { element } from '@angular/core/src/render3/instructions';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
+  message: any;
 
-  constructor(private userService:UserService,private noteService:NoteService) { }
+  constructor(private urlService:UrlService,private noteService:NoteService,
+              private refreshService:RefreshService, private dialog:MatDialog) { }
 
   note: Note = new Note;
   token =localStorage.getItem('token');
   open=false;
   showIcons = false;
   showIcon = true;
+  newColor:any;
+  noteId:any;
+  isDeleted:boolean=false;
+  isArchived:boolean=false;
 
   @Input() color :string;
 
@@ -27,6 +34,7 @@ export class NotesComponent implements OnInit {
 
 
   cardArray = this.noteService.dataArray;
+  sampleCardArray = this.noteService.noteArray;
   
   /**
    * color input string array for color pallete
@@ -50,6 +58,15 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.getNote();
+    this.refreshService.currentMessage.subscribe(
+      response=>{
+        this.message=response
+        //console.log(response);
+        
+        // this.getNote();
+ 
+      }
+    )
   }
 
 
@@ -68,23 +85,9 @@ export class NotesComponent implements OnInit {
               }
               else{
                 this.note.color = this.color;
-                this.userService.addNote(this.note,this.token);
+                this.urlService.addNote(this.note,this.token);
               }
             }
-
-  // toggleCard(){
-  //   this.showIcons = !this.showIcons;
-  // }
-
-  // openCardToggle(){
-  //   this.toggleCard();
-  //   if(this.showIcons){
-  //     return 'none';
-  //   }
-  //   else{
-
-  //   }
-  // }
 
 
 
@@ -109,6 +112,8 @@ export class NotesComponent implements OnInit {
               onSubmit(){
                 this.note = this.card.value;
                 console.log(this.note);
+
+                this.showIcons = !this.showIcons
                 
                 if(this.titleValue.value == undefined || this.titleValue.value == ''){
                   this.showIcons;
@@ -125,7 +130,8 @@ export class NotesComponent implements OnInit {
                 }
                 else{
                   this.note.color = this.color;
-                  this.userService.addNote(this.note,this.token);
+                  this.urlService.addNote(this.note,this.token);
+                  this.refreshService.changeMessage('ghfg');
                 }
               }
 
@@ -136,18 +142,29 @@ export class NotesComponent implements OnInit {
  * @description to fetch all the note by using http services
  *   services : userservice and note service
  */
+          getNote(){
 
+            this.urlService.getNote(this.token)
+            console.log(this.token);
+            console.log('array fetch in note components');
+            
+            console.log('note array with trashed and archived notes',this.cardArray);
+            console.log('without trashed and archived notes',this.sampleCardArray);
+            
 
+            // this.cardArray.forEach(element=>{
+            //   this.sampleCardArray.push(element);
+            //   console.log('sample card array',this.sampleCardArray);
+              
+            // })
+            
 
-  getNote(){
-
-    this.userService.getNote(this.token)
-    console.log(this.token);
-    // var sampledata = this.noteService.dataArray;
-    
-    // this.cardArray =sampledata;
-    console.log("array fetch in note component",this.cardArray);
-  }
+            // this.cardArray.forEach(element => {
+            //   console.log('adfdas',element);
+            //   this.sampleCardArray.push(element);
+            // });            
+          }
+          
 
 
 
@@ -158,11 +175,64 @@ export class NotesComponent implements OnInit {
  * @param userId id of the particular user which note is belongs to.
  */
 
-trashNote(userId,noteid){
-  this.userService.trashNote(userId,noteid);
-  console.log(noteid);
-  console.log(userId);
-  
-}
+        trashNote(items:any){
+          // this.urlService.trashNote(userId,noteid);
+          this.note.noteIdList = items.id;
+          var data={
+            "noteIdList":[this.note.noteIdList],
+            "isDeleted":true
+          }
+          console.log(this.note.noteIdList);
+         // console.log(userId);
+          this.urlService.trashNote(data);
+        }
+
+// to update the color from color palette
+
+        updateColor(items,$event){
+          this.newColor = $event;
+          console.log('color',$event);
+          
+          this.note.color = this.newColor;
+          var data ={
+            "color":this.newColor,
+            "noteIdList":[items.id],
+          }
+          console.log('asds',data);
+          
+          this.urlService.updateColor(data);
+        }
+
+
+
+// to update the title and description using modal pop-up
+
+        updateNote(items:any){
+          let dialogref = this.dialog.open(EditnotesComponent,{
+            height:'48vh',
+            width:'56vw',
+            data:{
+              title:items.title,
+              description:items.description,
+              color:items.color,
+              id:items.id
+            }
+          });
+          console.log(items);
+          dialogref.afterClosed().subscribe(result =>{
+            console.log(`dialog close :${result}`);
+            
+          })
+        }
+
+
+        onArchive(items:any){
+          this.note.noteIdList = items.id;
+          var data = {
+            "noteIdList":[this.note.noteIdList],
+            "isArchived":true
+          }
+          this.urlService.archiveNotes(data);
+        }
   
 }

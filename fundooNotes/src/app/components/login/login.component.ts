@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UrlService } from 'src/app/services/url.service';
 import { User } from 'src/app/modal/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService:UserService) { }
+  constructor(private urlService:UrlService) { }
 
 
   resetEmail:String;
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   onLogin(){
     this.loginData=this.loginForm.value
     console.log('model data',this.loginData);
-    this.userService.onLogin(this.loginData);
+    this.urlService.onLogin(this.loginData);
     console.log(this.loginForm.value);
   }
 

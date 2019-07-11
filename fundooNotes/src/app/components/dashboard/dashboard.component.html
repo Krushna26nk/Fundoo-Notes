@@ -29,7 +29,7 @@
       <div [matMenuTriggerFor]="modalCard" class="avatar"></div>
       <mat-menu id="modalC" yPosition="below" #modalCard="matMenu">
        <h5>Email</h5>
-       <button mat-button >Sign Out</button>
+       <button mat-button (click)="signOut()" >Sign Out</button>
       </mat-menu>
     </mat-toolbar>
 
@@ -81,7 +81,7 @@
 
   <mat-sidenav-content class="sidenavContent">
       <router-outlet class="routerOutlet"></router-outlet>
-
+    <!-- <app-labels [childMessage]="parentMessage"></app-labels> -->
   </mat-sidenav-content>
 
  

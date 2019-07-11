@@ -1,19 +1,19 @@
-<div style="position: relative;">
-  <mat-card [ngStyle]="" style="position:relative;">
+
+  <mat-dialog-content class="card" [ngStyle]="{'background':data.color}"  style="position:relative;">
   
-        <p> <input type="text" aria-label="Title" value="{{title}}"  id="input" >  </p>
-        <p> <input type="text" aria-label="Take a note..." value="{{description}}" id="input">   </p>
+        <p> <input type="text" aria-label="Title" [formControl]="title" placeholder="Title Here..."  id="input" >  </p>
+        <p> <input type="text" aria-label="Take a note..." [formControl]="description" placeholder="Description ..." id="input">   </p>
     
-        <div class="mainIcons">
-          <mat-icon matTooltip="Remind Me" >    notifications</mat-icon>
-          <mat-icon matTooltip="Collaborator">  account_box</mat-icon>
-          <mat-icon matTooltip="Change Color">  palette</mat-icon>
-           
+        <mat-card-footer class="mainIcons">
+          <mat-icon matTooltip="Remind Me" >notifications</mat-icon>
+          <mat-icon matTooltip="Collaborator">account_box</mat-icon>
+          <mat-icon matTooltip="Change Color">palette</mat-icon>
           <mat-icon matTooltip="Add Image">image</mat-icon>
           <mat-icon matTooltip="Archive" >archive</mat-icon>
         
-        </div>
-    
-    
-    </mat-card>
-</div>
+        </mat-card-footer>
+        
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close (click)="updateNote()" >Close</button>
+        </mat-dialog-actions>
+    </mat-dialog-content>
