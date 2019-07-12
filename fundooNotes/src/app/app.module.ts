@@ -23,6 +23,8 @@ import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassw
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { EditlabelsComponent } from './components/editlabels/editlabels.component';
+import { UploadimageComponent } from './components/uploadimage/uploadimage.component';
+import { SearchPipe } from './search.pipe';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -55,9 +57,11 @@ const routes:Routes =[
     ForgetpasswordComponent,
     ResetpasswordComponent,
     EditnotesComponent,
-    EditlabelsComponent
+    EditlabelsComponent,
+    UploadimageComponent,
+    SearchPipe
   ],
-  entryComponents:[EditnotesComponent],
+  entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'

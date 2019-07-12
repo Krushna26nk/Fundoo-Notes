@@ -1,5 +1,4 @@
 <div class="mainCard">
-
   <mat-card [ngStyle]="{'background':color}" [formGroup]="card" class="beforeNoteCard">
 
     <p> <input type="text" *ngIf="showIcons" placeholder="Title" name="" formControlName="title" id="input" >  </p>
@@ -36,11 +35,13 @@
 
 
 <div style="position: relative;margin-left:10%">
-    <mat-card  *ngFor="let items of this.sampleCardArray; let i = index"    [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;" class="beforeNoteCard1" >
+    <mat-card  *ngFor="let items of this.sampleCardArray | search: searchInput ; let i = index"    [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;" class="beforeNoteCard1" >
         
         <div (click)="updateNote(items)">
-          <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p>
-          <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p>
+          <div>{{items.title}} </div>
+          <div>{{items.description}}</div>
+          <!-- <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p> -->
+          <!-- <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p> -->
         </div>
 
 

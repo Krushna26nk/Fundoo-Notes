@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import * as $ from 'jquery';
 import { NoteService } from 'src/app/services/note.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { EditlabelsComponent } from '../editlabels/editlabels.component';
+import { FormControl } from '@angular/forms';
+import { SearchPipe } from 'src/app/search.pipe';
+import { SharedService } from 'src/app/services/shared.service';
+import { UploadimageComponent } from '../uploadimage/uploadimage.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('sidenavList1') sidenavList:ElementRef;
 
-  constructor(private noteService:NoteService,private router:Router) { }
+  constructor(private sharedService:SharedService,private router:Router,private dialog:MatDialog) { }
 
   // cardArray : any =[
   //   {'title':''},
@@ -22,6 +28,12 @@ export class DashboardComponent implements OnInit {
 
   opened : Boolean;
   headingName = 'FUNDOO';
+  labelArray : string[] =[];
+  search = new FormControl();
+  inputvalue = this.search.value;
+
+
+
   getName(){
     this.headingName = this.sidenavList.nativeElement.innerHTML
    console.log(this.headingName);
@@ -44,7 +56,15 @@ export class DashboardComponent implements OnInit {
       }
     })
 
+    this.sharedService.parentData = this.inputvalue;
 
+
+  }
+  onKey(event){
+    console.log(event);  
+    this.sharedService.inputvalueArray =event;  
+    console.log(this.sharedService.inputvalueArray);
+    
   }
 
   // sign out method to clear the previouse log in localstorage data.
@@ -55,4 +75,16 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
 
+  editLabels($event){
+     let dialogref = this.dialog.open(EditlabelsComponent);
+    dialogref.afterClosed().subscribe(result=>{
+      console.log(`label dialog result:${result}`);
+    })
+
+    this.labelArray = $event;
+}
+
+imageupload(){
+  let dialogRef =  this.dialog.open(UploadimageComponent)
+ }
 }

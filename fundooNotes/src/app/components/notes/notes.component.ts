@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import { RefreshService } from 'src/app/services/refresh.service';
 import { element } from '@angular/core/src/render3/instructions';
+import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -16,7 +17,7 @@ export class NotesComponent implements OnInit {
   message: any;
 
   constructor(private urlService:UrlService,private noteService:NoteService,
-              private refreshService:RefreshService, private dialog:MatDialog) { }
+              private refreshService:RefreshService, private dialog:MatDialog,private sharedService:SharedService) { }
 
   note: Note = new Note;
   token =localStorage.getItem('token');
@@ -28,7 +29,11 @@ export class NotesComponent implements OnInit {
   isDeleted:boolean=false;
   isArchived:boolean=false;
 
+  searchInput :string = this.sharedService.inputvalueArray;
+
   @Input() color :string;
+  @Input() searchvalue :string;
+
 
   @Output() event = new EventEmitter();
 

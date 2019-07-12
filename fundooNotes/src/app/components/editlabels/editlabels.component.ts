@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialogRef,MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-editlabels',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditlabelsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogRef:MatDialogRef<EditlabelsComponent>,private dialog:MatDialog) { }
 
+  label = new FormControl();
+  labels : string[] =[];
+  @Output()labe : EventEmitter<string[]> = new EventEmitter<string[]>();
   ngOnInit() {
   }
 
+  updateLabel(){  
+    this.dialog.closeAll();
+    this.labels.push(this.label.value);
+    console.log('input value',this.labels);
+    this.labe.emit(this.labels);
+  }
 }

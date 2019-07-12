@@ -1,3 +1,15 @@
-<p>
-  editlabels works!
-</p>
+<mat-dialog-content>
+    <p>Edit Labels</p>
+
+    <div style="display: flex">
+      <mat-icon>add</mat-icon>
+    
+    <mat-form-field>
+        <input matInput [formControl]="label" type="text">
+    </mat-form-field>
+  </div>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button (click)="updateLabel()" type="">Close</button>
+    </mat-dialog-actions>
+
+</mat-dialog-content>

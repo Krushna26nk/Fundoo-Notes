@@ -78,4 +78,8 @@ export class UrlService {
               this.noteService.archiveNotes(this.baseurl+url,data);
             }
 
+            uploadProfile(token,data){
+              var url='user/uploadProfileImage'
+              this.noteService.uploadProfile(this.baseurl+url,data,token);
+            }
 }

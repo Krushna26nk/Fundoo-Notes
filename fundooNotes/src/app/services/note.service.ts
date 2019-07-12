@@ -14,6 +14,7 @@ export class NoteService {
   trashList     :any = [];
   archivedList  :any = [];
 
+  token= localStorage.getItem('token');
 
  httpOptions = {
     headers : new HttpHeaders({
@@ -104,5 +105,15 @@ export class NoteService {
       })
     })
   }
+  
+  uploadProfile(url,data,token){
+    this.http.post(url,data,{
+      params:{
+        'access_token':token
+      }}).subscribe(data =>{
+      console.log(data);
+      
+    })
+
 
 }
