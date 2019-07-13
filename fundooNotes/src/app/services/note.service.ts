@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { Http } from '@angular/http';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class NoteService {
   noteArray     :any = [];
   trashList     :any = [];
   archivedList  :any = [];
+  labelArray    :any = [];
+
+  baseurl = environment.baseUrl;
+
 
   token= localStorage.getItem('token');
 
@@ -105,15 +110,48 @@ export class NoteService {
       })
     })
   }
+
+  postLabel(data){
+    var url="noteLabels"
+    this.http.post(this.baseurl+url,data).subscribe((response:any)=>{
+      console.log('label add response',response);      
+    });
+  }
   
-  uploadProfile(url,data,token){
-    this.http.post(url,data,{
-      params:{
+
+  getlabels(token){
+    var url ='noteLabels/getNoteLabelList'
+    this.http.get(`${this.baseurl+url}`,{
+      params :{
         'access_token':token
-      }}).subscribe(data =>{
+      }
+    }).subscribe((data:any) => {
+      console.log('label list response',data);
+      var labels = data.data.details;
+      labels.forEach(element =>{
+        this.labelArray.push(element.label);
+      })  
+    });
+
+    console.log('label aaray',this.labelArray);
+    
+  }
+  
+  postData(url,data){
+    console.log(data);
+    
+    this.http.post(url,data,{
+      headers : new HttpHeaders({
+        //'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }).subscribe((data:any) =>{
       console.log(data);
+      var imageUrl = data.status.imageUrl;
+      console.log(imageUrl);
+      localStorage.setItem('profilePic',imageUrl)
       
     })
-
+  }
 
 }

@@ -8,6 +8,7 @@ import { EditnotesComponent } from '../editnotes/editnotes.component';
 import { RefreshService } from 'src/app/services/refresh.service';
 import { element } from '@angular/core/src/render3/instructions';
 import { SharedService } from 'src/app/services/shared.service';
+import { Notelabel } from 'src/app/modal/notelabel';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -20,6 +21,7 @@ export class NotesComponent implements OnInit {
               private refreshService:RefreshService, private dialog:MatDialog,private sharedService:SharedService) { }
 
   note: Note = new Note;
+  noteLabel :Notelabel = new Notelabel();
   token =localStorage.getItem('token');
   open=false;
   showIcons = false;
@@ -228,6 +230,10 @@ export class NotesComponent implements OnInit {
             console.log(`dialog close :${result}`);
             
           })
+        }
+
+        addlabel(){
+
         }
 
 

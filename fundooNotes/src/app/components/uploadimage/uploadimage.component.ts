@@ -27,7 +27,7 @@ export class UploadimageComponent implements OnInit {
     console.log(event);
     this.file =<File>event.target.files[0];
     //var filename =<File>event.target.files[0].name;
-    console.log("",this.file);
+    console.log("file details",this.file);
     //console.log(filename);
   
   }
@@ -39,10 +39,10 @@ export class UploadimageComponent implements OnInit {
     
     const formData = new FormData();
 
-    formData.append("profile",this.file,this.file.name)
-    this.token = localStorage.getItem('token');
+    formData.append("file",this.file)
+    //this.token = localStorage.getItem('token');
     
-    this.urlService.uploadProfile(this.token,formData);
+    this.urlService.uploadProfile(formData);
     this.dialogRef.close();
   }
 

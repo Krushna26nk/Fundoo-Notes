@@ -7,9 +7,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatRadioModule,MatDialogModule} from '@angular/material';
-import {MatInputModule,MatTooltipModule,MatSnackBarModule} from '@angular/material';
+import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -65,7 +67,7 @@ const routes:Routes =[
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
-    }),MatTooltipModule,ReactiveFormsModule,HttpClientModule,
+    }),FlexLayoutModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule
   ],

@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { EditlabelsComponent } from '../editlabels/editlabels.component';
 import { FormControl } from '@angular/forms';
 import { SearchPipe } from 'src/app/search.pipe';
+import {environment} from '../../../environments/environment';
 import { SharedService } from 'src/app/services/shared.service';
 import { UploadimageComponent } from '../uploadimage/uploadimage.component';
 
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('sidenavList1') sidenavList:ElementRef;
 
-  constructor(private sharedService:SharedService,private router:Router,private dialog:MatDialog) { }
+  constructor(private sharedService:SharedService,private noteService:NoteService,private router:Router,private dialog:MatDialog) { }
 
   // cardArray : any =[
   //   {'title':''},
@@ -31,8 +32,14 @@ export class DashboardComponent implements OnInit {
   labelArray : string[] =[];
   search = new FormControl();
   inputvalue = this.search.value;
-
-
+  baseUrl1 = environment.baseUrl1;
+  firstname= localStorage.getItem('firstName');
+  lastname = localStorage.getItem('lastName');
+  email = localStorage.getItem('email');
+  token = localStorage.getItem('token')
+  name = this.firstname+ " " + this.lastname;
+  img =  this.baseUrl1+localStorage.getItem('profilePic');
+  labelArrayList : any[] = this.noteService.labelArray
 
   getName(){
     this.headingName = this.sidenavList.nativeElement.innerHTML
@@ -42,7 +49,7 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.getlabel();
     // this.getNote();
     // jQuery to handle the active class onclick on the sidenav list 
 
@@ -82,6 +89,11 @@ export class DashboardComponent implements OnInit {
     })
 
     this.labelArray = $event;
+}
+
+
+getlabel(){
+  this.noteService.getlabels(this.token);
 }
 
 imageupload(){

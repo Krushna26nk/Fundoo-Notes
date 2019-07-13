@@ -11,6 +11,8 @@ export class UrlService {
   constructor(private dataService:DataService, private noteService:NoteService) { }
 
   baseurl = environment.baseUrl;
+  baseurl1 = environment.baseUrl1;
+
   prevData : string[] = [];
 
 
@@ -78,8 +80,12 @@ export class UrlService {
               this.noteService.archiveNotes(this.baseurl+url,data);
             }
 
-            uploadProfile(token,data){
+            postLabel(){
+              
+            }
+
+            uploadProfile(data){
               var url='user/uploadProfileImage'
-              this.noteService.uploadProfile(this.baseurl+url,data,token);
+              this.noteService.postData(this.baseurl+url,data);
             }
 }

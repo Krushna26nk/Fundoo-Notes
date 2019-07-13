@@ -28,6 +28,16 @@ export class DataService {
       var res3 = data.email;
       console.log(res3);
       localStorage.setItem('email',res3);
+
+      var res4 = data.imageUrl;
+      localStorage.setItem('profilePic',res4)
+      console.log(res4);
+
+      var res5 = data.userId;
+      localStorage.setItem('userId',res5);
+      console.log(res5);
+      
+      
       
 
       console.log('login response data .',data);

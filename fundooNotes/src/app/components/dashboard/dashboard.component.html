@@ -1,11 +1,11 @@
-<div class="toolbar-div">
+<div fxLayout="row" class="toolbar-div">
   
     <mat-toolbar class="toolbar">
       <div>
         <i (click)="sidenav.toggle()" class="material-icons"> dehaze  </i>
       </div>
 
-      <div class="fundooHeader">
+      <div fxFlex="15" fxLayout="row" class="fundooHeader">
           <div>
             <img src="../../../assets/images/download.png" class="header-image" alt="">
           </div>
@@ -14,23 +14,52 @@
           </div>
       </div>
 
-      <div class="cardDiv">
-        <mat-card id="toolbarSearch">
+      <div fxFlex="30" class="cardDiv">
+        <mat-card fxLayout="row" id="toolbarSearch">
            <i class="material-icons">search</i> <input matInput [formControl]="search" (keyup)="onKey(search.value)"   class="searchinput" placeholder="Search">
         </mat-card>
       </div>
 
-      <div>
-        <i id="viewIcons" class="material-icons" style="display: none;">view_stream</i>
-        <i id="viewIcons" class="material-icons" style="display: none;">view_module</i>
+      <div fxFlex="25">
+        <i id="viewIcons" class="material-icons" >view_stream</i>
+        <i id="viewIcons" class="material-icons" >view_module</i>
       </div>
 
-      <div style="border: 1px solid;position:relative;justify-content: flex-end;left: 20%">
-      <img [matMenuTriggerFor]="menu" mat-card-avatar  [src]="" [alt]="">
+      <div fxLayout="row" fxFlex="5">
+      <img [matMenuTriggerFor]="menu" class="matAvatar" mat-card-avatar src="{{ img }}" [alt]="">
       </div>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="imageupload()">Upload Profile Pic</button>
-        <button mat-menu-item (click)="signOut()">Sign Out</button>
+      <mat-menu style="width: 100%" #menu="matMenu">
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+             <img mat-card-avatar class="profileavatar" src="{{img}}">  
+            </div>
+            <div class="col-md-9">
+              <mat-card-title style="font-size: 18px;"> {{name}} </mat-card-title>
+              <mat-card-subtitle> {{email}} </mat-card-subtitle>
+            </div>
+          </div>
+          <div class="row">
+              <button mat-button style="background: cornsilk" (click)="imageupload()">Change Profile</button>
+              <button mat-button  (click)="signOut()">Sign Out</button>
+          </div>
+        </div>
+
+        <!-- <mat-card style="background:lightblue" class="menuCard"> -->
+            <!-- <mat-card-header> -->
+            <!-- <img mat-card-avatar class="profileavatar" src="{{img}}">  
+            <mat-card-title>{{ name }}</mat-card-title>
+            <mat-card-subtitle>{{ email }}</mat-card-subtitle> -->
+            <!-- </mat-card-header> -->
+            <!-- <mat-card-actions mat-menu-item>
+
+                <button mat-button (click)="imageupload()">Change Profile</button>
+                <button mat-button  (click)="signOut()">Sign Out</button>
+                
+            </mat-card-actions>
+        </mat-card> -->
       </mat-menu>
 
     </mat-toolbar>
@@ -57,18 +86,26 @@
                       <span class="listNames"> Remainder </span> 
                   </mat-list-item>
               </div>
-
+            
+            <mat-divider></mat-divider>  
              
-              <p style="font-size: 15px;padding-top: 5px;padding-left: 5px;">EDIT LABELS</p>
+              <p style="font-size: 15px;padding-top: 5px;padding-left: 5px;">LABELS</p>
+                 
+              <mat-list-item *ngFor="let item of labelArrayList" (click)="editLabels()" routerLink="label"> 
+                  <span><mat-icon class="listIcons">label_outline</mat-icon></span> 
+                  <span class="listNames"  > {{ item }}</span>   
+                </mat-list-item>      
               <div id="sidenavList" style="padding-top: 0px">
-                
+                       
+
                   <mat-list-item class="sidelist" (click)="editLabels()" routerLink="label"> 
-                    <span><mat-icon class="listIcons">label_outline</mat-icon></span> 
+                    <span><mat-icon class="listIcons">edit</mat-icon></span> 
                     <span class="listNames"  > Edit Labels </span>   
                   </mat-list-item>
               </div>
 
-             
+              <mat-divider></mat-divider>  
+
               
               <div id="sidenavList">
                   <mat-list-item class="sidelist" routerLink="archives"> 
