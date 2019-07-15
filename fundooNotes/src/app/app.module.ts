@@ -10,7 +10,7 @@ import {HttpModule} from '@angular/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule} from '@angular/material';
-import {MatCardModule,MatButtonModule,MatRadioModule,MatDialogModule} from '@angular/material';
+import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -27,6 +27,7 @@ import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { EditlabelsComponent } from './components/editlabels/editlabels.component';
 import { UploadimageComponent } from './components/uploadimage/uploadimage.component';
 import { SearchPipe } from './search.pipe';
+import { ListgridComponent } from './components/listgrid/listgrid.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -61,15 +62,16 @@ const routes:Routes =[
     EditnotesComponent,
     EditlabelsComponent,
     UploadimageComponent,
-    SearchPipe
+    SearchPipe,
+    ListgridComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
-    }),FlexLayoutModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,
+    }),FlexLayoutModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
-    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule
+    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

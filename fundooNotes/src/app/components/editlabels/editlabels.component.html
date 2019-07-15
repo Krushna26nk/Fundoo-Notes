@@ -11,5 +11,10 @@
     <mat-dialog-actions align="end">
       <button mat-raised-button (click)="updateLabel()" type="">Close</button>
     </mat-dialog-actions>
+    <mat-form-field style="height:30%;width: 70%;border-bottom: none;text-decoration: none;outline-color:none;" fxLayout="column" *ngFor="let item of labelArray" >
+      <div fxLayout="row">
+        <input matInput  value=" {{item}}"><mat-icon  class="checkIcon">check</mat-icon>
+      </div>
+    </mat-form-field>
 
 </mat-dialog-content>

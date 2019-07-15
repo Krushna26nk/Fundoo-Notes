@@ -18,6 +18,9 @@ export class EditlabelsComponent implements OnInit {
   token = localStorage.getItem('token');
   label = new FormControl();
   labels : string[] =[];
+
+  labelArray = this.noteService.labelArray;
+
   userId = localStorage.getItem('userId');
   @Output()labe : EventEmitter<string[]> = new EventEmitter<string[]>();
   ngOnInit() {

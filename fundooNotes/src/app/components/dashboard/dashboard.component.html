@@ -5,7 +5,7 @@
         <i (click)="sidenav.toggle()" class="material-icons"> dehaze  </i>
       </div>
 
-      <div fxFlex="15" fxLayout="row" class="fundooHeader">
+      <div  fxLayout="row" class="fundooHeader">
           <div>
             <img src="../../../assets/images/download.png" class="header-image" alt="">
           </div>
@@ -14,20 +14,31 @@
           </div>
       </div>
 
-      <div fxFlex="30" class="cardDiv">
+      <div class="cardDiv">
         <mat-card fxLayout="row" id="toolbarSearch">
            <i class="material-icons">search</i> <input matInput [formControl]="search" (keyup)="onKey(search.value)"   class="searchinput" placeholder="Search">
         </mat-card>
       </div>
 
-      <div fxFlex="25">
-        <i id="viewIcons" class="material-icons" >view_stream</i>
-        <i id="viewIcons" class="material-icons" >view_module</i>
-      </div>
+      <div style="position:relative;margin-left: 5%;" fxFlex fxLayoutGap="20%" fxFlexAlign="center" fxLayoutAlign="space-between center" >
 
-      <div fxLayout="row" fxFlex="5">
-      <img [matMenuTriggerFor]="menu" class="matAvatar" mat-card-avatar src="{{ img }}" [alt]="">
-      </div>
+                <div>
+                  <mat-icon>refresh</mat-icon>
+                </div>
+
+                <div>
+                  <mat-icon> settings </mat-icon>
+                </div>
+
+                <div (click)="onGridToggle()"  >
+                  <i id="viewIcons" *ngIf="!handle"  class="material-icons" >view_agenda</i>
+                  <i id="viewIcons" *ngIf="handle"  class="material-icons" >grid_on</i>
+                </div>
+
+                <div >
+                <img [matMenuTriggerFor]="menu" class="matAvatar" mat-card-avatar src="{{ img }}" [alt]="">
+                </div>
+    </div>
       <mat-menu style="width: 100%" #menu="matMenu">
 
 
@@ -91,9 +102,9 @@
              
               <p style="font-size: 15px;padding-top: 5px;padding-left: 5px;">LABELS</p>
                  
-              <mat-list-item *ngFor="let item of labelArrayList" (click)="editLabels()" routerLink="label"> 
+              <mat-list-item *ngFor="let item of labelArrayList" routerLink="label"> 
                   <span><mat-icon class="listIcons">label_outline</mat-icon></span> 
-                  <span class="listNames"  > {{ item }}</span>   
+                  <span class="listNames" (click)="getNoteOfLabel(item)"   > {{ item }}</span>   
                 </mat-list-item>      
               <div id="sidenavList" style="padding-top: 0px">
                        

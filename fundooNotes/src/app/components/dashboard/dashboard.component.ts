@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 import { NoteService } from 'src/app/services/note.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { SearchPipe } from 'src/app/search.pipe';
 import {environment} from '../../../environments/environment';
 import { SharedService } from 'src/app/services/shared.service';
 import { UploadimageComponent } from '../uploadimage/uploadimage.component';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('sidenavList1') sidenavList:ElementRef;
 
-  constructor(private sharedService:SharedService,private noteService:NoteService,private router:Router,private dialog:MatDialog) { }
+  constructor(private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private router:Router,private dialog:MatDialog) { }
 
   // cardArray : any =[
   //   {'title':''},
@@ -28,9 +29,11 @@ export class DashboardComponent implements OnInit {
   // ];
 
   opened : Boolean;
+  handle :boolean = false;
   headingName = 'FUNDOO';
   labelArray : string[] =[];
   search = new FormControl();
+  // searching the notes by title
   inputvalue = this.search.value;
   baseUrl1 = environment.baseUrl1;
   firstname= localStorage.getItem('firstName');
@@ -40,6 +43,10 @@ export class DashboardComponent implements OnInit {
   name = this.firstname+ " " + this.lastname;
   img =  this.baseUrl1+localStorage.getItem('profilePic');
   labelArrayList : any[] = this.noteService.labelArray
+
+  labelname :any;
+
+  @Output() event1 = new EventEmitter();
 
   getName(){
     this.headingName = this.sidenavList.nativeElement.innerHTML
@@ -64,9 +71,15 @@ export class DashboardComponent implements OnInit {
     })
 
     this.sharedService.parentData = this.inputvalue;
+  }
 
+  onGridToggle(){
+    this.handle = !this.handle
+    this.sharedService.getHandle(this.handle);
 
   }
+
+
   onKey(event){
     console.log(event);  
     this.sharedService.inputvalueArray =event;  
@@ -83,7 +96,9 @@ export class DashboardComponent implements OnInit {
   }
 
   editLabels($event){
-     let dialogref = this.dialog.open(EditlabelsComponent);
+     let dialogref = this.dialog.open(EditlabelsComponent,{
+       width:'25vw'
+     });
     dialogref.afterClosed().subscribe(result=>{
       console.log(`label dialog result:${result}`);
     })
@@ -99,4 +114,12 @@ getlabel(){
 imageupload(){
   let dialogRef =  this.dialog.open(UploadimageComponent)
  }
+
+getNoteOfLabel(item){
+  this.labelname = item;
+  console.log(item);
+  this.urlService.getNoteListByLabel(item);
+  
+}
+
 }

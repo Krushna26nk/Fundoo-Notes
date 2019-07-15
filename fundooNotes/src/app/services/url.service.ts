@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import {environment} from '../../environments/environment';
 import { NoteService } from './note.service';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UrlService {
 
-  constructor(private dataService:DataService, private noteService:NoteService) { }
+  constructor(private dataService:DataService,private sharedService:SharedService, private noteService:NoteService) { }
 
   baseurl = environment.baseUrl;
   baseurl1 = environment.baseUrl1;
+  labelname :string;
 
   prevData : string[] = [];
 
@@ -87,5 +89,11 @@ export class UrlService {
             uploadProfile(data){
               var url='user/uploadProfileImage'
               this.noteService.postData(this.baseurl+url,data);
+            }
+
+            getNoteListByLabel(item){
+              this.labelname = item;
+              var url ='notes/getNotesListByLabel/'+item+''
+              this.noteService.getNotesListbylabels(url);
             }
 }

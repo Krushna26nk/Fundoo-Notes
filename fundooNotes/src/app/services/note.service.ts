@@ -2,19 +2,25 @@ import { Injectable } from '@angular/core';
 // import { Http } from '@angular/http';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
 
   dataArray     :any = [];
   noteArray     :any = [];
   trashList     :any = [];
   archivedList  :any = [];
   labelArray    :any = [];
+  labelDetails  :any = [];
+
+  notesbyLabel : any = [];
+
+  labelName : any;
 
   baseurl = environment.baseUrl;
 
@@ -129,6 +135,7 @@ export class NoteService {
       console.log('label list response',data);
       var labels = data.data.details;
       labels.forEach(element =>{
+        this.labelDetails.push(element);
         this.labelArray.push(element.label);
       })  
     });
@@ -150,6 +157,32 @@ export class NoteService {
       var imageUrl = data.status.imageUrl;
       console.log(imageUrl);
       localStorage.setItem('profilePic',imageUrl)
+      
+    })
+  }
+
+
+  addNoteToLabel(note,label){
+    var url = "notes/"+note.id+"/addLabelToNotes/"+label.id+"/add"
+    var data = {
+      "noteIdList":note.id,
+      "label":[label.label]
+    }
+    this.http.post(this.baseurl+url,data,this.httpOptions).subscribe((response:any)=>{
+      console.log(response);
+    })
+  }
+
+  getNotesListbylabels(url){
+    var data= {}
+    this.http.post(this.baseurl+url,data,this.httpOptions).subscribe((data:any) =>{
+      console.log('label filter',data);
+      var labelFilter = data.data.data
+      console.log(labelFilter);
+      labelFilter.forEach(element => {
+        this.notesbyLabel.push(element);
+      });
+      
       
     })
   }

@@ -6,7 +6,6 @@ import { NoteService } from 'src/app/services/note.service';
 import { MatDialog } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import { RefreshService } from 'src/app/services/refresh.service';
-import { element } from '@angular/core/src/render3/instructions';
 import { SharedService } from 'src/app/services/shared.service';
 import { Notelabel } from 'src/app/modal/notelabel';
 @Component({
@@ -33,8 +32,11 @@ export class NotesComponent implements OnInit {
 
   searchInput :string = this.sharedService.inputvalueArray;
 
+  gettinghandle : boolean = this.sharedService.toggle;
+
   @Input() color :string;
   @Input() searchvalue :string;
+  @Input() handle:boolean;
 
 
   @Output() event = new EventEmitter();
@@ -42,6 +44,10 @@ export class NotesComponent implements OnInit {
 
   cardArray = this.noteService.dataArray;
   sampleCardArray = this.noteService.noteArray;
+  labelArrayList : any[] = this.noteService.labelArray
+  labelDetails : any[] = this.noteService.labelDetails;
+  emptyArray : any[] =[];
+
   
   /**
    * color input string array for color pallete
@@ -63,7 +69,35 @@ export class NotesComponent implements OnInit {
 
   value : string;
 
+  addLabelToNote(label,items){
+    var noteId = items.id;
+    var labelId = label.id;
+
+    var data ={
+      "noteIdList":[noteId],
+      "label":label.label
+    }
+    
+    console.log(event);
+    console.log(items);
+    
+
+    this.noteService.addNoteToLabel(items,label)
+
+    console.log(noteId);
+    console.log(labelId);
+    
+  }
+
+  ngAfterContentInit() {
+    console.log(this.gettinghandle);
+    
+  }
+
   ngOnInit() {
+    
+    console.log('label details',this.labelDetails);
+    
     this.getNote();
     this.refreshService.currentMessage.subscribe(
       response=>{
@@ -157,7 +191,7 @@ export class NotesComponent implements OnInit {
             
             console.log('note array with trashed and archived notes',this.cardArray);
             console.log('without trashed and archived notes',this.sampleCardArray);
-            
+                       
 
             // this.cardArray.forEach(element=>{
             //   this.sampleCardArray.push(element);
@@ -216,7 +250,7 @@ export class NotesComponent implements OnInit {
 
         updateNote(items:any){
           let dialogref = this.dialog.open(EditnotesComponent,{
-            height:'48vh',
+            height:'35vh',
             width:'56vw',
             data:{
               title:items.title,
