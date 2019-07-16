@@ -285,5 +285,12 @@ export class NotesComponent implements OnInit {
           }
           this.urlService.archiveNotes(data);
         }
-  
+ 
+        
+        onRemoveLabel(labelId,noteId){
+          console.log('label id',labelId,'note id',noteId);
+          this.urlService.postRemoveLabel(labelId,noteId);
+        }
+
+
 }

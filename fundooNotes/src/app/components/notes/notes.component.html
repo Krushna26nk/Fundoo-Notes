@@ -44,8 +44,10 @@
           <!-- <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p> -->
         </div>
 
-        <mat-chip-list>
-          <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 15px;"> {{ l.label }} </mat-chip>
+        <mat-chip-list fxLayout="row">
+          <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 15px;"> {{ l.label }}
+            <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
+          </mat-chip>
         </mat-chip-list>
 
         <div class="mainIcons">

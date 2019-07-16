@@ -16,8 +16,8 @@ export class SearchPipe implements PipeTransform {
     return value.filter(items =>{      
       return items.title.startsWith(args)==true
     },
-    items1 =>{
-      return items1.description.startsWith(args) == true
+    items =>{
+      return items.description.startsWith(args) == true
     });
   }
 

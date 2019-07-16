@@ -96,4 +96,13 @@ export class UrlService {
               var url ='notes/getNotesListByLabel/'+item+''
               this.noteService.getNotesListbylabels(url);
             }
+
+            postRemoveLabel(labelId,noteId){
+              var url = "notes/"+noteId+"/addLabelToNotes/"+labelId+"/remove" 
+              var data ={
+                "noteId":noteId,
+                "labelId":labelId
+              }
+              this.noteService.postRemovelabel(url,data);
+            }
 }

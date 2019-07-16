@@ -26,6 +26,10 @@ export class EditlabelsComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * @description method to post the labels through dialog box
+   */
+
   updateLabel(){  
     this.dialog.closeAll();
 

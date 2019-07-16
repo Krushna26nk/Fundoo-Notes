@@ -31,11 +31,11 @@
                 </div>
 
                 <div>
-                  <app-listgrid></app-listgrid>
+                  <app-listgrid class="material-icons"></app-listgrid>
                 </div>
 
-                <div >
-                <img [matMenuTriggerFor]="menu" class="matAvatar" mat-card-avatar src="{{ img }}" [alt]="">
+                <div [style.background]=" img.length > 0 ? 'cornsilk' : null">
+                <img [matMenuTriggerFor]="menu" class="matAvatar" src="{{ img }}" alt="{{name[0]}}">
                 </div>
     </div>
       <mat-menu style="width: 100%" #menu="matMenu">
@@ -46,14 +46,15 @@
             <div class="col-md-3">
              <img mat-card-avatar class="profileavatar" src="{{img}}">  
             </div>
-            <div class="col-md-9">
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
               <mat-card-title style="font-size: 18px;"> {{name}} </mat-card-title>
               <mat-card-subtitle> {{email}} </mat-card-subtitle>
             </div>
           </div>
-          <div class="row">
-              <button mat-button style="background: cornsilk" (click)="imageupload()">Change Profile</button>
-              <button mat-button  (click)="signOut()">Sign Out</button>
+          <div class="row p-1">
+              <button class="m-2" mat-button style="background:tomato" (click)="imageupload()">Change Profile</button>
+              <button class="m-2" mat-button style="background:tomato" (click)="signOut()">Sign Out</button>
           </div>
         </div>
 
@@ -110,7 +111,7 @@
 
                   <mat-list-item class="sidelist" (click)="editLabels()" routerLink="label"> 
                     <span><mat-icon class="listIcons">edit</mat-icon></span> 
-                    <span class="listNames"  > Edit Labels </span>   
+                    <span class="listNames"> Edit Labels </span>   
                   </mat-list-item>
               </div>
 

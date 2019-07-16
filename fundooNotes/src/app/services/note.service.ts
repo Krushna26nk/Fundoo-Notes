@@ -187,4 +187,17 @@ export class NoteService {
     })
   }
 
+
+  postRemovelabel(url,data){
+    this.http.post(this.baseurl+url,data,{
+      headers : new HttpHeaders({
+        // 'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }).subscribe((response:any)=>{
+      console.log(response);
+      
+    })
+  }
+
 }
