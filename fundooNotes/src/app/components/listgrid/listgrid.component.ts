@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-listgrid',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListgridComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharedService:SharedService) { }
+
+  handle : boolean = false
 
   ngOnInit() {
+  }
+  onToggle(){
+    this.handle = !this.handle;
+    this.sharedService.getHandle(this.handle);
+    
   }
 
 }

@@ -30,9 +30,8 @@
                   <mat-icon> settings </mat-icon>
                 </div>
 
-                <div (click)="onGridToggle()"  >
-                  <i id="viewIcons" *ngIf="!handle"  class="material-icons" >view_agenda</i>
-                  <i id="viewIcons" *ngIf="handle"  class="material-icons" >grid_on</i>
+                <div>
+                  <app-listgrid></app-listgrid>
                 </div>
 
                 <div >

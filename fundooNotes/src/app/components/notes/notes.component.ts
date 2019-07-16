@@ -36,7 +36,7 @@ export class NotesComponent implements OnInit {
 
   @Input() color :string;
   @Input() searchvalue :string;
-  @Input() handle:boolean;
+  @Input() childMsg:boolean;
 
 
   @Output() event = new EventEmitter();
@@ -68,6 +68,7 @@ export class NotesComponent implements OnInit {
   descriptionValue =this.card.controls.description;
 
   value : string;
+  inputhandle : boolean;
 
   addLabelToNote(label,items){
     var noteId = items.id;
@@ -89,12 +90,9 @@ export class NotesComponent implements OnInit {
     
   }
 
-  ngAfterContentInit() {
-    console.log(this.gettinghandle);
-    
-  }
 
   ngOnInit() {
+    this.getHandle()
     
     console.log('label details',this.labelDetails);
     
@@ -108,6 +106,14 @@ export class NotesComponent implements OnInit {
  
       }
     )
+  }
+
+  getHandle(){
+    this.sharedService.change.subscribe(data =>{
+      console.log('handle in notes',data);
+      this.inputhandle = data;
+      
+    })
   }
 
 

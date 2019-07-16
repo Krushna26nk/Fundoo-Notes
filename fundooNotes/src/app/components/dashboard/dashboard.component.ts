@@ -46,7 +46,9 @@ export class DashboardComponent implements OnInit {
 
   labelname :any;
 
-  @Output() event1 = new EventEmitter();
+  // @Output() event1 = new EventEmitter();
+
+  
 
   getName(){
     this.headingName = this.sidenavList.nativeElement.innerHTML
