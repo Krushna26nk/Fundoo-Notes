@@ -9,5 +9,5 @@ export class Note {
     label:string;
     collaborators:string[];
     image:string;
-    reminder:string;
+    reminder:string[];
 }

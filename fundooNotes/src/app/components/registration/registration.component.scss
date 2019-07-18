@@ -16,3 +16,7 @@
 .matCardTitle :nth-child(3){
     color: rgb(230, 230, 69);
 }
+
+/deep/ mat-form-field-flex mat-form-field-appearance-outline mat-form-field-flex{
+    height: 50%;
+}

@@ -105,4 +105,18 @@ export class UrlService {
               }
               this.noteService.postRemovelabel(url,data);
             }
+
+            postReminder(data){
+              var url ='notes/addUpdateReminderNotes'
+              this.noteService.postReminder(this.baseurl+url,data);
+            }
+
+            postReminderTomorrow(data){
+              var url = 'notes/addUpdateReminderNotes'
+              this.noteService.postReminderTomorrow(this.baseurl+url,data);
+            }
+            postReminderWeekly(data){
+              var url ='notes/addUpdateReminderNotes';
+              this.noteService.postReminderWeekly(this.baseurl+url);
+            }
 }

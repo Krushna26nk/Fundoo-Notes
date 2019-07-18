@@ -1,76 +1,58 @@
 <div fxLayout="row" class="toolbar-div">
   
-    <mat-toolbar class="toolbar">
-      <div>
-        <i (click)="sidenav.toggle()" class="material-icons"> dehaze  </i>
-      </div>
-
-      <div  fxLayout="row" class="fundooHeader">
-          <div>
-            <img src="../../../assets/images/download.png" class="header-image" alt="">
+    <mat-toolbar fxLayout="row" class="toolbar">
+          <div fxLayout="row" fxFlex="5">
+            <i (click)="sidenav.toggle()" class="material-icons"> dehaze  </i>
           </div>
-          <div class="fundooName">
-            <span id="heading">{{headingName}}</span>
+
+
+          <div  fxLayout="row" fxFlex class="fundooHeader">
+              <div>
+                <img src="../../../assets/images/download.png" class="header-image" alt="">
+              </div>
+              <div class="fundooName">
+                <span id="heading">{{headingName}}</span>
+              </div>
           </div>
-      </div>
 
-      <div class="cardDiv">
-        <mat-card fxLayout="row" id="toolbarSearch">
-           <i class="material-icons">search</i> <input matInput [formControl]="search" (keyup)="onKey(search.value)"   class="searchinput" placeholder="Search">
-        </mat-card>
-      </div>
 
-      <div style="position:relative;margin-left: 5%;" fxFlex fxLayoutGap="20%" fxFlexAlign="center" fxLayoutAlign="space-between center" >
+          <div class="cardDiv" fxFlex="50">
+            <div fxLayout="row" id="toolbarSearch">
+              <i class="material-icons">search</i> <input matInput [(ngModel)]="searchvalue" (keyup)="onKey()"   class="searchinput" placeholder="Search">
+            </div>
+          </div>
 
-                <div>
-                  <mat-icon>refresh</mat-icon>
-                </div>
 
-                <div>
-                  <mat-icon> settings </mat-icon>
-                </div>
+          <div style="position:relative;" fxFlex fxLayoutGap="30%" fxFlexOffset="10" fxFlexAlign="auto" fxLayoutAlign="space-between center" >
 
-                <div>
-                  <app-listgrid class="material-icons"></app-listgrid>
-                </div>
+                    <div>         <mat-icon>refresh</mat-icon>                              </div>
+                    <div>         <mat-icon> settings </mat-icon>                           </div>
+                    <div>         <app-listgrid class="material-icons"> </app-listgrid>     </div>
+                    <div style="border-radius: 50%" [style.background]=" img.length > 0 ? 'cornsilk' : null">
+                      <img [matMenuTriggerFor]="menu" class="matAvatar" src="{{ img }}" alt="{{name[0]}}">
+                    </div>
+          </div>
 
-                <div [style.background]=" img.length > 0 ? 'cornsilk' : null">
-                <img [matMenuTriggerFor]="menu" class="matAvatar" src="{{ img }}" alt="{{name[0]}}">
-                </div>
-    </div>
+        
       <mat-menu style="width: 100%" #menu="matMenu">
 
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3">
-             <img mat-card-avatar class="profileavatar" src="{{img}}">  
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
-              <mat-card-title style="font-size: 18px;"> {{name}} </mat-card-title>
-              <mat-card-subtitle> {{email}} </mat-card-subtitle>
-            </div>
-          </div>
-          <div class="row p-1">
-              <button class="m-2" mat-button style="background:tomato" (click)="imageupload()">Change Profile</button>
-              <button class="m-2" mat-button style="background:tomato" (click)="signOut()">Sign Out</button>
-          </div>
-        </div>
-
-        <!-- <mat-card style="background:lightblue" class="menuCard"> -->
-            <!-- <mat-card-header> -->
-            <!-- <img mat-card-avatar class="profileavatar" src="{{img}}">  
-            <mat-card-title>{{ name }}</mat-card-title>
-            <mat-card-subtitle>{{ email }}</mat-card-subtitle> -->
-            <!-- </mat-card-header> -->
-            <!-- <mat-card-actions mat-menu-item>
-
-                <button mat-button (click)="imageupload()">Change Profile</button>
-                <button mat-button  (click)="signOut()">Sign Out</button>
-                
-            </mat-card-actions>
-        </mat-card> -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                  <img mat-card-avatar class="profileavatar" src="{{img}}">  
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-7">
+                    <mat-card-title style="font-size: 18px;"> {{name}} </mat-card-title>
+                    <mat-card-subtitle> {{email}} </mat-card-subtitle>
+                  </div>
+                </div>
+                <div class="row p-1">
+                    <button class="m-2" mat-button style="background:tomato" (click)="imageupload()">Change Profile</button>
+                    <button class="m-2" mat-button style="background:tomato" (click)="signOut()">Sign Out</button>
+                </div>
+              </div>
+              
       </mat-menu>
 
     </mat-toolbar>

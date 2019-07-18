@@ -96,16 +96,8 @@ export class NotesComponent implements OnInit {
     
     console.log('label details',this.labelDetails);
     
-    this.getNote();
-    this.refreshService.currentMessage.subscribe(
-      response=>{
-        this.message=response
-        //console.log(response);
-        
-        // this.getNote();
- 
-      }
-    )
+  
+    
   }
 
   getHandle(){
@@ -163,19 +155,23 @@ export class NotesComponent implements OnInit {
                 this.showIcons = !this.showIcons
                 
                 if(this.titleValue.value == undefined || this.titleValue.value == ''){
+                  console.log("111111");
+                  
                   this.showIcons;
                   this.showIcon = !this.showIcon;
                   return false
                 }
                 else if( this.descriptionValue.value == undefined || this.descriptionValue.value == ''){
+   console.log("222222");
+   
                   this.showIcons;
                   this.showIcon = !this.showIcon;
                   return false
                 }
-                else if(this.color == undefined){
-                  this.note.color = '';
-                }
+               
                 else{
+                  console.log("sdewrew");
+                  
                   this.note.color = this.color;
                   this.urlService.addNote(this.note,this.token);
                   this.refreshService.changeMessage('ghfg');
@@ -189,14 +185,14 @@ export class NotesComponent implements OnInit {
  * @description to fetch all the note by using http services
  *   services : userservice and note service
  */
-          getNote(){
+          // getNote(){
 
-            this.urlService.getNote(this.token)
-            console.log(this.token);
-            console.log('array fetch in note components');
+          //   this.urlService.getNote(this.token)
+          //   console.log(this.token);
+          //   console.log('array fetch in note components');
             
-            console.log('note array with trashed and archived notes',this.cardArray);
-            console.log('without trashed and archived notes',this.sampleCardArray);
+          //   console.log('note array with trashed and archived notes',this.cardArray);
+          //   console.log('without trashed and archived notes',this.sampleCardArray);
                        
 
             // this.cardArray.forEach(element=>{
@@ -210,7 +206,7 @@ export class NotesComponent implements OnInit {
             //   console.log('adfdas',element);
             //   this.sampleCardArray.push(element);
             // });            
-          }
+          //}
           
 
 
@@ -222,75 +218,75 @@ export class NotesComponent implements OnInit {
  * @param userId id of the particular user which note is belongs to.
  */
 
-        trashNote(items:any){
-          // this.urlService.trashNote(userId,noteid);
-          this.note.noteIdList = items.id;
-          var data={
-            "noteIdList":[this.note.noteIdList],
-            "isDeleted":true
-          }
-          console.log(this.note.noteIdList);
-         // console.log(userId);
-          this.urlService.trashNote(data);
-        }
+//         trashNote(items:any){
+//           // this.urlService.trashNote(userId,noteid);
+//           this.note.noteIdList = items.id;
+//           var data={
+//             "noteIdList":[this.note.noteIdList],
+//             "isDeleted":true
+//           }
+//           console.log(this.note.noteIdList);
+//          // console.log(userId);
+//           this.urlService.trashNote(data);
+//         }
 
-// to update the color from color palette
+// // to update the color from color palette
 
-        updateColor(items,$event){
-          this.newColor = $event;
-          console.log('color',$event);
+//         updateColor(items,$event){
+//           this.newColor = $event;
+//           console.log('color',$event);
           
-          this.note.color = this.newColor;
-          var data ={
-            "color":this.newColor,
-            "noteIdList":[items.id],
-          }
-          console.log('asds',data);
+//           this.note.color = this.newColor;
+//           var data ={
+//             "color":this.newColor,
+//             "noteIdList":[items.id],
+//           }
+//           console.log('asds',data);
           
-          this.urlService.updateColor(data);
-        }
+//           this.urlService.updateColor(data);
+//         }
 
 
 
 // to update the title and description using modal pop-up
 
-        updateNote(items:any){
-          let dialogref = this.dialog.open(EditnotesComponent,{
-            height:'35vh',
-            width:'56vw',
-            data:{
-              title:items.title,
-              description:items.description,
-              color:items.color,
-              id:items.id
-            }
-          });
-          console.log(items);
-          dialogref.afterClosed().subscribe(result =>{
-            console.log(`dialog close :${result}`);
+        // updateNote(items:any){
+        //   let dialogref = this.dialog.open(EditnotesComponent,{
+        //     height:'35vh',
+        //     width:'56vw',
+        //     data:{
+        //       title:items.title,
+        //       description:items.description,
+        //       color:items.color,
+        //       id:items.id
+        //     }
+        //   });
+        //   console.log(items);
+        //   dialogref.afterClosed().subscribe(result =>{
+        //     console.log(`dialog close :${result}`);
             
-          })
-        }
+        //   })
+        // }
 
         addlabel(){
 
         }
 
 
-        onArchive(items:any){
-          this.note.noteIdList = items.id;
-          var data = {
-            "noteIdList":[this.note.noteIdList],
-            "isArchived":true
-          }
-          this.urlService.archiveNotes(data);
-        }
+        // onArchive(items:any){
+        //   this.note.noteIdList = items.id;
+        //   var data = {
+        //     "noteIdList":[this.note.noteIdList],
+        //     "isArchived":true
+        //   }
+        //   this.urlService.archiveNotes(data);
+        // }
  
         
-        onRemoveLabel(labelId,noteId){
-          console.log('label id',labelId,'note id',noteId);
-          this.urlService.postRemoveLabel(labelId,noteId);
-        }
+        // onRemoveLabel(labelId,noteId){
+        //   console.log('label id',labelId,'note id',noteId);
+        //   this.urlService.postRemoveLabel(labelId,noteId);
+        // }
 
 
 }

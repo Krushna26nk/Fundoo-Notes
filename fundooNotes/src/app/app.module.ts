@@ -9,9 +9,9 @@ import {HttpModule} from '@angular/http';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule} from '@angular/material';
+import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
-import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule} from '@angular/material';
+import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -28,6 +28,7 @@ import { EditlabelsComponent } from './components/editlabels/editlabels.componen
 import { UploadimageComponent } from './components/uploadimage/uploadimage.component';
 import { SearchPipe } from './search.pipe';
 import { ListgridComponent } from './components/listgrid/listgrid.component';
+import { GetnotesComponent } from './components/getnotes/getnotes.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -36,7 +37,9 @@ const routes:Routes =[
   { path:'forget',component:ForgetpasswordComponent},
   { path:'reset',component:ResetpasswordComponent},
   {path:'dashboard',component:DashboardComponent,children:[
-    { path:'',component : NotesComponent},
+    { path:'',component : NotesComponent,children:[
+      {path:'',component:GetnotesComponent}
+    ]},
     { path:'notes',component : NotesComponent},
     { path:'archives',component:ArchievComponent},
     { path:'trash',component:TrashComponent},
@@ -63,7 +66,8 @@ const routes:Routes =[
     EditlabelsComponent,
     UploadimageComponent,
     SearchPipe,
-    ListgridComponent
+    ListgridComponent,
+    GetnotesComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent],
   imports: [
@@ -71,7 +75,7 @@ const routes:Routes =[
       onSameUrlNavigation: 'reload'
     }),FlexLayoutModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
-    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatChipsModule
+    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

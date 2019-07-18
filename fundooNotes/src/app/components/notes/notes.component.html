@@ -32,17 +32,17 @@
 
 </div>
 
-
-
+<app-getnotes></app-getnotes>
+<!-- 
 <div style="position: relative;margin-left:10%">
     <mat-card  *ngFor="let items of this.sampleCardArray | search: searchInput ; let i = index" [style.width]="this.inputhandle ? '50vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;" class="beforeNoteCard1" >
         
         <div (click)="updateNote(items)">
           <div>{{items.title}} </div>
-          <div>{{items.description}}</div>
+          <div>{{items.description}}</div> -->
           <!-- <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p> -->
           <!-- <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p> -->
-        </div>
+        <!-- </div>
 
         <mat-chip-list fxLayout="row">
           <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 15px;"> {{ l.label }}
@@ -75,4 +75,4 @@
       
       
       </mat-card>
-</div>
+</div> -->

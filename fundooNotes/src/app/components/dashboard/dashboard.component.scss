@@ -1,6 +1,6 @@
 .toolbar{
     border-bottom: 1px solid rgba(168, 166, 166,0.5);
-    height: 4rem;
+    height: 3.5rem;
 }
 
 .avatar{
@@ -20,7 +20,7 @@
 // }
 
 .header-image{
-    height: 3rem;
+    height: 2.5rem;
 }
 
 .cardDiv{
@@ -112,8 +112,9 @@ right: 15px;
 }
 
 .matAvatar{
-    height: 65px;
-    width: 65px;
+    height: 57px;
+    width: 57px;
+    border-radius: 50%;
     background-size: cover;
 }
 

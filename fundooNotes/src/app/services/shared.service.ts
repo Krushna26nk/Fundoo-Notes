@@ -10,6 +10,7 @@ export class SharedService {
   toggle : boolean
 
   public change: EventEmitter<any> = new EventEmitter();
+  public search: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
 
@@ -17,6 +18,9 @@ export class SharedService {
     this.toggle = handle
     this.change.emit(handle);
     // console.log(this.toggle);    
+  }
+  getValue(data){
+    this.search.emit(data);
   }
 
 }

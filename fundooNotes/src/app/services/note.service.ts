@@ -200,4 +200,26 @@ export class NoteService {
     })
   }
 
+  postReminder(url,data){
+    this.http.post(url,data,this.httpOptions).subscribe((response:any) =>{
+      console.log(response);
+      
+    });
+  }
+
+  postReminderTomorrow(url,data){
+    this.http.post(url,data,this.httpOptions).subscribe((response:any) =>{
+      console.log(response);
+      
+    });
+  }
+
+  postReminderWeekly(data){
+    var url = 'notes/addUpdateReminderNotes'
+    this.http.post(this.baseurl+url,data,this.httpOptions).subscribe((response:any) =>{
+      console.log(response);
+      
+    });
+  }
+
 }

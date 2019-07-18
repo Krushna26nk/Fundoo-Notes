@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
   handle :boolean = false;
   headingName = 'FUNDOO';
   labelArray : string[] =[];
+  searchvalue:any;
   search = new FormControl();
   // searching the notes by title
   inputvalue = this.search.value;
@@ -82,10 +83,13 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  onKey(event){
-    console.log(event);  
-    this.sharedService.inputvalueArray =event;  
-    console.log(this.sharedService.inputvalueArray);
+  onKey(){
+    //console.log(event);  
+    //this.sharedService.inputvalueArray =event;  
+    console.log(this.searchvalue);
+    
+    this.sharedService.getValue(this.searchvalue);
+    // console.log(this.sharedService.inputvalueArray);
     
   }
 

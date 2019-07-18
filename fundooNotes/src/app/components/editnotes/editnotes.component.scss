@@ -10,8 +10,18 @@ input{
     display: flex;
 }
 .mainIcons mat-icon{
-    padding-left: 5%
+    // padding-left: 5%
 }
+.mainIcons mat-icon{
+    padding: 0px 15px 0px;
+    font-size: 20px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.7);
+}
+.mainIcons mat-icon:hover{
+    cursor: pointer;
+}
+
 
 .card{
     margin-top: 0px;
@@ -20,3 +30,13 @@ input{
     margin-bottom: 0px;
     overflow-y: hidden;
 }
+.color{
+    position: relative;
+    float: left;
+    // float: inline-start;
+    height: 25px;
+    width: 25px;
+    // box-sizing: border-box;
+    border-radius: 100%;
+}
+
