@@ -7,6 +7,9 @@ import { MatDialog } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import { SharedService } from 'src/app/services/shared.service';
 import { RefreshService } from 'src/app/services/refresh.service';
+import {environment} from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-getnotes',
@@ -17,7 +20,9 @@ export class GetnotesComponent implements OnInit {
   message: string;
 
 
-  constructor(private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private dialog:MatDialog, private refreshService:RefreshService) { }
+  constructor(private http:HttpClient,private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private dialog:MatDialog, private refreshService:RefreshService) { }
+
+  baseurl = environment.baseUrl;
 
   note: Note = new Note;
   noteLabel :Notelabel = new Notelabel();
@@ -29,9 +34,12 @@ export class GetnotesComponent implements OnInit {
   noteId:any;
   isDeleted:boolean=false;
   isArchived:boolean=false;
+  searchArray : any[] =[];
 
   gettinghandle : boolean = this.sharedService.toggle;
   searchInput :string;
+  searchinput = new FormControl();
+  abc = this.searchinput.value;
 
   @Input() color:string
   @Output() event = new EventEmitter();
@@ -71,8 +79,6 @@ export class GetnotesComponent implements OnInit {
  *   services : userservice and note service
  */
 getNote(){
-
-
   this.urlService.getNote(this.token)
   console.log(this.token);
   console.log('array fetch in note components');
@@ -82,8 +88,7 @@ getNote(){
              
   this.sharedService.search.subscribe(data =>{
     console.log("get notes....",data);
-    this.searchInput = data;
-    
+    this.searchInput = data;  
   })
 
   // this.cardArray.forEach(element=>{
@@ -200,7 +205,7 @@ addLabelToNote(label,items){
 
     setReminderToday(item){
       var d = new Date().toDateString();
-      var time = '8.00';
+      // var time = '8.00';
       // var year = d.getFullYear();
       // var total = this.days[d.getDay()] +" "+ this.months[d.getMonth()] +" "+ d.getDate() +" "+year+" "+time;
 
@@ -273,5 +278,49 @@ addLabelToNote(label,items){
 
     }
 
+    onKey(value){
+      var url = this.baseurl + 'user/searchUserList';
+      var data ={
+        "searchWord":value
+      }
+      this.http.post(url,data,{
+        headers:{
+          'Authorization':localStorage.getItem('token')
+        }
+      }).subscribe((data:any) =>{
+        console.log(data.data.details);
+        this.searchArray = data.data.details;
+        
+      });
+    }
+
+    addCollaborator(items:any,templateReference){
+      console.log(items.user);
+      console.log(this.searchArray[0]);
+      
+
+      let dialogRef = this.dialog.open(templateReference,{
+        width:'40vw'
+      })
+      
+    }
+
+    onCollaborate(value,id:any){
+      console.log(this.searchinput)
+      console.log(value);
+      console.log(id);
+      console.log(this.searchinput.value);
+      
+      
+      // var url ='/notes/'+id+'/AddcollaboratorsNotes'
+      // this.http.post(this.baseurl+url,value,{
+      //   headers :{
+      //     'Authorization':localStorage.getItem('token')
+      //   }
+      // }).subscribe((response:any)=>{
+      //   console.log(response);
+      // })
+      this.dialog.closeAll();
+    }
 
 }

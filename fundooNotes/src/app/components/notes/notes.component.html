@@ -1,5 +1,5 @@
 <div class="mainCard">
-  <mat-card [ngStyle]="{'background':color}" [formGroup]="card" class="beforeNoteCard">
+  <mat-card style="word-break: break-all;" [ngStyle]="{'background':color}" [formGroup]="card" class="beforeNoteCard">
 
     <p> <input type="text" *ngIf="showIcons" placeholder="Title" name="" formControlName="title" id="input" >  </p>
     <p> <input type="text" (click)="showIcons = true" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">

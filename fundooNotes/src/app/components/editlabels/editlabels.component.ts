@@ -17,6 +17,8 @@ export class EditlabelsComponent implements OnInit {
   labelModal: Notelabel = new Notelabel();
   token = localStorage.getItem('token');
   label = new FormControl();
+  updateDeleteLabel = new FormControl();
+  labelValue =  this.updateDeleteLabel.value;
   labels : string[] =[];
 
   labelArray = this.noteService.labelArray;
@@ -45,5 +47,21 @@ export class EditlabelsComponent implements OnInit {
     this.labels.push(this.label.value);
     console.log('input value',this.labels);
     this.labe.emit(this.labels);
+  }
+
+  updateLabelString(){
+    this.labelModal.label = this.labelValue;
+
+    var data ={
+      "label":this.labelModal.label,
+      "isDeleted":false,
+      "userId":this.userId
+    }
+    
+  }
+
+  deleteLabel(item){
+    console.log(item);
+    
   }
 }

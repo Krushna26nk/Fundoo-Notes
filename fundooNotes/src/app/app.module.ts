@@ -11,7 +11,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
-import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule} from '@angular/material';
+import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
+import {MatSelectModule,MatAutocompleteModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -29,6 +30,8 @@ import { UploadimageComponent } from './components/uploadimage/uploadimage.compo
 import { SearchPipe } from './search.pipe';
 import { ListgridComponent } from './components/listgrid/listgrid.component';
 import { GetnotesComponent } from './components/getnotes/getnotes.component';
+import { IconsComponent } from './components/icons/icons.component';
+import { from } from 'rxjs';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -67,15 +70,16 @@ const routes:Routes =[
     UploadimageComponent,
     SearchPipe,
     ListgridComponent,
-    GetnotesComponent
+    GetnotesComponent,
+    IconsComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
-    }),FlexLayoutModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
+    }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
-    MatCardModule,MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule
+    MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -117,6 +117,10 @@ getlabel(){
   this.noteService.getlabels(this.token);
 }
 
+deleteLabel(){
+  
+}
+
 imageupload(){
   let dialogRef =  this.dialog.open(UploadimageComponent)
  }

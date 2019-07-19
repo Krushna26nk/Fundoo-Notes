@@ -1,5 +1,5 @@
 <div style="position: relative;margin-left:5%">
-  <mat-card  *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.width]="this.inputhandle ? '50vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;" class="beforeNoteCard1" >
+  <mat-card  *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.width]="this.inputhandle ? '50vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
       
       <div (click)="updateNote(items)">
         <div>{{items.title}} </div>
@@ -14,8 +14,8 @@
         </mat-chip>
       </mat-chip-list>
 
-      <mat-chip-list fxLayout="row">
-          <mat-chip style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm a' }}
+      <mat-chip-list  *ngIf="items.reminder.length>0" fxLayout="row">
+          <mat-chip  style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm a' }}
             <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
           </mat-chip>
         </mat-chip-list>
@@ -34,9 +34,8 @@
                         <mat-datepicker #picker></mat-datepicker>
                       </mat-form-field>                      
                     </mat-list>
-                    <!-- fxFlexLayout ="row" fxLayoutAlign="space-between" -->
                   </mat-menu>
-                <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
+                <mat-icon matTooltip="Collaborator" (click)="addCollaborator(items,myTemplate)">account_box</mat-icon>
                 <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu1">palette</mat-icon>
                 <mat-menu  #menu1="matMenu" yPosition="above">
                     <div class="row" mat-menu-item style="position: relative;max-width: 150px;"> 
@@ -56,7 +55,49 @@
                   <mat-checkbox fxLayout="column" fxLayoutAlign="start start"  #labelsList (click)="addLabelToNote(item,items)" *ngFor="let item of labelDetails">{{item.label}}</mat-checkbox>
                 </mat-menu>
       </div>
-    
+      <ng-template #myTemplate>
+              <div style="text-align: center;"> <p> Collaborators </p> </div>
+              <mat-divider></mat-divider>
+              <div class="m-2"></div>
+              <mat-card-header>
+                    <div mat-card-avatar [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+items.user.imageUrl+')'}" class="example-header-image"></div>
+                    <mat-card-title> {{ items.user.firstName }} <span >(Owner)</span> </mat-card-title>
+                    <mat-card-subtitle> {{items.user.email}} </mat-card-subtitle>
+              </mat-card-header>
+
+
+              <div mat-card-avatar  fxLayoutAlign="center center" [style.border]="'1px solid'" > <mat-icon>person_add</mat-icon> </div>
+              <mat-form-field>         
+                  <!-- <mat-card-header> -->
+                      <input (keyup)="onKey(inputvalue.value)" #inputvalue matInput [formControl]="searchinput" placeholder="Person or email to share with" [matAutocomplete]="auto"  type="text">
+                  <!-- </mat-card-header> -->
+
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let user of searchArray" [value]="user.email" >
+                      {{user.email}}
+                    </mat-option>
+                  </mat-autocomplete>
+
+              </mat-form-field>
+              <div dir="rtl">
+                  <button mat-button style="margin-right:0px" (click)="onCollaborate(items.id)">Save</button>
+                  <button mat-button align="end" >Close</button>
+              </div>
+
+              <!-- <mat-form-field>
+                  <mat-select [(ngModel)]="selectedValue" name="user">
+                    <mat-option *ngFor="let user of searchArray" [value]="user.value">
+                      {{user.email}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field> -->
+              
+
+      </ng-template>
+  
     
     </mat-card>
+
+   
+
 </div>
