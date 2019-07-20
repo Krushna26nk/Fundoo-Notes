@@ -17,6 +17,7 @@ export class NoteService {
   archivedList  :any = [];
   labelArray    :any = [];
   labelDetails  :any = [];
+  reminderList  :any = [];
 
   notesbyLabel : any = [];
 
@@ -220,6 +221,26 @@ export class NoteService {
       console.log(response);
       
     });
+  }
+
+  getReminderList(){
+    var url='notes/getReminderNotesList'
+    this.http.get(this.baseurl+url,this.httpOptions).subscribe((data:any) =>{
+      console.log(data.data.data);
+      var rem = data.data.data
+      rem.forEach(element =>{
+        this.reminderList.push(element);
+      })
+      
+    });
+  }
+
+  onRemoveCollaborator(collabId,noteId){
+    var url='notes/'+noteId+'/removeCollaboratorsNotes/'+collabId
+    this.http.delete(this.baseurl+url,this.httpOptions).subscribe((data:any)=>{
+      console.log(data);
+      
+    })
   }
 
 }

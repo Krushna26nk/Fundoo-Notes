@@ -1,14 +1,28 @@
 <div class="mainCard">
   <mat-card style="word-break: break-all;" [ngStyle]="{'background':color}" [formGroup]="card" class="beforeNoteCard">
+    <div fxFlex fxLayout="column">
+      <div>
+          <input type="text" *ngIf="showIcons" placeholder="Title" name="" formControlName="title" id="input" > 
+      </div>
+      
+      <div>
+          <div>
+              <input type="text" (click)="showIcons = true" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">
+          </div>
+    
+           <div fxLayout="row" fxFlex fxLayoutAlign="space-evenly center">
+              <span id="icons" *ngIf="showIcon" > <mat-icon>check_box</mat-icon> </span>
+              <span id="icons" *ngIf="showIcon" > <mat-icon>brush</mat-icon> </span>
+              <span id="icons" *ngIf="showIcon" > <mat-icon>image</mat-icon> </span>
+           </div>
+      </div>
 
-    <p> <input type="text" *ngIf="showIcons" placeholder="Title" name="" formControlName="title" id="input" >  </p>
-    <p> <input type="text" (click)="showIcons = true" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">
-       <span id="icons" *ngIf="showIcon" > <mat-icon>check_box</mat-icon> </span>
-       <span id="icons" *ngIf="showIcon" > <mat-icon>brush</mat-icon> </span>
-       <span id="icons" *ngIf="showIcon" > <mat-icon>image</mat-icon> </span>
-    </p>
-
-
+    <div *ngIf="showIcons" fxLayout="row" fxLayoutAlign="space-between center" >
+      <div fxLayoutAlign="flex-end" >  <app-icons></app-icons>  </div>
+      <div> <button mat-button  (click)="onSubmit()" >close</button> </div>
+    </div>
+  </div>
+<!-- 
     <div class="mainIcons" *ngIf="showIcons">
           <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
           <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
@@ -24,7 +38,7 @@
           <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
 
           <button mat-button (click)="onSubmit()" style="float: right;font-size:17px">CLOSE</button>
-    </div>
+    </div> -->
 
   </mat-card>
 

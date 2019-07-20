@@ -1,0 +1,22 @@
+.full-width{
+    // width: 50%;
+}
+
+.matCardTitle span{
+    font-size: 25px;
+}
+
+.matCardTitle :nth-child(1), .matCardTitle :nth-child(4){
+    color: rgb(56, 125, 194);
+}
+.matCardTitle :nth-child(even){
+    color:#ee3131;
+}
+
+.matCardTitle :nth-child(3){
+    color: rgb(230, 230, 69);
+}
+
+/deep/ mat-form-field-flex mat-form-field-appearance-outline mat-form-field-flex{
+    height: 50%;
+}

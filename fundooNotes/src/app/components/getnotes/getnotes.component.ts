@@ -62,7 +62,7 @@ export class GetnotesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getNote()
+    // this.getNote()
     this.refreshService.currentMessage.subscribe(
       response=>{
         this.message=response
@@ -305,22 +305,31 @@ addLabelToNote(label,items){
       
     }
 
-    onCollaborate(value,id:any){
+    onCollaborate(value){
       console.log(this.searchinput)
       console.log(value);
-      console.log(id);
-      console.log(this.searchinput.value);
+      console.log(value.id);
+      var id = value.id
+      console.log('value',this.searchinput.value);
+      var data : string[] = this.searchinput.value
       
-      
-      // var url ='/notes/'+id+'/AddcollaboratorsNotes'
-      // this.http.post(this.baseurl+url,value,{
-      //   headers :{
-      //     'Authorization':localStorage.getItem('token')
-      //   }
-      // }).subscribe((response:any)=>{
-      //   console.log(response);
-      // })
+      var url ='/notes/'+id+'/AddcollaboratorsNotes'
+      this.http.post(this.baseurl+url,this.searchinput.value,{
+        headers :{
+          'Authorization':localStorage.getItem('token')
+        }
+      }).subscribe((response:any)=>{
+        console.log(response);
+      })
       this.dialog.closeAll();
+    }
+
+    onRemoveCollaborator(collabId,note){
+      console.log(collabId);
+      console.log(note.id);
+      var noteId = note.id;
+      this.noteService.onRemoveCollaborator(collabId,noteId);
+      
     }
 
 }

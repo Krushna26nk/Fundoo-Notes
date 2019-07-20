@@ -15,11 +15,20 @@
       </mat-chip-list>
 
       <mat-chip-list  *ngIf="items.reminder.length>0" fxLayout="row">
-          <mat-chip  style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm a' }}
+          <mat-chip  style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm ' }}
             <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
           </mat-chip>
-        </mat-chip-list>
+      </mat-chip-list>
+      
+      <!-- <mat-chip-list  *ngIf="items.collaborators.length>0" fxLayout="row">
+        <mat-chip *ngFor="let colab of items.collaborators"  style="font-size: 12px;height: 55%;"> {{ colab.firstName }}    </mat-chip>
+        <div mat-card-avatar style="background-size: cover" [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+items.imageUrl+')'}" ></div>
+      </mat-chip-list> -->
 
+      <div *ngIf="items.collaborators.length>0" fxLayout="row">
+        <button mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
+      </div>
+    
       <div class="mainIcons">
                 <mat-icon matTooltip="Remind Me" [matMenuTriggerFor]="reminder">notifications</mat-icon>
                   <mat-menu #reminder="matMenu" yPosition="below">
@@ -58,32 +67,55 @@
       <ng-template #myTemplate>
               <div style="text-align: center;"> <p> Collaborators </p> </div>
               <mat-divider></mat-divider>
+              <div>
               <div class="m-2"></div>
-              <mat-card-header>
-                    <div mat-card-avatar [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+items.user.imageUrl+')'}" class="example-header-image"></div>
-                    <mat-card-title> {{ items.user.firstName }} <span >(Owner)</span> </mat-card-title>
-                    <mat-card-subtitle> {{items.user.email}} </mat-card-subtitle>
-              </mat-card-header>
 
 
-              <div mat-card-avatar  fxLayoutAlign="center center" [style.border]="'1px solid'" > <mat-icon>person_add</mat-icon> </div>
-              <mat-form-field>         
-                  <!-- <mat-card-header> -->
-                      <input (keyup)="onKey(inputvalue.value)" #inputvalue matInput [formControl]="searchinput" placeholder="Person or email to share with" [matAutocomplete]="auto"  type="text">
-                  <!-- </mat-card-header> -->
+                  <mat-card-header>
+                        <div mat-card-avatar [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+items.user.imageUrl+')'}" class="example-header-image"></div>
+                        <mat-card-title> {{ items.user.firstName }} <span >(Owner)</span> </mat-card-title>
+                        <mat-card-subtitle> {{items.user.email}} </mat-card-subtitle>
+                  </mat-card-header>
 
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let user of searchArray" [value]="user.email" >
-                      {{user.email}}
-                    </mat-option>
-                  </mat-autocomplete>
 
-              </mat-form-field>
-              <div dir="rtl">
-                  <button mat-button style="margin-right:0px" (click)="onCollaborate(items.id)">Save</button>
-                  <button mat-button align="end" >Close</button>
+                  <mat-divider></mat-divider>
+              
+                  <div  fxLayout="column" style="margin-top: 1%" *ngIf="items.collaborators.length>0" >
+                    <mat-card-header *ngFor="let col of items.collaborators" fxLayout="row">
+                          <div mat-card-avatar class="example-header-image" fxLayoutAlign="center center" style="background: rgb(163, 160, 163)">{{col.firstName[0]}}</div>
+                      <div>
+                          <mat-card-title> {{ col.firstName }} </mat-card-title>
+                          <mat-card-subtitle> {{col.email}} </mat-card-subtitle>
+                      </div>
+                      <div>
+                      <mat-icon mat-icon-button matTooltip="Remove Collab"  (click)="onRemoveCollaborator(col.userId,items)" >close</mat-icon>
+                      </div>
+                   <mat-divider></mat-divider>
+                    </mat-card-header>  
+                  </div>
+                  
+
               </div>
 
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <div mat-card-avatar  fxLayoutAlign="center center" [style.border]="'1px solid'" > <mat-icon>person_add</mat-icon> </div>
+                  <mat-form-field>         
+                      <!-- <mat-card-header> -->
+                          <input (keyup)="onKey(inputvalue.value)" #inputvalue matInput [formControl]="searchinput" placeholder="Person or email to share with" [matAutocomplete]="auto"  type="text">
+                      <!-- </mat-card-header> -->
+
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let user of searchArray" [value]="user" >
+                          {{user.email}}
+                        </mat-option>
+                      </mat-autocomplete>
+
+                  </mat-form-field>
+                  <div dir="rtl">
+                      <button mat-button style="margin-right:0px" (click)="onCollaborate(items)">Save</button>
+                      <button mat-button >Close</button>
+                  </div>
+              </div>
               <!-- <mat-form-field>
                   <mat-select [(ngModel)]="selectedValue" name="user">
                     <mat-option *ngFor="let user of searchArray" [value]="user.value">
@@ -92,6 +124,10 @@
                   </mat-select>
               </mat-form-field> -->
               
+
+      </ng-template>
+
+      <ng-template #collaborator>
 
       </ng-template>
   

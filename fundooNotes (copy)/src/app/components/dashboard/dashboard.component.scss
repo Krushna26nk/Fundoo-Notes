@@ -1,0 +1,128 @@
+.toolbar{
+    border-bottom: 1px solid rgba(168, 166, 166,0.5);
+    height: 3.5rem;
+}
+
+.avatar{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-image: url('../../../assets/images/nature.jpeg');
+    background-size: cover;
+    position: relative;
+    border: 1px solid;
+    left: 25%;
+    top: 0%;
+}
+
+// #modalC{
+//     position: absolute;
+// }
+
+.header-image{
+    height: 2.5rem;
+}
+
+.cardDiv{
+    margin-left: 8%;
+    text-decoration: none;
+}
+
+#toolbarSearch{
+   height: 0rem;
+   width: 33rem;
+//    display: flex;
+//    flex-direction: row;
+   align-items: center;
+   top: -5px;
+   border-radius: 15px;
+   box-shadow: 0px 1px 5px rgba(0, 0,0,0.2);
+
+}
+.searchinput{
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 2rem;
+    margin-left: 2%;
+    font-size: 18px;
+}
+
+#viewIcons{
+ font-size: 20px;   
+}
+
+ /* side navigation css start.*/
+
+.sidenavContent{
+    width: 80%;
+    position: absolute;
+    right: 0%;
+    // left: 15%;
+    // border: 1px solid;
+}
+
+.sideNavContainer{
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+
+
+.sidenavigation{
+    
+    // border: 1px solid orchid;
+    width: 20%;
+    height: 100%;
+}
+.routerOutlet{
+    position: relative;
+    left: 15%;
+}
+.active{
+    background-color: #FEEFC3;
+}
+
+.listItems{
+    // display: flex;
+    // flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+#sidenavList{
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding:15px 15px 15px 15px;
+    font-size: 10px;
+    height: 60%
+}
+
+.listIcons{
+position: relative;
+right: 15px;
+}
+
+.listNames{
+    font-size: 15px;
+}
+
+.matAvatar{
+    height: 57px;
+    width: 57px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.profileavatar{
+    border: none;
+    height: 70px;
+    width: 70px;
+}
+.material-icons:hover{
+    cursor: pointer;
+}

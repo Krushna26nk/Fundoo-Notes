@@ -1,0 +1,72 @@
+.beforeNoteCard{
+    width: 50%;
+    margin: 0 auto;
+    // top: 5px;
+    // left: 1px;
+    // position: relative;
+    border-radius: 10px;
+    // height: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0,0,0.3);
+    // margin: 0 auto;
+}
+.beforeNoteCard1{
+    top: 10px;
+    // width: 50vw;
+    border-radius: 5px;
+    box-shadow: 0px 5px 5px rgba(0, 0,0,0.3);
+}
+
+// .insidenoteCard{
+//     position: relative;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     // top: 15px;
+// }
+
+// .icons{
+//     display: flex;    
+// }
+// .icons div{
+//     padding: 0px 10px 0px;
+// }
+// #notestarting_icon{
+//     display: none;
+// }
+
+.mainCard{
+    margin: 0 auto;
+    // width: 60%;
+    // position: relative;
+}
+#input{
+    outline: none;
+    border: none;
+    font-size: 18px;
+    width: 50%;
+    word-wrap: wrap;
+}
+// #icons{
+//     display: none;
+// }
+
+.mainIcons mat-icon{
+    padding: 0px 15px 0px;
+    font-size: 20px;
+    color: rgba(0,0,0,0.7);
+}
+.mainIcons mat-icon:hover{
+    cursor: pointer;
+}
+
+
+#color{
+    position: relative;
+    float: left;
+    // float: inline-start;
+    height: 25px;
+    width: 25px;
+    // box-sizing: border-box;
+    border-radius: 100%;
+}
+

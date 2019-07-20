@@ -1,0 +1,8 @@
+<p>upload Profile Picture.</p>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+
+<input type="file"  name="profile" (change)="onimageChange($event)">
+
+<input type="submit">
+</form>
