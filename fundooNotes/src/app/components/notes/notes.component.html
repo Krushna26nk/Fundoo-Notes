@@ -1,13 +1,13 @@
 <div class="mainCard">
-  <mat-card style="word-break: break-all;" [ngStyle]="{'background':color}" [formGroup]="card" class="beforeNoteCard">
+  <mat-card style="word-break: break-all;" [ngStyle]="{'background':getcolor}" [formGroup]="card" class="beforeNoteCard">
     <div fxFlex fxLayout="column">
       <div>
-          <input type="text" *ngIf="showIcons" placeholder="Title" name="" formControlName="title" id="input" > 
+          <input type="text" *ngIf="showIcons" [ngStyle]="{'background':getcolor}" placeholder="Title" name="" formControlName="title" id="input" > 
       </div>
       
       <div>
           <div>
-              <input type="text" (click)="showIcons = true" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">
+              <input type="text" (click)="showIcons = true" [ngStyle]="{'background':getcolor}" (click)="showIcon = !showIcon" placeholder="Take a note..." formControlName="description"  id="input">
           </div>
     
            <div fxLayout="row" fxFlex fxLayoutAlign="space-evenly center">
@@ -16,9 +16,12 @@
               <span id="icons" *ngIf="showIcon" > <mat-icon>image</mat-icon> </span>
            </div>
       </div>
+      <mat-chip-list *ngIf="reminder">
+        <mat-chip> {{reminder}} </mat-chip>
+      </mat-chip-list>
 
     <div *ngIf="showIcons" fxLayout="row" fxLayoutAlign="space-between center" >
-      <div fxLayoutAlign="flex-end" >  <app-icons></app-icons>  </div>
+      <div fxLayoutAlign="flex-end" >  <app-icons (reminderevent)="receiveReminder($event)" (colorevent)="colorEvent($event)"></app-icons>  </div>
       <div> <button mat-button  (click)="onSubmit()" >close</button> </div>
     </div>
   </div>

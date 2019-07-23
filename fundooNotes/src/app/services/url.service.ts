@@ -119,4 +119,8 @@ export class UrlService {
               var url ='notes/addUpdateReminderNotes';
               this.noteService.postReminderWeekly(this.baseurl+url);
             }
+            deleteReminder(data){
+              var url='notes/removeReminderNotes'
+              this.noteService.postDeleteReminder(this.baseurl+url,data);
+            }
 }

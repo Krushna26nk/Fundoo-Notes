@@ -32,7 +32,7 @@ export class EditlabelsComponent implements OnInit {
    * @description method to post the labels through dialog box
    */
 
-  updateLabel(){  
+  updateAddLabel(){  
     this.dialog.closeAll();
 
     this.labelModal.label = this.label.value;
@@ -59,9 +59,22 @@ export class EditlabelsComponent implements OnInit {
     }
     
   }
+  updateLabel(item,input){
+    var id = item.id;
+    console.log(item.id,input);
+    this.labelModal.label =  input
+    var data ={
+      "label":this.labelModal.label,
+      "isDeleted":false,
+      "id":id,
+      "userId":this.userId
+    }
+    this.noteService.updateLabelValue(id,data);
+  }
 
   deleteLabel(item){
-    console.log(item);
-    
+    console.log(item.id);
+     var data={}
+     this.noteService.deleteLabel(item.id);
   }
 }

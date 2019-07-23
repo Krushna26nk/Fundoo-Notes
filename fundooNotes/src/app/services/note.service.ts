@@ -137,7 +137,7 @@ export class NoteService {
       var labels = data.data.details;
       labels.forEach(element =>{
         this.labelDetails.push(element);
-        this.labelArray.push(element.label);
+        this.labelArray.push(element);
       })  
     });
 
@@ -187,7 +187,19 @@ export class NoteService {
       
     })
   }
+  updateLabelValue(labelId,data){
+    var url ='/noteLabels/'+labelId+'/updateNoteLabel'
+    this.http.post(this.baseurl+url,this.httpOptions,data).subscribe((response:any)=>{
+      console.log(response);
+    });
+  }
 
+  deleteLabel(id){
+    var url='noteLabels/'+id+'/deleteNoteLabel'
+    this.http.delete(this.baseurl+url,this.httpOptions).subscribe((response:any) =>{
+      console.log(response);
+    });
+  }
 
   postRemovelabel(url,data){
     this.http.post(this.baseurl+url,data,{
@@ -233,6 +245,17 @@ export class NoteService {
       })
       
     });
+  }
+
+  postDeleteReminder(url,data){
+    this.http.post(url,data,{
+      headers:{
+        'Authorization':localStorage.getItem('token')
+      }
+    }).subscribe((data:any)=>{
+      console.log(data);
+      
+    })
   }
 
   onRemoveCollaborator(collabId,noteId){

@@ -26,9 +26,11 @@ export class NotesComponent implements OnInit {
   showIcons = false;
   showIcon = true;
   newColor:any;
+  getcolor:any;
   noteId:any;
   isDeleted:boolean=false;
   isArchived:boolean=false;
+  reminder : string[];
 
   searchInput :string = this.sharedService.inputvalueArray;
 
@@ -93,10 +95,26 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.getHandle()
+    this.refreshService.currentMessage.subscribe(
+      response=>{
+        this.message=response
+        console.log(response);
+        
+      //  this.getNote();
+    })
     
     console.log('label details',this.labelDetails);
     
   
+    
+  }
+  receiveReminder(data){
+    console.log(data);
+    this.reminder = data;
+  }
+  colorEvent(data){
+    console.log(data);
+    this.getcolor = data;
     
   }
 
@@ -162,7 +180,7 @@ export class NotesComponent implements OnInit {
                   return false
                 }
                 else if( this.descriptionValue.value == undefined || this.descriptionValue.value == ''){
-   console.log("222222");
+                  console.log("222222");
    
                   this.showIcons;
                   this.showIcon = !this.showIcon;
@@ -173,6 +191,8 @@ export class NotesComponent implements OnInit {
                   console.log("sdewrew");
                   
                   this.note.color = this.color;
+                  this.note.reminder = this.reminder;
+                  this.note.color = this.getcolor;
                   this.urlService.addNote(this.note,this.token);
                   this.refreshService.changeMessage('ghfg');
                 }
@@ -232,19 +252,19 @@ export class NotesComponent implements OnInit {
 
 // // to update the color from color palette
 
-//         updateColor(items,$event){
-//           this.newColor = $event;
-//           console.log('color',$event);
+        updateColor(items,$event){
+          this.newColor = $event;
+          console.log('color',$event);
           
-//           this.note.color = this.newColor;
-//           var data ={
-//             "color":this.newColor,
-//             "noteIdList":[items.id],
-//           }
-//           console.log('asds',data);
+          this.note.color = this.newColor;
+          var data ={
+            "color":this.newColor,
+            "noteIdList":[items.id],
+          }
+          console.log('asds',data);
           
-//           this.urlService.updateColor(data);
-//         }
+          this.urlService.updateColor(data);
+        }
 
 
 
@@ -273,20 +293,20 @@ export class NotesComponent implements OnInit {
         }
 
 
-        // onArchive(items:any){
-        //   this.note.noteIdList = items.id;
-        //   var data = {
-        //     "noteIdList":[this.note.noteIdList],
-        //     "isArchived":true
-        //   }
-        //   this.urlService.archiveNotes(data);
-        // }
+        onArchive(items:any){
+          this.note.noteIdList = items.id;
+          var data = {
+            "noteIdList":[this.note.noteIdList],
+            "isArchived":true
+          }
+          this.urlService.archiveNotes(data);
+        }
  
         
-        // onRemoveLabel(labelId,noteId){
-        //   console.log('label id',labelId,'note id',noteId);
-        //   this.urlService.postRemoveLabel(labelId,noteId);
-        // }
+        onRemoveLabel(labelId,noteId){
+          console.log('label id',labelId,'note id',noteId);
+          this.urlService.postRemoveLabel(labelId,noteId);
+        }
 
 
 }

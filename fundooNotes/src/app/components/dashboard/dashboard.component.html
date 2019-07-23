@@ -86,7 +86,7 @@
                  
               <mat-list-item *ngFor="let item of labelArrayList" routerLink="label"> 
                   <span><mat-icon class="listIcons">label_outline</mat-icon></span> 
-                  <span class="listNames" (click)="getNoteOfLabel(item)"   > {{ item }}</span>   
+                  <span class="listNames" (click)="getNoteOfLabel(item)"   > {{ item.label }}</span>   
                 </mat-list-item>      
               <div id="sidenavList" style="padding-top: 0px">
                        

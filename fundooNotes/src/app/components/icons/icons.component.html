@@ -1,7 +1,16 @@
 <div fxLayout="row">
     <div class="mainIcons">
-        <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
-        <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
+        <mat-icon matTooltip="Remind Me" [matMenuTriggerFor]="reminder">notifications</mat-icon>
+        <mat-menu #reminder="matMenu" yPosition="below">
+            <span style="font-size: 13px;">Reminder :</span>
+            <mat-list fxLayout ="column" fxLayoutAlign="space-between" role="list">
+              <mat-list-item mat-button (click)="setReminderToday(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Later Today</span> <span> &nbsp;&nbsp;&nbsp; 8.00 PM</span></mat-list-item>
+              <mat-list-item mat-button (click)="setReminderTomorrow(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Tomorrow</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.00 AM</span> </mat-list-item>
+              <mat-list-item mat-button (click)="setReminderWeekly(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Next Week</span> </mat-list-item>                      
+            </mat-list>
+          </mat-menu>
+        <mat-icon matTooltip="Collaborator" (click)="addCollaborator()">account_box</mat-icon>
+        
         <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu">palette</mat-icon>
             <mat-menu  #menu="matMenu" yPosition="above">
           
@@ -10,7 +19,7 @@
               </div>
             
             </mat-menu>
-        <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
+        <mat-icon matTooltip="Add Image" (click)="addImage()">image</mat-icon>
         <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
     </div>
 </div>

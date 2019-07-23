@@ -9,11 +9,11 @@
     </mat-form-field>
   </div>
     <mat-dialog-actions align="end">
-      <button mat-raised-button (click)="updateLabel()" type="">Close</button>
+      <button mat-raised-button (click)="updateAddLabel()" type="">Close</button>
     </mat-dialog-actions>
     <mat-form-field style="height:30%;width: 70%;border-bottom: none;text-decoration: none;outline-color:none;" fxLayout="column" *ngFor="let item of labelArray" >
-      <div fxLayout="row">
-        <input matInput [formControl]="updateDeleteLabel"  value=" {{item}}"><mat-icon  class="checkIcon">check</mat-icon><mat-icon (click)="deleteLabel(item)" >delete</mat-icon>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <input matInput [formControl]="updateDeleteLabel" #input value=" {{item.label}}"><mat-icon (click)="updateLabel(item,input.value)" class="checkIcon">check</mat-icon><mat-icon (click)="deleteLabel(item)" >delete</mat-icon>
       </div>
     </mat-form-field>
 

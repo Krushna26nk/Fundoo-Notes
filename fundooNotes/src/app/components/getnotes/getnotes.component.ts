@@ -112,10 +112,21 @@ getHandle(){
   })
 }
 
+/**
+ * 
+ * @param color color input which change
+ */
+
 changeColor(color){
   this.color = color;
   this.event.emit(this.color);
   }
+
+
+  /**
+   * @description archive api call
+   * @param items note detail of which we want to archive
+   */
 
 onArchive(items:any){
   this.note.noteIdList = items.id;
@@ -126,6 +137,11 @@ onArchive(items:any){
   this.urlService.archiveNotes(data);
 }
 
+/**
+ * 
+ * @param labelId label id which we want to remove from the note
+ * @param noteId noteId of which label we want to remove
+ */
 
 onRemoveLabel(labelId,noteId){
   console.log('label id',labelId,'note id',noteId);
@@ -134,8 +150,8 @@ onRemoveLabel(labelId,noteId){
 
 updateNote(items:any){
   let dialogref = this.dialog.open(EditnotesComponent,{
-    height:'35vh',
-    width:'56vw',
+    height:'45vh',
+    width:'50vw',
     data:{
       title:items.title,
       description:items.description,
@@ -277,6 +293,21 @@ addLabelToNote(label,items){
       this.noteService.postReminderWeekly(data);
 
     }
+
+    onRemoveReminder(reminder,note){
+      console.log(reminder,note);
+      var data = {
+        "noteIdList":[note.id],
+        "title": note.title,
+        "description": note.description,
+        "isDeleted" : note.isDeleted,
+        "reminder" : [reminder]
+      }
+      this.urlService.deleteReminder(data);
+    }
+
+    // collaborator
+    // searching the user list while collaborating 
 
     onKey(value){
       var url = this.baseurl + 'user/searchUserList';

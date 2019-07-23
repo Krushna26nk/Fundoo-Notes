@@ -16,7 +16,7 @@
 
       <mat-chip-list  *ngIf="items.reminder.length>0" fxLayout="row">
           <mat-chip  style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm ' }}
-            <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
+            <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveReminder(items.reminder,items)" >close</mat-icon>
           </mat-chip>
       </mat-chip-list>
       
