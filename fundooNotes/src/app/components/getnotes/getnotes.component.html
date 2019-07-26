@@ -1,12 +1,12 @@
-<div style="position: relative;margin-left:5%">
-  <mat-card  *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.width]="this.inputhandle ? '50vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
+<div style="position: absolute;width: 80%;margin: 0 auto">
+  <mat-card  *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.marginLeft]="this.inputhandle ? '15%' : '10px'" [style.width]="this.inputhandle ? '45vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
       
       <div (click)="updateNote(items)">
         <div>{{items.title}} </div>
         <div>{{items.description}}</div>
         <!-- <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p> -->
         <!-- <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p> -->
-      </div>
+      </div> 
 
       <mat-chip-list fxLayout="row">
         <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 12px;height: 55%;"> {{ l.label }}
@@ -26,22 +26,23 @@
       </mat-chip-list> -->
 
       <div *ngIf="items.collaborators.length>0" fxLayout="row">
-        <button mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
+        <button (click)="onQuestionAnswer(colab)" mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
       </div>
-    
+   
+
       <div class="mainIcons">
-                <mat-icon matTooltip="Remind Me" [matMenuTriggerFor]="reminder">notifications</mat-icon>
-                  <mat-menu #reminder="matMenu" yPosition="below">
+                <mat-icon  matTooltip="Remind Me" [matMenuTriggerFor]="reminder">notifications</mat-icon>
+                  <mat-menu  #reminder="matMenu" yPosition="below">
                     <span style="font-size: 13px;">Reminder :</span>
                     <mat-list fxLayout ="column" fxLayoutAlign="space-between" role="list">
                       <mat-list-item mat-button (click)="setReminderToday(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Later Today</span> <span> &nbsp;&nbsp;&nbsp; 8.00 PM</span></mat-list-item>
                       <mat-list-item mat-button (click)="setReminderTomorrow(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Tomorrow</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.00 AM</span> </mat-list-item>
                       <mat-list-item mat-button (click)="setReminderWeekly(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Next Week</span> </mat-list-item>
-                      <mat-form-field class="example-full-width">
+                      <!-- <mat-form-field class="example-full-width">
                         <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>                      
+                      </mat-form-field>                       -->
                     </mat-list>
                   </mat-menu>
                 <mat-icon matTooltip="Collaborator" (click)="addCollaborator(items,myTemplate)">account_box</mat-icon>
@@ -82,14 +83,20 @@
               
                   <div  fxLayout="column" style="margin-top: 1%" *ngIf="items.collaborators.length>0" >
                     <mat-card-header *ngFor="let col of items.collaborators" fxLayout="row">
-                          <div mat-card-avatar class="example-header-image" fxLayoutAlign="center center" style="background: rgb(163, 160, 163)">{{col.firstName[0]}}</div>
+                      
+                      <div mat-card-avatar class="example-header-image" fxLayoutAlign="center center" style="background: rgb(163, 160, 163)">{{col.firstName[0]}}</div>
+                      
                       <div>
                           <mat-card-title> {{ col.firstName }} </mat-card-title>
                           <mat-card-subtitle> {{col.email}} </mat-card-subtitle>
                       </div>
-                      <div>
-                      <mat-icon mat-icon-button matTooltip="Remove Collab"  (click)="onRemoveCollaborator(col.userId,items)" >close</mat-icon>
+                      
+                      <div fxLayoutAlign="center end">
+                        <button mat-button color="warn" matTooltip="Remove Collab" style="cursor: pointer" (click)="onRemoveCollaborator(col.userId,items)" >Remove</button>
+                        <button mat-button > Ask Question </button>
                       </div>
+
+                      
                    <mat-divider></mat-divider>
                     </mat-card-header>  
                   </div>
@@ -113,7 +120,6 @@
                   </mat-form-field>
                   <div dir="rtl">
                       <button mat-button style="margin-right:0px" (click)="onCollaborate(items)">Save</button>
-                      <button mat-button >Close</button>
                   </div>
               </div>
               <!-- <mat-form-field>
@@ -125,11 +131,7 @@
               </mat-form-field> -->
               
 
-      </ng-template>
-
-      <ng-template #collaborator>
-
-      </ng-template>
+            </ng-template>
   
     
     </mat-card>

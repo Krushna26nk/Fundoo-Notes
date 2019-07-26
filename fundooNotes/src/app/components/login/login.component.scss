@@ -1,7 +1,7 @@
 .mainCard {
-    width: 50%;
+    width: 30%;
     // height: 100%;
-    display: inline-block;
+    // display: inline-block;
     margin: auto;
     margin-top: 5%;
     box-shadow: 0px 0px 2px;
@@ -58,3 +58,17 @@
           {    color: rgb(91, 170, 12);     }
   .cardTitle :nth-child(odd)
           {    color: rgb(235, 62, 32);       }
+
+
+// /deep/ .mat-form-field-appearance-outline .mat-form-field-flex {
+//   height: 42px;
+// }
+// input{
+//   height:15px;
+// }
+// /deep/ .mat-form-field-appearance-outline .mat-form-field-wrapper {
+//   height: 15px;
+// }
+// /deep/ .mat-form-field-appearance-outline .mat-form-field-infix {
+//   height: 34px;
+// }

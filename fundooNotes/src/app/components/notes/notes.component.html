@@ -11,9 +11,9 @@
           </div>
     
            <div fxLayout="row" fxFlex fxLayoutAlign="space-evenly center">
-              <span id="icons" *ngIf="showIcon" > <mat-icon>check_box</mat-icon> </span>
-              <span id="icons" *ngIf="showIcon" > <mat-icon>brush</mat-icon> </span>
-              <span id="icons" *ngIf="showIcon" > <mat-icon>image</mat-icon> </span>
+              <span id="icons" *ngIf="!showIcons" > <mat-icon>check_box</mat-icon> </span>
+              <span id="icons" *ngIf="!showIcons" > <mat-icon>brush</mat-icon> </span>
+              <span id="icons" *ngIf="!showIcons" > <mat-icon>image</mat-icon> </span>
            </div>
       </div>
       <mat-chip-list *ngIf="reminder">

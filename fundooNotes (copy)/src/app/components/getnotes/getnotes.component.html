@@ -1,0 +1,139 @@
+<div style="position: relative;margin-left:5%">
+  <mat-card  *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.width]="this.inputhandle ? '50vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
+      
+      <div (click)="updateNote(items)">
+        <div>{{items.title}} </div>
+        <div>{{items.description}}</div>
+        <!-- <p> <input type="text" aria-label="Title" value="{{items.title}}"  id="input" >  </p> -->
+        <!-- <p> <input type="text"  aria-label="Take a note..." value="{{items.description}}" id="input">   </p> -->
+      </div>
+
+      <mat-chip-list fxLayout="row">
+        <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 12px;height: 55%;"> {{ l.label }}
+          <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+
+      <mat-chip-list  *ngIf="items.reminder.length>0" fxLayout="row">
+          <mat-chip  style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm ' }}
+            <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveReminder(items.reminder,items)" >close</mat-icon>
+          </mat-chip>
+      </mat-chip-list>
+      
+      <!-- <mat-chip-list  *ngIf="items.collaborators.length>0" fxLayout="row">
+        <mat-chip *ngFor="let colab of items.collaborators"  style="font-size: 12px;height: 55%;"> {{ colab.firstName }}    </mat-chip>
+        <div mat-card-avatar style="background-size: cover" [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+items.imageUrl+')'}" ></div>
+      </mat-chip-list> -->
+
+      <div *ngIf="items.collaborators.length>0" fxLayout="row">
+        <button mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
+      </div>
+    
+      <div class="mainIcons">
+                <mat-icon matTooltip="Remind Me" [matMenuTriggerFor]="reminder">notifications</mat-icon>
+                  <mat-menu #reminder="matMenu" yPosition="below">
+                    <span style="font-size: 13px;">Reminder :</span>
+                    <mat-list fxLayout ="column" fxLayoutAlign="space-between" role="list">
+                      <mat-list-item mat-button (click)="setReminderToday(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Later Today</span> <span> &nbsp;&nbsp;&nbsp; 8.00 PM</span></mat-list-item>
+                      <mat-list-item mat-button (click)="setReminderTomorrow(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Tomorrow</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.00 AM</span> </mat-list-item>
+                      <mat-list-item mat-button (click)="setReminderWeekly(items)" style="font-size: 13px;" role="listitem"> <span style="font-size: 15px;">Next Week</span> </mat-list-item>
+                      <mat-form-field class="example-full-width">
+                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>                      
+                    </mat-list>
+                  </mat-menu>
+                <mat-icon matTooltip="Collaborator" (click)="addCollaborator(items,myTemplate)">account_box</mat-icon>
+                <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu1">palette</mat-icon>
+                <mat-menu  #menu1="matMenu" yPosition="above">
+                    <div class="row" mat-menu-item style="position: relative;max-width: 150px;"> 
+                          <div  id="color"  (click)="updateColor(items,color)" *ngFor="let color of colors" [ngStyle]="{'background':color}">  </div>
+                    </div>
+                </mat-menu>
+                <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
+                <mat-icon matTooltip="Archive" (click)="onArchive(items)">archive</mat-icon>
+                <button mat-icon-button [matMenuTriggerFor]="menulist" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menulist>
+                    <button mat-menu-item>     <span (click)="trashNote(items)" >Delete Note</span></button>
+                    <button mat-menu-item [matMenuTriggerFor]="labels"><span>Add Label</span></button>
+                </mat-menu>
+                <mat-menu #labels="matMenu">
+                  <mat-checkbox fxLayout="column" fxLayoutAlign="start start"  #labelsList (click)="addLabelToNote(item,items)" *ngFor="let item of labelDetails">{{item.label}}</mat-checkbox>
+                </mat-menu>
+      </div>
+      <ng-template #myTemplate>
+              <div style="text-align: center;"> <p> Collaborators </p> </div>
+              <mat-divider></mat-divider>
+              <div>
+              <div class="m-2"></div>
+
+
+                  <mat-card-header>
+                        <div mat-card-avatar [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+items.user.imageUrl+')'}" class="example-header-image"></div>
+                        <mat-card-title> {{ items.user.firstName }} <span >(Owner)</span> </mat-card-title>
+                        <mat-card-subtitle> {{items.user.email}} </mat-card-subtitle>
+                  </mat-card-header>
+
+
+                  <mat-divider></mat-divider>
+              
+                  <div  fxLayout="column" style="margin-top: 1%" *ngIf="items.collaborators.length>0" >
+                    <mat-card-header *ngFor="let col of items.collaborators" fxLayout="row">
+                          <div mat-card-avatar class="example-header-image" fxLayoutAlign="center center" style="background: rgb(163, 160, 163)">{{col.firstName[0]}}</div>
+                      <div>
+                          <mat-card-title> {{ col.firstName }} </mat-card-title>
+                          <mat-card-subtitle> {{col.email}} </mat-card-subtitle>
+                      </div>
+                      <div>
+                      <mat-icon mat-icon-button matTooltip="Remove Collab"  (click)="onRemoveCollaborator(col.userId,items)" >close</mat-icon>
+                      </div>
+                   <mat-divider></mat-divider>
+                    </mat-card-header>  
+                  </div>
+                  
+
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <div mat-card-avatar  fxLayoutAlign="center center" [style.border]="'1px solid'" > <mat-icon>person_add</mat-icon> </div>
+                  <mat-form-field>         
+                      <!-- <mat-card-header> -->
+                          <input (keyup)="onKey(inputvalue.value)" #inputvalue matInput [formControl]="searchinput" placeholder="Person or email to share with" [matAutocomplete]="auto"  type="text">
+                      <!-- </mat-card-header> -->
+
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let user of searchArray" [value]="user" >
+                          {{user.email}}
+                        </mat-option>
+                      </mat-autocomplete>
+
+                  </mat-form-field>
+                  <div dir="rtl">
+                      <button mat-button style="margin-right:0px" (click)="onCollaborate(items)">Save</button>
+                      <button mat-button >Close</button>
+                  </div>
+              </div>
+              <!-- <mat-form-field>
+                  <mat-select [(ngModel)]="selectedValue" name="user">
+                    <mat-option *ngFor="let user of searchArray" [value]="user.value">
+                      {{user.email}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field> -->
+              
+
+      </ng-template>
+
+      <ng-template #collaborator>
+
+      </ng-template>
+  
+    
+    </mat-card>
+
+   
+
+</div>

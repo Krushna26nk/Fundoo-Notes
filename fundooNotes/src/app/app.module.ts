@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RichTextEditorAllModule} from '@syncfusion/ej2-angular-richtexteditor';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import {RouterModule, Routes} from '@angular/router';
@@ -32,6 +33,8 @@ import { ListgridComponent } from './components/listgrid/listgrid.component';
 import { GetnotesComponent } from './components/getnotes/getnotes.component';
 import { IconsComponent } from './components/icons/icons.component';
 import { from } from 'rxjs';
+import { EditorComponent } from './components/editor/editor.component';
+import { QuestionanswerComponent } from './components/questionanswer/questionanswer.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -47,7 +50,8 @@ const routes:Routes =[
     { path:'archives',component:ArchievComponent},
     { path:'trash',component:TrashComponent},
     { path:'label', component:LabelsComponent},
-    { path:'remainder',component:RemainderComponent}
+    { path:'remainder',component:RemainderComponent},
+    { path:'editor' , component:EditorComponent}
   ]},
   
 ]
@@ -71,15 +75,18 @@ const routes:Routes =[
     SearchPipe,
     ListgridComponent,
     GetnotesComponent,
-    IconsComponent
+    IconsComponent,
+    EditorComponent,
+    QuestionanswerComponent
   ],
-  entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent],
+  entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
     }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
-    MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule
+    MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
+    RichTextEditorAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]

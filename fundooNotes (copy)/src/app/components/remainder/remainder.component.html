@@ -1,0 +1,46 @@
+<mat-card  *ngFor="let items of reminderList; let i = index"  [style.width]="inputhandle ? '50vw' : null"  [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;" class="beforeNoteCard1" >
+        
+    <div (click)="updateNote(items)">
+      <p> {{items.title}}  </p>
+      <p> {{items.description}}   </p>
+    </div>
+  
+    <mat-chip-list fxLayout="row">
+        <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 12px;height: 55%;"> {{ l.label }}
+          <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+
+      <mat-chip-list  *ngIf="items.reminder.length>0" fxLayout="row">
+          <mat-chip  style="font-size: 12px;height: 55%;"> {{ items.reminder | date:'MMM d, y, h:mm a' }}
+            <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
+          </mat-chip>
+      </mat-chip-list>
+
+      <div *ngIf="items.collaborators.length>0" fxLayout="row">
+          <button mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
+      </div>
+  
+    <div class="mainIcons">
+              <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
+              <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
+              <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu1">palette</mat-icon>
+              <mat-menu  #menu1="matMenu" yPosition="above">
+                  <div class="row" mat-menu-item style="position: relative;max-width: 150px;"> 
+                        <div  id="color"  (click)="updateColor(items,color)" *ngFor="let color of colors" [ngStyle]="{'background':color}">  </div>
+                  </div>
+              </mat-menu>
+              <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
+              <mat-icon matTooltip="Un-Archive" (click)="onUnArchive(items)">unarchive</mat-icon>
+              <button mat-icon-button [matMenuTriggerFor]="menulist" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menulist>
+                  <button mat-menu-item>     <span (click)="trashNote(items)" >Delete Note</span>         </button>
+                  <button mat-menu-item>     <span>Add Label</span>         </button>
+  
+              </mat-menu>
+    </div>
+  
+  
+  </mat-card>

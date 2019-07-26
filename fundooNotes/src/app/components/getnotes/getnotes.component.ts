@@ -10,6 +10,7 @@ import { RefreshService } from 'src/app/services/refresh.service';
 import {environment} from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
+import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
 @Component({
   selector: 'app-getnotes',
@@ -150,8 +151,9 @@ onRemoveLabel(labelId,noteId){
 
 updateNote(items:any){
   let dialogref = this.dialog.open(EditnotesComponent,{
-    height:'45vh',
-    width:'50vw',
+    height:'189px',
+    width:'450px',
+    panelClass:'myapp-no-padding-dialog',
     data:{
       title:items.title,
       description:items.description,
@@ -361,6 +363,14 @@ addLabelToNote(label,items){
       var noteId = note.id;
       this.noteService.onRemoveCollaborator(collabId,noteId);
       
+    }
+
+
+    onQuestionAnswer(colab,template){
+      console.log(colab);
+      this.dialog.open(QuestionanswerComponent,{
+        width:'50vw'
+      });
     }
 
 }
