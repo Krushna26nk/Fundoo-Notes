@@ -79,3 +79,16 @@
     border: 1px solid;
     background: rgb(139, 138, 138);
 }
+
+.askquestion{
+    border: 1px solid whitesmoke;
+    width:51%;
+    border-radius: 10px;
+    cursor:pointer;
+    margin-top: 5px;
+    background: rgba(163, 160, 163,0.5)
+}
+
+.msgIcon mat-icon{
+    font-size: 13px;
+}

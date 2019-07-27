@@ -1,5 +1,5 @@
 <div style="position: absolute;width: 80%;margin: 0 auto">
-  <mat-card  *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.marginLeft]="this.inputhandle ? '15%' : '10px'" [style.width]="this.inputhandle ? '45vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
+  <mat-card #matCard *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.marginLeft]="this.inputhandle ? '15%' : '10px'" [style.width]="this.inputhandle ? '45vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
       
       <div (click)="updateNote(items)">
         <div>{{items.title}} </div>
@@ -26,8 +26,17 @@
       </mat-chip-list> -->
 
       <div *ngIf="items.collaborators.length>0" fxLayout="row">
-        <button (click)="onQuestionAnswer(colab)" mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
+        <button  mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat;margin-left:5px;" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
       </div>
+
+      <div (click)="onQuestionAnswer(items,question)" class="askquestion" fxLayoutAlign="center center">
+        <span style="font-size: 12px;"> Ask Question </span>
+      </div>
+      <!-- <div style="border: 1px solid coral;background-color: rgb(235, 231, 226);border-radius: 10px" *ngIf="items.questionAndAnswerNotes.length > 0" >
+        <div style="margin-left: 15px" *ngFor="let q of items.questionAndAnswerNotes" >
+          {{q.message}}
+        </div>
+      </div> -->
    
 
       <div class="mainIcons">
@@ -49,7 +58,7 @@
                 <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu1">palette</mat-icon>
                 <mat-menu  #menu1="matMenu" yPosition="above">
                     <div class="row" mat-menu-item style="position: relative;max-width: 150px;"> 
-                          <div  id="color"  (click)="updateColor(items,color)" *ngFor="let color of colors" [ngStyle]="{'background':color}">  </div>
+                        <div  id="color"  (click)="updateColor(items,color)" *ngFor="let color of colors" [ngStyle]="{'background':color}">  </div>
                     </div>
                 </mat-menu>
                 <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
@@ -60,11 +69,60 @@
                 <mat-menu #menulist>
                     <button mat-menu-item>     <span (click)="trashNote(items)" >Delete Note</span></button>
                     <button mat-menu-item [matMenuTriggerFor]="labels"><span>Add Label</span></button>
+                    <button mat-menu-item (click)="question"><span>Ask Question</span></button>
                 </mat-menu>
                 <mat-menu #labels="matMenu">
                   <mat-checkbox fxLayout="column" fxLayoutAlign="start start"  #labelsList (click)="addLabelToNote(item,items)" *ngFor="let item of labelDetails">{{item.label}}</mat-checkbox>
                 </mat-menu>
+
+                          <ng-template #question>
+                            <mat-card [ngStyle]="{'background':items.color}">
+                              <!-- <mat-card-header> -->
+                                  <p> {{items.title}}       </p>
+                                  <p> {{items.description}} </p>
+                              <!-- </mat-card-header> -->
+                            </mat-card>
+                            <app-editor [NoteForChild]="items" ></app-editor>
+                          </ng-template>
+      
       </div>
+
+
+
+      <!-- mat-card -footer -->
+
+            <mat-card-footer *ngIf="items.questionAndAnswerNotes.length > 0" style="background: white;padding: 5px;">
+              <div style="padding: 5px;border: 1px solid rgb(99, 102, 102);border-radius: 10px;">
+                  <p align="center"> Question Asked !</p>
+                  <hr style="border:1px solid rgb(160, 157, 157)" >
+                  <div fxLayout="row" (click)="onReply(reply)" fxLayoutAlign="space-between center" style="border-radius: 10px;font-size: 12px;margin: 10px;box-shadow: 0px 0px 2px;background: rgb(216, 212, 212);font-family:monospace"  *ngFor="let q of items.questionAndAnswerNotes" >
+                      <!-- {{q.message}} -->
+                      <div style="margin-left: 5px;"  [innerHTML]="q.message"></div>
+                      <div class="msgIcon"> <mat-icon>reply</mat-icon> <mat-icon>thumb_up</mat-icon> <mat-icon>star_border</mat-icon> </div>
+                  </div>
+              </div>
+
+              <ng-template #reply >
+                  <app-questionanswericon [question]="q" ></app-questionanswericon>
+                </ng-template>
+
+            </mat-card-footer>
+
+
+      
+          <!-- ng-template for reply -->
+
+         
+
+          <!-- ng-template for reply endddddddddddddddddd -->
+
+
+
+      <!-- mat-card-footer endddddddddddddddd -->
+
+
+
+
       <ng-template #myTemplate>
               <div style="text-align: center;"> <p> Collaborators </p> </div>
               <mat-divider></mat-divider>

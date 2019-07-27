@@ -35,6 +35,7 @@ import { IconsComponent } from './components/icons/icons.component';
 import { from } from 'rxjs';
 import { EditorComponent } from './components/editor/editor.component';
 import { QuestionanswerComponent } from './components/questionanswer/questionanswer.component';
+import { QuestionanswericonComponent } from './components/questionanswericon/questionanswericon.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -77,7 +78,8 @@ const routes:Routes =[
     GetnotesComponent,
     IconsComponent,
     EditorComponent,
-    QuestionanswerComponent
+    QuestionanswerComponent,
+    QuestionanswericonComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent],
   imports: [

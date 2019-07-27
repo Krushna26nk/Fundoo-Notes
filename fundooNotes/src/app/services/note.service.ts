@@ -266,4 +266,8 @@ export class NoteService {
     })
   }
 
+  postQuestion(data,url){
+   return  this.http.post(this.baseurl+url,data,this.httpOptions);
+  }
+
 }

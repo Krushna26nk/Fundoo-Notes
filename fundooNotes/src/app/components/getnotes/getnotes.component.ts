@@ -366,11 +366,15 @@ addLabelToNote(label,items){
     }
 
 
-    onQuestionAnswer(colab,template){
-      console.log(colab);
-      this.dialog.open(QuestionanswerComponent,{
+    onQuestionAnswer(item,template){
+      console.log(item);
+      this.dialog.open(template,{
         width:'50vw'
       });
+    }
+
+    onReply(template){
+      this.dialog.open(template);
     }
 
 }
