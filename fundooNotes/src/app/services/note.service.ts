@@ -270,4 +270,13 @@ export class NoteService {
    return  this.http.post(this.baseurl+url,data,this.httpOptions);
   }
 
+  postReply(data,id){
+    var url ="questionAndAnswerNotes/reply/"+id
+   return this.http.post(this.baseurl+url,data,this.httpOptions);
+  }
+  postLike(data,id){
+    var url = 'questionAndAnswerNotes/like/'+id
+    return this.http.post(this.baseurl+url,data,this.httpOptions);
+  }
+
 }

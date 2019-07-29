@@ -10,6 +10,7 @@ import { RefreshService } from 'src/app/services/refresh.service';
 import {environment} from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
+
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
 
 @Component({
@@ -341,12 +342,12 @@ addLabelToNote(label,items){
     onCollaborate(value){
       console.log(this.searchinput)
       console.log(value);
-      console.log(value.id);
+      console.log('noteid',value.id);
       var id = value.id
       console.log('value',this.searchinput.value);
       var data : string[] = this.searchinput.value
       
-      var url ='/notes/'+id+'/AddcollaboratorsNotes'
+      var url ='notes/'+id+'/AddcollaboratorsNotes'
       this.http.post(this.baseurl+url,this.searchinput.value,{
         headers :{
           'Authorization':localStorage.getItem('token')
@@ -374,7 +375,9 @@ addLabelToNote(label,items){
     }
 
     onReply(template){
-      this.dialog.open(template);
+      this.dialog.open(template,{
+        width:'50vw'
+      });
     }
 
 }

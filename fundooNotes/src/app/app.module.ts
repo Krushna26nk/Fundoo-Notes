@@ -10,6 +10,9 @@ import {HttpModule} from '@angular/http';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
+// import {DragDropModule} from '@angular/cdk/drag-drop';
+// import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
