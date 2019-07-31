@@ -107,6 +107,11 @@ export class NoteService {
     });
   }
 
+  deleteForever(url,data){
+    // var url='notes/deleteForeverNotes'
+    return this.http.post(this.baseurl+url,data,this.httpOptions);
+  }
+
  
   getArchievedlist(url){
     this.http.get(url,this.httpOptions).subscribe((response:any)=>{

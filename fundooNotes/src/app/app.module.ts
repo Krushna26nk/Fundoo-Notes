@@ -16,7 +16,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
-import {MatSelectModule,MatAutocompleteModule} from '@angular/material';
+import {MatSelectModule,MatAutocompleteModule,MatBadgeModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -39,6 +39,12 @@ import { from } from 'rxjs';
 import { EditorComponent } from './components/editor/editor.component';
 import { QuestionanswerComponent } from './components/questionanswer/questionanswer.component';
 import { QuestionanswericonComponent } from './components/questionanswericon/questionanswericon.component';
+import { IconCollaboratorComponent } from './components/icon-collaborator/icon-collaborator.component';
+import { IconReminderComponent } from './components/icon-reminder/icon-reminder.component';
+import { ImageComponent } from './components/image/image.component';
+import { ColorComponent } from './components/color/color.component';
+import { IconColorComponent } from './components/icon-color/icon-color.component';
+import { IconImageComponent } from './components/icon-image/icon-image.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -82,7 +88,13 @@ const routes:Routes =[
     IconsComponent,
     EditorComponent,
     QuestionanswerComponent,
-    QuestionanswericonComponent
+    QuestionanswericonComponent,
+    IconCollaboratorComponent,
+    IconReminderComponent,
+    ImageComponent,
+    ColorComponent,
+    IconColorComponent,
+    IconImageComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent],
   imports: [
@@ -91,7 +103,7 @@ const routes:Routes =[
     }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
-    RichTextEditorAllModule
+    RichTextEditorAllModule,MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

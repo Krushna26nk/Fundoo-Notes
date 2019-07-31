@@ -32,8 +32,17 @@ export class TrashComponent implements OnInit {
   deleteForever(items){
     this.note.noteIdList = items.id;
     var data={
-      "isDeleted":true
+      "title":items.title,
+      "description":items.description,
+      "noteId":items.id,
+      "isDeleted":items.isDeleted,
+      "isPinned":items.isPinned
     }
+    var url ='notes/deleteForeverNotes'
+    this.noteService.deleteForever(url,data).subscribe((resposne:any)=>{
+      console.log(resposne);
+      
+    });
   }
   restore(items){
     this.note.noteIdList = items.id;

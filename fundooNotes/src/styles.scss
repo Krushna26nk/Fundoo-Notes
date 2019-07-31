@@ -2,4 +2,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .myapp-no-padding-dialog .mat-dialog-container {
     padding: 0;
+    border-radius: 10px;
   }

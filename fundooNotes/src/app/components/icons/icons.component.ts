@@ -2,6 +2,10 @@ import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Note } from 'src/app/modal/note';
 import { Notelabel } from 'src/app/modal/notelabel';
 import { NoteService } from 'src/app/services/note.service';
+import { MatDialog } from '@angular/material';
+import {environment} from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-icons',
@@ -10,7 +14,9 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class IconsComponent implements OnInit {
 
-  constructor(private noteService:NoteService) { }
+  baseurl = environment.baseUrl;
+
+  constructor(private noteService:NoteService,private dialog:MatDialog,private http:HttpClient) { }
 
   note: Note = new Note;
   noteLabel :Notelabel = new Notelabel();
@@ -27,10 +33,17 @@ export class IconsComponent implements OnInit {
   reminder : string;
   collaborators : any[] = [];
   colour : any;
-  searchArray : any[] =[];
+ 
   todayReminder = new Date();
   tomorrowReminder = new Date();
   weeklyReminder = new Date();
+
+  userProfile = environment.baseUrl1+localStorage.getItem('profilePic');
+  fullName = localStorage.getItem('firstName') +' '+ localStorage.getItem('lastName');
+  userEmail = localStorage.getItem('email');
+
+  searchArray : any[] =[];
+  searchinput = new FormControl();
 
   @Input() color:string
   @Output() event = new EventEmitter();
@@ -86,8 +99,10 @@ export class IconsComponent implements OnInit {
   /** ---------------------- */
 
 
-  addCollaborator(){
-    
+  openCollaborator(template){
+    this.dialog.open(template,{
+      width:'50vw'
+    });
   }
   changeColor(color){
     this.colour = color;
@@ -99,58 +114,58 @@ export class IconsComponent implements OnInit {
   }
 
 
-  // onKey(value){
-  //   var url = this.baseurl + 'user/searchUserList';
-  //   var data ={
-  //     "searchWord":value
-  //   }
-  //   this.http.post(url,data,{
-  //     headers:{
-  //       'Authorization':localStorage.getItem('token')
-  //     }
-  //   }).subscribe((data:any) =>{
-  //     console.log(data.data.details);
-  //     this.searchArray = data.data.details;
+  onKey(value){
+    var url = this.baseurl + 'user/searchUserList';
+    var data ={
+      "searchWord":value
+    }
+    this.http.post(url,data,{
+      headers:{
+        'Authorization':localStorage.getItem('token')
+      }
+    }).subscribe((data:any) =>{
+      console.log(data.data.details);
+      this.searchArray = data.data.details;
       
-  //   });
-  // }
+    });
+  }
 
-  // addCollaborator(items:any,templateReference){
-  //   console.log(items.user);
-  //   console.log(this.searchArray[0]);
+  addCollaborator(items:any,templateReference){
+    console.log(items.user);
+    console.log(this.searchArray[0]);
     
 
-  //   let dialogRef = this.dialog.open(templateReference,{
-  //     width:'40vw'
-  //   })
+    let dialogRef = this.dialog.open(templateReference,{
+      width:'40vw'
+    })
     
-  // }
+  }
 
-  // onCollaborate(value){
-  //   console.log(this.searchinput)
-  //   console.log(value);
-  //   console.log(value.id);
-  //   var id = value.id
-  //   console.log('value',this.searchinput.value);
-  //   var data : string[] = this.searchinput.value
+  onCollaborate(value){
+    console.log(this.searchinput)
+    console.log(value);
+    console.log(value.id);
+    var id = value.id
+    console.log('value',this.searchinput.value);
+    var data : string[] = this.searchinput.value
     
-  //   var url ='/notes/'+id+'/AddcollaboratorsNotes'
-  //   this.http.post(this.baseurl+url,this.searchinput.value,{
-  //     headers :{
-  //       'Authorization':localStorage.getItem('token')
-  //     }
-  //   }).subscribe((response:any)=>{
-  //     console.log(response);
-  //   })
-  //   this.dialog.closeAll();
-  // }
+    var url ='/notes/'+id+'/AddcollaboratorsNotes'
+    this.http.post(this.baseurl+url,this.searchinput.value,{
+      headers :{
+        'Authorization':localStorage.getItem('token')
+      }
+    }).subscribe((response:any)=>{
+      console.log(response);
+    })
+    this.dialog.closeAll();
+  }
 
-  // onRemoveCollaborator(collabId,note){
-  //   console.log(collabId);
-  //   console.log(note.id);
-  //   var noteId = note.id;
-  //   this.noteService.onRemoveCollaborator(collabId,noteId);
+  onRemoveCollaborator(collabId,note){
+    console.log(collabId);
+    console.log(note.id);
+    var noteId = note.id;
+    this.noteService.onRemoveCollaborator(collabId,noteId);
     
-  // }
+  }
 
 }

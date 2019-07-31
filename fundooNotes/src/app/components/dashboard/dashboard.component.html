@@ -64,16 +64,15 @@
   <mat-sidenav #sidenav mode="side" class="sidenavigation">
     <mat-nav-list class="listItems">
       
-              <div id="sidenavList" class="active">
-                  <mat-list-item class="sidelist"  (click)='getName()' routerLink="notes"> 
+              <div id="sidenavList" fxLayoutAlign="flex-start center" class="active">
+                  <mat-list-item  (click)='getName()' routerLink="notes"> 
                     <span><mat-icon class="listIcons">lightbulb_outline</mat-icon></span> 
                     <span  #sidenavList1 class="listNames"> Notes </span> 
                   </mat-list-item>
               </div>
 
-             
 
-              <div id="sidenavList">
+              <div id="sidenavList" fxLayoutAlign="flex-start center">
                   <mat-list-item class="sidelist" routerLink="remainder">
                       <span><mat-icon class="listIcons">notifications_none</mat-icon></span>
                       <span class="listNames"> Remainder </span> 
@@ -100,7 +99,7 @@
               <mat-divider></mat-divider>  
 
               
-              <div id="sidenavList">
+              <div id="sidenavList" fxLayoutAlign="flex-start center">
                   <mat-list-item class="sidelist" routerLink="archives"> 
                     <span><mat-icon class="listIcons">archive</mat-icon> </span> 
                     <span class="listNames"> Archives </span> 
@@ -109,7 +108,7 @@
 
              
 
-              <div id="sidenavList">
+              <div id="sidenavList" fxLayoutAlign="flex-start center">
                   <mat-list-item class="sidelist" routerLink="trash"> 
                     <span><mat-icon class="listIcons">delete_outline</mat-icon></span> 
                     <span class="listNames"> Trash </span> 
