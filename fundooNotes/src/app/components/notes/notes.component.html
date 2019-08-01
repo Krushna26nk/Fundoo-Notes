@@ -21,7 +21,7 @@
       </mat-chip-list>
 
     <div *ngIf="showIcons" fxLayout="row" fxLayoutAlign="space-between center" >
-      <div fxLayoutAlign="flex-end" >  <app-icons (reminderevent)="receiveReminder($event)"  (colorevent)="colorEvent($event)"></app-icons>  </div>
+      <div fxLayoutAlign="flex-end" >  <app-icons (reminderevent)="receiveReminder($event)" (archiveEvent)="archive($event)"  (colorevent)="colorEvent($event)"></app-icons>  </div>
       <div> <button mat-button  (click)="onSubmit()" >close</button> </div>
     </div>
   </div>

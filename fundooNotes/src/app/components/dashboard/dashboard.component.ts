@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   parentMessage = 'message from parent'
 
   @ViewChild('sidenavList1') sidenavList:ElementRef;
+  @ViewChild('.cardDiv') searchInputBox:ElementRef
 
   constructor(private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private router:Router,private dialog:MatDialog) { }
 
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
   //   {'description':''}
   // ];
 
+  status : boolean = false;
   opened : Boolean;
   handle :boolean = false;
   headingName = 'FUNDOO';
@@ -49,6 +51,7 @@ export class DashboardComponent implements OnInit {
 
   // @Output() event1 = new EventEmitter();
 
+  
   
 
   getName(){
@@ -126,10 +129,9 @@ imageupload(){
  }
 
 getNoteOfLabel(item){
-  this.labelname = item;
+  this.labelname = item.label;
   console.log(item);
-  this.urlService.getNoteListByLabel(item);
-  
+  this.urlService.getNoteListByLabel(this.labelname);
 }
 
 }

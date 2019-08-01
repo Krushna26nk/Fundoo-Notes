@@ -49,6 +49,7 @@ export class IconsComponent implements OnInit {
   @Output() event = new EventEmitter();
   @Output() colorevent = new EventEmitter();
   @Output() reminderevent = new EventEmitter();
+  @Output() archiveEvent = new EventEmitter();
 
   cardArray = this.noteService.dataArray;
   sampleCardArray = this.noteService.noteArray;
@@ -70,7 +71,8 @@ export class IconsComponent implements OnInit {
   ngOnInit() {
   }
   /**
-   *  @description reminder
+   *  @description reminder function
+
    */
         setReminderToday(){
           // var date = new Date();
@@ -104,14 +106,28 @@ export class IconsComponent implements OnInit {
       width:'50vw'
     });
   }
+
+
+
+// on color change function  
+
   changeColor(color){
     this.colour = color;
     // console.log('color',this.colour);
     this.colorevent.emit(this.colour);
   }
-  onArchive(){
 
+
+// on archive function
+
+  onArchive(){
+    this.isArchived = true;
+    this.archiveEvent.emit(this.isArchived);
   }
+
+
+
+  // on collaborate function 
 
 
   onKey(value){

@@ -9,9 +9,11 @@
       </div> 
 
       <mat-chip-list fxLayout="row">
-        <mat-chip *ngFor="let l of items.noteLabels"  style="font-size: 12px;height: 55%;"> {{ l.label }}
-          <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
-        </mat-chip>
+        <div fxLayoutAlign="center center" *ngFor="let l of items.noteLabels"style="height:85%;">
+            <mat-chip *ngIf="l.isDeleted == false"   style="font-size: 12px;height: 55%;"> {{ l.label }}
+              <mat-icon align="end" style="font-size: 15px;margin:auto;" (click)="onRemoveLabel(l.id,items.id)" >close</mat-icon>
+            </mat-chip>
+        </div>
       </mat-chip-list>
 
       <mat-chip-list  *ngIf="items.reminder.length>0" fxLayout="row">
@@ -29,9 +31,12 @@
         <button  mat-card-avatar mat-icon-button matTooltip=" {{ colab.email }} " style="border: 1px solid;height:25px;width: 25px;background: wheat;margin-left:5px;" *ngFor="let colab of items.collaborators" fxLayout="column" fxLayoutAlign="center center" value=""> {{colab.firstName[0]}} </button>
       </div>
 
-      <div (click)="onQuestionAnswer(items,question)" class="askquestion" fxLayoutAlign="center center">
+      
+      <!-- <div (click)="onQuestionAnswer(items,question)" class="askquestion" fxLayoutAlign="center center">
         <span style="font-size: 12px;"> Ask Question </span>
-      </div>
+      </div> -->
+
+
       <!-- <div style="border: 1px solid coral;background-color: rgb(235, 231, 226);border-radius: 10px" *ngIf="items.questionAndAnswerNotes.length > 0" >
         <div style="margin-left: 15px" *ngFor="let q of items.questionAndAnswerNotes" >
           {{q.message}}
@@ -69,7 +74,7 @@
                 <mat-menu #menulist>
                     <button mat-menu-item>     <span (click)="trashNote(items)" >Delete Note</span></button>
                     <button mat-menu-item [matMenuTriggerFor]="labels"><span>Add Label</span></button>
-                    <button mat-menu-item (click)="question"><span>Ask Question</span></button>
+                    <button mat-menu-item (click)="onQuestionAnswer(items,question)"><span>Ask Question</span></button>
                 </mat-menu>
                 <mat-menu #labels="matMenu">
                   <mat-checkbox fxLayout="column" fxLayoutAlign="start start"  #labelsList (click)="addLabelToNote(item,items)" *ngFor="let item of labelDetails">{{item.label}}</mat-checkbox>
@@ -91,12 +96,12 @@
 
       <!-- mat-card -footer -->
 
-            <mat-card-footer *ngIf="items.questionAndAnswerNotes.length > 0" style="background: white;padding: 5px;">
+            <mat-card-footer *ngIf="items.questionAndAnswerNotes.length > 0" style="padding: 5px;">
               <div style="padding: 5px;border: 1px solid rgb(99, 102, 102);border-radius: 10px;">
                   <p fxLayoutAlign="center center">
                     <span matBadge="{{items.questionAndAnswerNotes.length}}"matBadgeOverlap="false" style="text-align: center"> Question Asked  !</span>
                   </p>
-                  <hr style="border:1px solid rgb(160, 157, 157)" >
+                  <hr style="border:0.5px solid black">
                   <div style="border-radius: 10px;font-size: 12px;margin: 10px;box-shadow: 0px 0px 2px;background: rgb(216, 212, 212);font-family:monospace"  *ngFor="let ques of items.questionAndAnswerNotes | slice:0:1;let i = index" >
                       <!-- {{q.message}} -->
                       <div  fxLayout="row"  fxLayoutAlign="space-between center" >

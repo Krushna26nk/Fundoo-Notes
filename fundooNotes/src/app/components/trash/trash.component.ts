@@ -31,10 +31,12 @@ export class TrashComponent implements OnInit {
 
   deleteForever(items){
     this.note.noteIdList = items.id;
+    console.log(this.note.noteIdList);
+    
     var data={
       "title":items.title,
       "description":items.description,
-      "noteId":items.id,
+      "id":this.note.noteIdList,
       "isDeleted":items.isDeleted,
       "isPinned":items.isPinned
     }

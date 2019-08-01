@@ -109,7 +109,7 @@ export class NoteService {
 
   deleteForever(url,data){
     // var url='notes/deleteForeverNotes'
-    return this.http.post(this.baseurl+url,data,this.httpOptions);
+    return this.http.post(this.baseurl+url, data,this.httpOptions);
   }
 
  
@@ -182,12 +182,15 @@ export class NoteService {
   getNotesListbylabels(url){
     var data= {}
     this.http.post(this.baseurl+url,data,this.httpOptions).subscribe((data:any) =>{
-      console.log('label filter',data);
+      
       var labelFilter = data.data.data
+      console.log('label filter',labelFilter);
       console.log(labelFilter);
       labelFilter.forEach(element => {
+        if(element.isDeleted === false){
         this.notesbyLabel.push(element);
-      });
+      }
+    });
       
       
     })
@@ -283,5 +286,7 @@ export class NoteService {
     var url = 'questionAndAnswerNotes/like/'+id
     return this.http.post(this.baseurl+url,data,this.httpOptions);
   }
+
+  
 
 }

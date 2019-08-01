@@ -117,6 +117,10 @@ export class NotesComponent implements OnInit {
     this.getcolor = data;
     
   }
+  archive(data){
+    console.log(data);
+    this.isArchived  = data;
+  }
 
   getHandle(){
     this.sharedService.change.subscribe(data =>{
@@ -193,6 +197,7 @@ export class NotesComponent implements OnInit {
                   this.note.color = this.color;
                   this.note.reminder = this.reminder;
                   this.note.color = this.getcolor;
+                  this.note.isArchived = this.isArchived
                   this.urlService.addNote(this.note,this.token);
                   this.refreshService.changeMessage('ghfg');
                 }

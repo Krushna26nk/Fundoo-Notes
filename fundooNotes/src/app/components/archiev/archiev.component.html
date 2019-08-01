@@ -7,7 +7,8 @@
 
 
   <div class="mainIcons">
-            <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
+            <app-icons></app-icons>
+            <!-- <mat-icon matTooltip="Remind Me" (click)="onNotification()">notifications</mat-icon>
             <mat-icon matTooltip="Collaborator" (click)="onCollaborator()">account_box</mat-icon>
             <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu1">palette</mat-icon>
             <mat-menu  #menu1="matMenu" yPosition="above">
@@ -17,14 +18,17 @@
             </mat-menu>
             <mat-icon matTooltip="Add Image" (click)="onImage()">image</mat-icon>
             <mat-icon matTooltip="Un-Archive" (click)="onUnArchive(items)">unarchive</mat-icon>
+            </button>
+            -->
             <button mat-icon-button [matMenuTriggerFor]="menulist" aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menulist>
+              <mat-menu #menulist>
                 <button mat-menu-item>     <span (click)="trashNote(items)" >Delete Note</span>         </button>
                 <button mat-menu-item>     <span>Add Label</span>         </button>
 
-            </mat-menu>
+              </mat-menu> 
+
   </div>
 
 

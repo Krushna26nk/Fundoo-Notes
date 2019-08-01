@@ -16,9 +16,9 @@
           </div>
 
 
-          <div class="cardDiv" fxFlex="50">
-            <div fxLayout="row" id="toolbarSearch">
-              <i class="material-icons">search</i> <input matInput [(ngModel)]="searchvalue" (keyup)="onKey()"   class="searchinput" placeholder="Search">
+          <div class="cardDiv" [ngClass]="status ? 'searchBorder' : 'cardDiv'">
+            <div fxLayout="row" style="padding: 2px;" fxLayoutAlign="space-around center" id="toolbarSearch">
+              <i class="material-icons">search</i> <input matInput [(ngModel)]="searchvalue" #searchbox (keyup)="onKey()" (click)="status = !status"  class="searchinput" placeholder="Search">
             </div>
           </div>
 
@@ -79,17 +79,25 @@
                   </mat-list-item>
               </div>
             
+            
             <mat-divider></mat-divider>  
+            <p style="font-size: 15px;padding-top: 5px;padding-left: 5px;">LABELS</p>
+
+            <div id="sidenavList" *ngFor="let item of labelArrayList" fxLayoutAlign="flex-start center">
+                <mat-list-item class="sidelist" routerLink="label">
+                    <span><mat-icon class="listIcons">label_outline</mat-icon></span>
+                    <span class="listNames" (click)="getNoteOfLabel(item)"   > {{ item.label }}</span> 
+                </mat-list-item>
+            </div>
              
-              <p style="font-size: 15px;padding-top: 5px;padding-left: 5px;">LABELS</p>
                  
-              <mat-list-item *ngFor="let item of labelArrayList" routerLink="label"> 
+              <!-- <mat-list-item *ngFor="let item of labelArrayList" routerLink="label"> 
                   <span><mat-icon class="listIcons">label_outline</mat-icon></span> 
                   <span class="listNames" (click)="getNoteOfLabel(item)"   > {{ item.label }}</span>   
                 </mat-list-item>      
+                 -->
+              
               <div id="sidenavList" style="padding-top: 0px">
-                       
-
                   <mat-list-item class="sidelist" (click)="editLabels()" routerLink="label"> 
                     <span><mat-icon class="listIcons">edit</mat-icon></span> 
                     <span class="listNames"> Edit Labels </span>   

@@ -3,8 +3,8 @@ export class Note {
     description:string;
     color:string;
     noteIdList:string;
-    isDeleted:false;
-    isArchived:false;
+    isDeleted:boolean;
+    isArchived:boolean;
     isPined:false;
     label:string;
     collaborators:string[];

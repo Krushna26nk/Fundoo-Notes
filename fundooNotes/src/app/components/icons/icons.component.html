@@ -10,20 +10,83 @@
             </mat-list>
           </mat-menu>
         <!-- <mat-icon matTooltip="Collaborator" (click)="openCollaborator(template)">account_box</mat-icon> -->
-        <app-icon-collaborator></app-icon-collaborator>
-        <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu">palette</mat-icon>
-            <mat-menu  #menu="matMenu" yPosition="above">
-          
-              <div class="row" mat-menu-item style="position: relative;max-width: 150px;"> 
-                  <span (click)="changeColor(color)" id="color" *ngFor="let color of colors" [ngStyle]="{'background':color}">  </span>
-              </div>
-            
-            </mat-menu>
+
+        
+<!-- ------------------- icon  Collaborator----------------- -->
+
+              <mat-icon matTooltip="Collaborator" (click)="openCollaborator(template)">account_box</mat-icon>
+
+                    <ng-template #template  >
+                            <p style="text-align: center"> Collaborators </p>
+                            <mat-divider></mat-divider>
+                            
+                            <div fxLayout="row" fxLayoutAlign=" center">
+                              <div mat-card-avatar style="height: 20px;width:20px;border-radius: 50%;" style="background-size: cover" [ngStyle]="{'background-image' : 'url('+userProfile+')'}"></div>
+                              <div fxFlex="50%" [style.margin.%]="2" fxFlexAlign="center" style="font-size: 14px;" >
+                                  <div> {{fullName}} <i> (owner) </i> </div>
+                                  <div> {{userEmail}} </div>
+                              </div>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign=" center">
+                              <!-- <div mat-card-avatar style="height: 20px;width:20px;border-radius: 50%;" style="background-size: cover" [ngStyle]="{'background-image' : 'url('+userProfile+')'}"></div> -->
+                              <div mat-card-avatar fxLayoutAlign="center center" style="border: 1px solid rgb(167, 162, 162)" > <mat-icon style="color: rgb(167, 164, 164)">person_add</mat-icon> </div>
+                              <div fxFlex="50%" [style.margin.%]="2" fxFlexAlign="center" style="font-size: 14px;" >
+                                  <input #input (keyup)="onKey(input.value)" [formControl]="searchinput" placeholder="Person or Email to Share With" style="text-decoration: none;outline: none;border:none;height: 14px;font-size: 14px;width: 80%" [matAutocomplete]="auto">
+                              </div>
+                            </div>
+
+                            <div fxLayoutAlign="flex-end center">
+                              <button mat-button> Cancel </button>
+                              <button mat-button style="margin: 0.5%" (click)="onCollaborate()" >Save</button>
+                            </div>
+
+
+                            <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option *ngFor="let user of searchArray" [value]="user" >
+                                {{user.email}}
+                              </mat-option>
+                            </mat-autocomplete>
+
+
+                    </ng-template>
+
+<!-- ---------------------icon Collaborator end ----------- -->
+
+
+
+<!-- -- color pallete icon --- -->
+
+                <mat-icon matTooltip="Change Color" [matMenuTriggerFor]="menu">palette</mat-icon>
+                <mat-menu  #menu="matMenu" yPosition="above">
+              
+                  <div class="row" mat-menu-item style="position: relative;max-width: 150px;"> 
+                      <span (click)="changeColor(color)" id="color" *ngFor="let color of colors" [ngStyle]="{'background':color}">  </span>
+                  </div>
+                
+                </mat-menu>
+
+<!-- ---color -palete-icon -end -- -->
+
+
+
+
+
+<!-- - icon image-- -->
+
         <mat-icon matTooltip="Add Image" (click)="addImage()">image</mat-icon>
-        <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
+
+<!-- -icon image end- -->
 
 
-        <ng-template #template  >
+
+<!-- - icon archive  -->
+        
+          <mat-icon matTooltip="Archive" (click)="onArchive()">archive</mat-icon>
+
+<!-- -icon archive end- -->
+
+        <!-- <ng-template #template  >
           <p style="text-align: center"> Collaborators </p>
           <mat-divider></mat-divider>
           
@@ -36,7 +99,6 @@
           </div>
 
           <div fxLayout="row" fxLayoutAlign=" center">
-            <!-- <div mat-card-avatar style="height: 20px;width:20px;border-radius: 50%;" style="background-size: cover" [ngStyle]="{'background-image' : 'url('+userProfile+')'}"></div> -->
             <div mat-card-avatar fxLayoutAlign="center center" style="border: 1px solid rgb(167, 162, 162)" > <mat-icon style="color: rgb(167, 164, 164)">person_add</mat-icon> </div>
             <div fxFlex="50%" [style.margin.%]="2" fxFlexAlign="center" style="font-size: 14px;" >
                 <input #input (keyup)="onKey(input.value)" [formControl]="searchinput" placeholder="Person or Email to Share With" style="text-decoration: none;outline: none;border:none;height: 14px;font-size: 14px;width: 80%" [matAutocomplete]="auto">
@@ -56,7 +118,7 @@
           </mat-autocomplete>
 
 
-        </ng-template>
+        </ng-template> -->
 
     </div>
 </div>
