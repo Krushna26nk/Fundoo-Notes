@@ -12,6 +12,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 // import {DragDropModule} from '@angular/cdk/drag-drop';
 // import {DragDropModule} from '@angular/cdk/drag-drop';
+import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg';
 
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
@@ -57,6 +58,7 @@ const routes:Routes =[
       {path:'',component:GetnotesComponent}
     ]},
     { path:'notes',component : NotesComponent},
+    { path:'questionanswer',component:QuestionanswerComponent},
     { path:'archives',component:ArchievComponent},
     { path:'trash',component:TrashComponent},
     { path:'label', component:LabelsComponent},
@@ -103,7 +105,7 @@ const routes:Routes =[
     }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
-    RichTextEditorAllModule,MatBadgeModule
+    RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

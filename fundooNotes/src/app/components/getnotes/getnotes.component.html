@@ -74,7 +74,7 @@
                 <mat-menu #menulist>
                     <button mat-menu-item>     <span (click)="trashNote(items)" >Delete Note</span></button>
                     <button mat-menu-item [matMenuTriggerFor]="labels"><span>Add Label</span></button>
-                    <button mat-menu-item (click)="onQuestionAnswer(items,question)"><span>Ask Question</span></button>
+                    <button mat-menu-item (click)="onQuestionAnswer(items)"><span>Ask Question</span></button>
                 </mat-menu>
                 <mat-menu #labels="matMenu">
                   <mat-checkbox fxLayout="column" fxLayoutAlign="start start"  #labelsList (click)="addLabelToNote(item,items)" *ngFor="let item of labelDetails">{{item.label}}</mat-checkbox>
@@ -105,15 +105,14 @@
                   <div style="border-radius: 10px;font-size: 12px;margin: 10px;box-shadow: 0px 0px 2px;background: rgb(216, 212, 212);font-family:monospace"  *ngFor="let ques of items.questionAndAnswerNotes | slice:0:1;let i = index" >
                       <!-- {{q.message}} -->
                       <div  fxLayout="row"  fxLayoutAlign="space-between center" >
-                        <div style="margin-left: 5px;word-wrap: break-word"  innerHTML="{{ques.message}}"></div>
+                        <div style="margin-left: 5px;word-wrap: break-word" (click)="onReply(items)"  innerHTML="{{ques.message}}"></div>
                         
-                        
+<!--                         
                         <div fxLayoutAlign="space-between" class="msgIcon"> 
                           <button mat-icon-button (click)="onReply(reply)" > <mat-icon> reply </mat-icon> </button>
                           <button mat-icon-button> <mat-icon> thumb_up </mat-icon></button>{{ques.like.length}}   
                           <button mat-icon-button> <mat-icon> star_border </mat-icon> </button> 
-                        </div>
-
+                        </div> -->
 
                       </div>
 
@@ -210,10 +209,18 @@
               
 
             </ng-template>
-  
+            
     
     </mat-card>
 
-   
+    <ng-container *ngIf="show" >
+      <div [ngStyle]="{'background':items.color}">
+        <!-- <mat-card-header> -->
+            <p> {{items.title}}  ghdhdfh     </p>
+            <p> {{items.description}} </p>
+        <!-- </mat-card-header> -->
+        </div>
+      <app-editor [NoteForChild]="items" ></app-editor>
+     </ng-container>
 
 </div>

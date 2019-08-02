@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 
 import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-getnotes',
@@ -22,7 +23,8 @@ export class GetnotesComponent implements OnInit {
   message: string;
 
 
-  constructor(private http:HttpClient,private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private dialog:MatDialog, private refreshService:RefreshService) { }
+  constructor(private http:HttpClient,private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private dialog:MatDialog,
+              private router:Router, private refreshService:RefreshService) { }
 
   baseurl = environment.baseUrl;
 
@@ -57,18 +59,21 @@ export class GetnotesComponent implements OnInit {
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   currentDate = new Date();
 
+  show : boolean = false;
+
   // token = localStorage.getItem('token');
   colors : string[] = [
     '#659DBD','#F78888','#90CCF4','#B1A296','#808080','#AFD275','#FFC0CB','#D79922'
   ]
 
+  sampleData :any
 
   ngOnInit() {
     // this.getNote()
     this.refreshService.currentMessage.subscribe(
       response=>{
         this.message=response
-        console.log(response);
+        console.log('refresh service response',response);
         
        this.getNote();
     })
@@ -329,6 +334,7 @@ addLabelToNote(label,items){
     }
 
     addCollaborator(items:any,templateReference){
+     
       console.log(items.user);
       console.log(this.searchArray[0]);
       
@@ -367,17 +373,23 @@ addLabelToNote(label,items){
     }
 
 
-    onQuestionAnswer(item,template){
+    onQuestionAnswer(item){
+      this.show = !this.show;
+      console.log(this.show);
+      
       console.log(item);
-      this.dialog.open(template,{
-        width:'50vw'
-      });
+      // this.dialog.open(template,{
+      //   width:'50vw'
+      // });
     }
 
-    onReply(template){
-      this.dialog.open(template,{
-        width:'50vw'
-      });
+    onReply(data){
+      console.log(data);
+      this.refreshService.changeMessage(data);
+      this.router.navigateByUrl('dashboard/questionanswer');
+      // this.dialog.open(template,{
+      //   width:'50vw'
+      // });
     }
 
 }
