@@ -12,8 +12,8 @@
       <button mat-raised-button (click)="updateAddLabel()" type="">Close</button>
     </mat-dialog-actions>
     <mat-form-field style="height:30%;width: 70%;border-bottom: none;text-decoration: none;outline-color:none;" fxLayout="column" *ngFor="let item of labelArray" >
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <input matInput [formControl]="updateDeleteLabel" #input value=" {{item.label}}"><mat-icon (click)="updateLabel(item,input.value)" class="checkIcon">check</mat-icon><mat-icon (click)="deleteLabel(item)" >delete</mat-icon>
+      <div (mouseover)="this.changeLabelOnHover = true" (mouseout)="this.changeLabelOnHover = false" fxLayout="row" fxLayoutAlign="space-between center">
+        <span><mat-icon *ngIf="changeLabelOnHover"  (click)="deleteLabel(item)" >delete</mat-icon> <mat-icon *ngIf="!changeLabelOnHover" >label</mat-icon></span> <input matInput [formControl]="updateDeleteLabel" #input value=" {{item.label}}"><mat-icon (click)="updateLabel(item,input.value)" class="checkIcon">check</mat-icon>
       </div>
     </mat-form-field>
 

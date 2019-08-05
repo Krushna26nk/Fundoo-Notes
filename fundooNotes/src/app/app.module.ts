@@ -46,6 +46,7 @@ import { ImageComponent } from './components/image/image.component';
 import { ColorComponent } from './components/color/color.component';
 import { IconColorComponent } from './components/icon-color/icon-color.component';
 import { IconImageComponent } from './components/icon-image/icon-image.component';
+import { AskquestionComponent } from './components/askquestion/askquestion.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -96,7 +97,8 @@ const routes:Routes =[
     ImageComponent,
     ColorComponent,
     IconColorComponent,
-    IconImageComponent
+    IconImageComponent,
+    AskquestionComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent],
   imports: [

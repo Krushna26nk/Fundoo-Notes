@@ -20,6 +20,7 @@ export class EditlabelsComponent implements OnInit {
   updateDeleteLabel = new FormControl();
   labelValue =  this.updateDeleteLabel.value;
   labels : string[] =[];
+  changeLabelOnHover : boolean = false
 
   labelArray = this.noteService.labelArray;
 

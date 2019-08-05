@@ -35,6 +35,9 @@
     "rxjs": "^6.5.2",
     "zone.js": "~0.8.26"
   },
+  "config": {
+    "ionic_copy": "./config/copy.config.js"
+},
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
     "@angular/cli": "~6.2.9",

@@ -1,12 +1,17 @@
-<div id="action-description">
-  <!-- <p>This sample demonstrates the full features of rich text editor that includes all the tools and functionalities.</p> -->
+<div id="action-description" style="width: 70%;">
+
+  <div>
+    <p> {{title}} </p>
+    <p> {{description}} </p>
+  </div>
+  
+<form action="" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+<div class="control-section" formControlName="editor" [froalaEditor]>
+    
+    
+      
+    
 </div>
-<div class="control-section">
-    <form action="" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
-      <ejs-richtexteditor formControlName="editor" #toolsRTE id='alltoolRTE'  [toolbarSettings]='tools' [showCharCount]='true' (actionBegin)='handleFullScreen($event)' (actionComplete)='actionCompleteHandler($event)' [maxLength]='maxLength'>
-          <ng-template #valueTemplate>
-          </ng-template>
-      </ejs-richtexteditor>
-      <button mat-button style="float: right;color:blueviolet" >Ask</button>
-    </form>
+<button mat-button type="submit" style="float: right;color:blueviolet" >Ask</button>
+</form>
 </div>

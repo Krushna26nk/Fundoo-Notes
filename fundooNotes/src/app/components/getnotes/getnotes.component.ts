@@ -74,9 +74,8 @@ export class GetnotesComponent implements OnInit {
       response=>{
         this.message=response
         console.log('refresh service response',response);
-        
-       this.getNote();
     })
+    this.getNote();
     this.getHandle();
     // this.searchValue();
   }
@@ -86,7 +85,7 @@ export class GetnotesComponent implements OnInit {
  *   services : userservice and note service
  */
 getNote(){
-  this.urlService.getNote(this.token)
+  this.urlService.getNote(this.token);
   console.log(this.token);
   console.log('array fetch in note components');
   
@@ -201,7 +200,6 @@ updateColor(items,$event){
   console.log('asds',data);
   
   this.urlService.updateColor(data);
-  this.refreshService.changeMessage('ghfg');
 
 }
 addLabelToNote(label,items){
@@ -217,7 +215,6 @@ addLabelToNote(label,items){
       console.log(items);
 
       this.noteService.addNoteToLabel(items,label)
-
       console.log(noteId);
       console.log(labelId);
       
@@ -374,10 +371,10 @@ addLabelToNote(label,items){
 
 
     onQuestionAnswer(item){
-      this.show = !this.show;
-      console.log(this.show);
-      
       console.log(item);
+      this.refreshService.changeMessage(item);
+      this.router.navigateByUrl('dashboard/editor');
+
       // this.dialog.open(template,{
       //   width:'50vw'
       // });

@@ -99,7 +99,7 @@
             <mat-card-footer *ngIf="items.questionAndAnswerNotes.length > 0" style="padding: 5px;">
               <div style="padding: 5px;border: 1px solid rgb(99, 102, 102);border-radius: 10px;">
                   <p fxLayoutAlign="center center">
-                    <span matBadge="{{items.questionAndAnswerNotes.length}}"matBadgeOverlap="false" style="text-align: center"> Question Asked  !</span>
+                    <span style="text-align: center"> Question Asked  !</span>
                   </p>
                   <hr style="border:0.5px solid black">
                   <div style="border-radius: 10px;font-size: 12px;margin: 10px;box-shadow: 0px 0px 2px;background: rgb(216, 212, 212);font-family:monospace"  *ngFor="let ques of items.questionAndAnswerNotes | slice:0:1;let i = index" >
@@ -214,7 +214,7 @@
     </mat-card>
 
     <ng-container *ngIf="show" >
-      <div [ngStyle]="{'background':items.color}">
+      <div>
         <!-- <mat-card-header> -->
             <p> {{items.title}}  ghdhdfh     </p>
             <p> {{items.description}} </p>
