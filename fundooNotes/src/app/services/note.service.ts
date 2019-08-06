@@ -153,7 +153,7 @@ export class NoteService {
   postData(url,data){
     console.log(data);
     
-    this.http.post(url,data,{
+    return this.http.post(url,data,{
       headers : new HttpHeaders({
         //'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')

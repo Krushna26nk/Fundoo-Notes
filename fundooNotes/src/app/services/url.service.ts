@@ -88,7 +88,7 @@ export class UrlService {
 
             uploadProfile(data){
               var url='user/uploadProfileImage'
-              this.noteService.postData(this.baseurl+url,data);
+             return this.noteService.postData(this.baseurl+url,data);
             }
 
             getNoteListByLabel(item){
