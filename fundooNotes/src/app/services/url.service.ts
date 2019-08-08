@@ -46,7 +46,7 @@ export class UrlService {
 
             getNote(token){
               var url='notes/getNotesList';
-              this.noteService.getNote(`${this.baseurl+url}`,{
+              return this.noteService.getNote(`${this.baseurl+url}`,{
                 params:{
                   'access_token':token
                 }
@@ -94,7 +94,7 @@ export class UrlService {
             getNoteListByLabel(item){
               this.labelname = item;
               var url ='notes/getNotesListByLabel/'+item+''
-              this.noteService.getNotesListbylabels(url);
+              return this.noteService.getNotesListbylabels(url);
             }
 
             postRemoveLabel(labelId,noteId){

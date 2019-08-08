@@ -11,7 +11,7 @@ import {environment} from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 
-import { QuestionanswerComponent } from '../questionanswer/questionanswer.component';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -49,9 +49,10 @@ export class GetnotesComponent implements OnInit {
   @Output() event = new EventEmitter();
 
   cardArray = this.noteService.dataArray;
-  sampleCardArray = this.noteService.noteArray;
-  labelArrayList : any[] = this.noteService.labelArray
+  sampleCardArray :any[] = []; 
+  labelArrayList : any[] = this.noteService.labelArray;
   labelDetails : any[] = this.noteService.labelDetails;
+  emptyArray :any[] = []
 
   inputhandle : boolean;
 
@@ -85,15 +86,26 @@ export class GetnotesComponent implements OnInit {
  *   services : userservice and note service
  */
 getNote(){
-  this.urlService.getNote(this.token);
+  this.sampleCardArray = [];
+  this.urlService.getNote(this.token).subscribe((res:any)=>{
+    console.log('get res',res.data.data);
+    var data =res.data.data;
+    data.forEach(element => {
+      if(element.isDeleted == true || element.isArchived == true){
+        this.emptyArray.push(element);
+      }
+      else{
+        this.sampleCardArray.push(element);
+      }
+    });
+    });
   console.log(this.token);
-  console.log('array fetch in note components');
   
-  console.log('note array with trashed and archived notes',this.cardArray);
+  console.log('note array with trashed and archived notes',this.emptyArray);
   console.log('without trashed and archived notes',this.sampleCardArray);
              
   this.sharedService.search.subscribe(data =>{
-    console.log("get notes....",data);
+    console.log("get notes search input....",data);
     this.searchInput = data;  
   })
 

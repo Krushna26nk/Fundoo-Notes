@@ -12,8 +12,8 @@ export class RefreshService {
 
   constructor() { }
 
-  changeMessage(message: string) {
-    this.messageSource.next(message)
+  changeMessage(message: any) {
+    this.messageSource.next(message);
   }
 
 }

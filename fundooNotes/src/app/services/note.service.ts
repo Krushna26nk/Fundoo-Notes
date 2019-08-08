@@ -44,22 +44,23 @@ export class NoteService {
   }
 
   getNote(url,data1){
-    this.http.get(url,data1).subscribe((response:any) =>{
-      var array = response.data.data
-      array.forEach(element => {
-        if(element.isDeleted == true || element.isArchived == true){
-          this.dataArray.push(element)
-        }
-        else{
-        this.noteArray.push(element);
+  return  this.http.get(url,data1);
+  // .subscribe((response:any) =>{
+  //     var array = response.data.data
+  //     array.forEach(element => {
+  //       if(element.isDeleted == true || element.isArchived == true){
+  //         this.dataArray.push(element)
+  //       }
+  //       else{
+  //       this.noteArray.push(element);
 
-        }
-      });
-      console.log('note response',array);
+  //       }
+  //     });
+  //     console.log('note response',array);
       // console.log("note service array",this.dataArray);
       
       
-    });    
+    // });    
   }
 
   trashNote(url,data){
@@ -181,19 +182,7 @@ export class NoteService {
 
   getNotesListbylabels(url){
     var data= {}
-    this.http.post(this.baseurl+url,data,this.httpOptions).subscribe((data:any) =>{
-      
-      var labelFilter = data.data.data
-      console.log('label filter',labelFilter);
-      console.log(labelFilter);
-      labelFilter.forEach(element => {
-        if(element.isDeleted === false){
-        this.notesbyLabel.push(element);
-      }
-    });
-      
-      
-    })
+    return this.http.post(this.baseurl+url,data,this.httpOptions);
   }
   updateLabelValue(labelId,data){
     var url ='/noteLabels/'+labelId+'/updateNoteLabel'

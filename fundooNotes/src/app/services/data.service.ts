@@ -63,7 +63,6 @@ export class DataService {
     error => {
       this.snackbar.open('unsuccessfull attemp','End Now',{duration:2000});
       console.log('Error in unsuccesfull attemp',error);
-      
     });
     // error =>{
     //   this.snackbar.open('something went wrong','',{duration:2000});

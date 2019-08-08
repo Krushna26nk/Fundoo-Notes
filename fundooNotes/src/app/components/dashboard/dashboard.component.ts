@@ -10,6 +10,7 @@ import {environment} from '../../../environments/environment';
 import { SharedService } from 'src/app/services/shared.service';
 import { UploadimageComponent } from '../uploadimage/uploadimage.component';
 import { UrlService } from 'src/app/services/url.service';
+import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,9 @@ export class DashboardComponent implements OnInit {
   @ViewChild('sidenavList1') sidenavList:ElementRef;
   @ViewChild('.cardDiv') searchInputBox:ElementRef
 
-  constructor(private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private router:Router,private dialog:MatDialog) { }
+  constructor(private urlService:UrlService,
+    private sharedService:SharedService,private noteService:NoteService,
+    private router:Router,private dialog:MatDialog,private refreshService:RefreshService) { }
 
   // cardArray : any =[
   //   {'title':''},
@@ -48,6 +51,7 @@ export class DashboardComponent implements OnInit {
   labelArrayList : any[] = this.noteService.labelArray
 
   labelname :any;
+  notesbyLabel :any[] =[]
 
   // @Output() event1 = new EventEmitter();
 
@@ -131,7 +135,19 @@ imageupload(){
 getNoteOfLabel(item){
   this.labelname = item.label;
   console.log(item);
-  this.urlService.getNoteListByLabel(this.labelname);
+  this.urlService.getNoteListByLabel(this.labelname).subscribe((data:any) =>{
+      
+    var labelFilter = data.data.data
+    console.log('label filter',labelFilter);
+    console.log(labelFilter);
+    labelFilter.forEach(element => {
+      if(element.isDeleted === false){
+      this.notesbyLabel.push(element);
+    }
+  }); 
+  this.refreshService.changeMessage(this.notesbyLabel);
+  });
+
 }
 
 }
