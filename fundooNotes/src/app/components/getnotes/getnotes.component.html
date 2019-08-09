@@ -1,4 +1,4 @@
-<div style="position: relative;width: 85%;margin: 0 auto;right: 8%">
+<div style="position: relative;width: 60%;margin-bottom:0;margin: 0 auto;">
   <mat-card #matCard *ngFor="let items of sampleCardArray | search: searchInput ; let i = index" [style.marginLeft]="this.inputhandle ? '15%' : '10px'" [style.width]="this.inputhandle ? '45vw' : null" [ngStyle]="{'background':items.color}" style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all" class="beforeNoteCard1" >
       
       <div (click)="updateNote(items)">

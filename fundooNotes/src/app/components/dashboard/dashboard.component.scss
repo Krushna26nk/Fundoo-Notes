@@ -1,6 +1,7 @@
 .toolbar{
     border-bottom: 1px solid rgba(168, 166, 166,0.5);
     height: 3.5rem;
+    // width: 100%;
 }
 
 .avatar{
@@ -24,23 +25,22 @@
 }
 
 .cardDiv{
-    margin-left: 8%;
+    margin-left: 3%;
     text-decoration: none;
 }
 
 #toolbarSearch{
 //    height: 0rem;
-   width: 33rem;
 //    display: flex;
 //    flex-direction: row;
    align-items: center;
+   width: 50vw;
    top: -5px;
 //    border-radius: 15px;
    box-shadow: 0px 1px 2px rgba(0, 0,0,0.2);
 
 }
 .searchinput{
-    width: 100%;
     outline: none;
     border: none;
     height: 2.5rem;
@@ -56,15 +56,17 @@
  /* side navigation css start.*/
 
 .sidenavContent{
-    width: 80%;
-    position: absolute;
-    right: 0%;
+    width: 100%;
+    position: relative;
+    right: 0;
+    bottom: 0;
+
     // left: 15%;
     // border: 1px solid;
 }
 
 .sideNavContainer{
-    position: absolute;
+    position: relative;
     top: 3.5rem;
     left: 0;
     right: 0;
@@ -137,4 +139,36 @@ right: 15px;
 #heading{
     color: rgb(65, 64, 62);
     font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+@media screen and (max-width:650px){
+    .cardDiv{
+        width: 50%
+    }
+    .fundooHeader{
+        font-size: 5px;
+    }
+}
+@media screen and (max-width:910px){
+    #heading{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:835px){
+    #heading{
+        font-size: 14px;
+        font-weight: 500;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .cardDiv{
+        // margin-left: 4%;
+    }
+}
+@media screen and (max-width:768px){
+    .fundooHeader{
+        flex-wrap: wrap;
+    }
+    .header-image{
+        display: none;
+    }
+
 }

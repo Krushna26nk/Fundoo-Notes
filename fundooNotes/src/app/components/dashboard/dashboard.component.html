@@ -1,4 +1,4 @@
-<div fxLayout="row" class="toolbar-div">
+
   
     <mat-toolbar fxLayout="row" class="toolbar">
           <div fxLayout="row" fxFlex="5">
@@ -6,7 +6,7 @@
           </div>
 
 
-          <div  fxLayout="row" fxFlex class="fundooHeader">
+          <div  fxLayout="row" fxFlex.lt-sm="5" fxFlex="15" class="fundooHeader">
               <div>
                 <img src="../../../assets/images/download.png" class="header-image" alt="">
               </div>
@@ -16,18 +16,18 @@
           </div>
 
 
-          <div class="cardDiv" [ngClass]="status ? 'searchBorder' : 'cardDiv'">
-            <div fxLayout="row" style="padding: 2px;" fxLayoutAlign="space-around center" id="toolbarSearch">
+          <div class="cardDiv" fxFlex="60" fxFlex.lt-md="auto" fxHide.lt-sm [ngClass]="status ? 'searchBorder' : 'cardDiv'">
+            <div fxLayout="row" style="padding: 2px;" id="toolbarSearch">
               <i class="material-icons">search</i> <input matInput [(ngModel)]="searchvalue" #searchbox (keyup)="onKey()" (click)="status = !status"  class="searchinput" placeholder="Search">
             </div>
           </div>
 
 
-          <div style="position:relative;" fxFlex fxLayoutGap="30%" fxFlexOffset="10" fxFlexAlign="auto" fxLayoutAlign="space-between center" >
+          <div style="position:relative;" fxFlex.lt-sm="auto" fxFlexOffset.lt-sm="50" fxFlex="20" fxLayoutGap.lt-sm="15%" fxLayoutGap="30%" fxFlexOffset="10" fxFlexAlign="auto" fxLayoutAlign="space-around center" >
 
                     <div>         <mat-icon>refresh</mat-icon>                              </div>
                     <div>         <mat-icon> settings </mat-icon>                           </div>
-                    <div>         <app-listgrid class="material-icons"> </app-listgrid>     </div>
+                    <div fxHide.lt-md>         <app-listgrid class="material-icons"> </app-listgrid>     </div>
                     <div style="border-radius: 50%" [style.background]=" img.length > 0 ? 'cornsilk' : null">
                       <img [matMenuTriggerFor]="menu" class="matAvatar" src="{{ img }}" alt="{{name[0]}}">
                     </div>
@@ -57,7 +57,7 @@
 
     </mat-toolbar>
 
-</div>
+
 
 <mat-sidenav-container class="sideNavContainer">
 
