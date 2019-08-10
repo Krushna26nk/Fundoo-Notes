@@ -96,3 +96,10 @@
 #title , #description{
     font-size: 15px;
 }
+
+@media screen and (max-width:470px){
+    .beforeNoteCard1{
+        width: 90vw;
+        margin: auto auto
+    }
+}

@@ -21,6 +21,7 @@ export class EditorComponent implements OnInit {
   title:string;
   description:string;
   noteId :any
+  sampleData:any;
 
           editorForm = new FormGroup({
             "editor" : new FormControl()
@@ -30,6 +31,7 @@ export class EditorComponent implements OnInit {
 ngOnInit(){
   this.refreshService.currentMessage.subscribe((data:any)=>{
     console.log(data);
+    this.sampleData = data;
     this.title = data.title;
     this.description = data.description;
     this.noteId = data.id
@@ -49,12 +51,11 @@ onSubmit(){
     "notesId":this.noteId
   }
   var url="questionAndAnswerNotes/addQuestionAndAnswer"
-  this.noteService.postQuestion(data,url).subscribe((response:any)=>{
-    this.refreshService.changeMessage('jjf')
-    console.log(response);
+  return this.noteService.postQuestion(data,url).subscribe((response:any)=>{
+    console.log('erfe',response);
+    this.refreshService.changeMessage('addsd');
+    this.router.navigateByUrl('dashboard');
   });
-
-  this.router.navigateByUrl('dashboard');
   
 }
 

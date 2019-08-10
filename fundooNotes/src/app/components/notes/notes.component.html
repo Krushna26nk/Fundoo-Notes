@@ -1,5 +1,5 @@
 <div class="mainCard">
-  <mat-card style="word-break: break-all;" [ngStyle]="{'background':getcolor}" [formGroup]="card" class="beforeNoteCard">
+  <mat-card style="word-break: break-all;" fxFlex.lt-sm="100%" fxFlex="50" [ngStyle]="{'background':getcolor}" [formGroup]="card" class="beforeNoteCard">
     <div fxFlex fxLayout="column">
       <div>
           <input type="text" *ngIf="showIcons" [ngStyle]="{'background':getcolor}" placeholder="Title" name="" autocomplete="off" formControlName="title" id="input" > 

@@ -1,4 +1,4 @@
-<div id="action-description" style="width:80%;">
+<div id="action-description" fxFlex="66" style="margin:0 auto">
   <!-- <p>This sample demonstrates the full features of rich text editor that includes all the tools and functionalities.</p> -->
     <div *ngIf="title.length>0" class="queAsked">
         <p> {{array[0].title}} </p>
@@ -14,13 +14,20 @@
         <mat-card-header style="margin: 5px">
                 <div mat-card-avatar style="background-size: cover" [ngStyle]="{'background-image' : 'url('+'http://34.213.106.173/'+array[0].user.imageUrl+')'}"></div>
                 <mat-card-title> {{array[0].user.firstName +'  '+ array[0].user.lastName }} </mat-card-title>
-                <mat-card-subtitle [innerHTML]="questionarray[0].message" >  </mat-card-subtitle>
-
+                
                 <div fxLayoutAlign="space-between center">
                     <span style="padding:5px" > <button mat-icon-button> <mat-icon (click)="onReply()" style="font-size: 18px"> reply </mat-icon> </button> </span>
-                    <span style="padding:5px"> <button mat-icon-button (click)="onLike(questionarray[0])"> <mat-icon  [style.color]="questionarray[0].like.length > 0 ? 'blue' : null" style="font-size: 18px;" >thumb_up </mat-icon> </button> </span> {{ likeCount }} likes 
+                    <span style="padding:5px">  <button mat-icon-button (click)="onLike(questionarray[0])"> <mat-icon  [style.color]="questionarray[0].like.length > 0 ? 'blue' : null" style="font-size: 18px;" >thumb_up </mat-icon> </button> </span> {{ likeCount }} likes 
                 </div>
+               
         </mat-card-header>    
+        <mat-card-content>
+            <mat-card-subtitle style="border: 1px solid rgb(175, 168, 168);border-radius: 5px;width: 20rem;padding: 5px;background: rgb(204, 204, 231)" fxLayoutAlign="start center" [innerHTML]="questionarray[0].message" >  </mat-card-subtitle>
+            <div *ngIf="replyArray.length >0" fxLayout="column" fxLayoutAlign="end center">
+                <mat-card-subtitle  *ngFor="let repl of replyArray"  [innerHTML]="repl.message" style="border-radius: 5px;border: 1px solid grey;width: 20rem;padding: 5px;background: rgb(195, 240, 195)">
+                </mat-card-subtitle>
+            </div>
+        </mat-card-content>
    
     </div>
   </div>
@@ -68,3 +75,4 @@
                       <p>Provides an option to customize quick toolbar for an image </p> 
                   </li>
               </ol> -->
+              </div>

@@ -21,6 +21,9 @@ export class QuestionanswerComponent implements OnInit {
   Property :boolean = false;
   like : boolean =false
   likeCount :any
+
+  replyArray :any[]=[];
+
   editorForm = new   FormGroup({
     editorField : new FormControl()
   });
@@ -29,29 +32,37 @@ export class QuestionanswerComponent implements OnInit {
     this.refreshService.currentMessage.subscribe((data:any) =>{
       data.questionAndAnswerNotes.forEach((element:any)=>{
         this.questionarray.push(element);
-        console.log('refresh service data in QA ',this.questionarray);
+        console.log('refresh service data in QA ',data);
+
+        if(element.parentId){
+          this.replyArray.push(element);
+        }
+        console.log(this.replyArray);
+
       });
-        this.likeCount = this.questionarray[0].like.length
+        this.likeCount = this.questionarray[0].like.length;
         this.array.push(data);
         this.title =this.array[0].title;
-        this.color = this.array[0].color
+        this.color = this.array[0].color;
         this.description = this.array[0].description; 
         console.log(this.title,this.description);        
-        
     })
   }
   onClose(){
     var replyValue = this.editorForm.controls.editorField.value 
     console.log(replyValue);
-
-    
+    var data ={
+      "message":replyValue,
+    }
+    this.noteService.postReply(data,this.questionarray[0].id).subscribe((res:any)=>{
+      console.log(res);
+    });
     this.router.navigateByUrl('dashboard');
   }
 
   onReply(){
     this.Property = !this.Property;
     console.log(this.editorForm.controls.editorField.value);
-    
   }
 
   onLike(question){
