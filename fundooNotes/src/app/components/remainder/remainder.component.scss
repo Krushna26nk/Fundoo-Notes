@@ -4,3 +4,12 @@
     margin-bottom: 0;
     color: rgba(0,0,0,0.7);
 }
+#color{
+    position: relative;
+    float: left;
+    // float: inline-start;
+    height: 25px;
+    width: 25px;
+    // box-sizing: border-box;
+    border-radius: 100%;
+}

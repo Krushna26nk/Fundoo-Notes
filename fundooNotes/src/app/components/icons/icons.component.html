@@ -36,17 +36,19 @@
                               </div>
                             </div>
 
-                            <div fxLayoutAlign="flex-end center">
-                              <button mat-button> Cancel </button>
-                              <button mat-button style="margin: 0.5%" (click)="onCollaborate()" >Save</button>
-                            </div>
-
-
                             <mat-autocomplete #auto="matAutocomplete">
-                              <mat-option *ngFor="let user of searchArray" [value]="user" >
+                              <mat-option *ngFor="let user of searchArray" [value]="user.email" >
                                 {{user.email}}
                               </mat-option>
                             </mat-autocomplete>
+
+                            <div fxLayoutAlign="flex-end center">
+                              <button mat-button> Cancel </button>
+                              <button mat-button style="margin: 0.5%" (click)="onCollaborate(searchArray[0],'hbmhb')" >Save</button>
+                            </div>
+
+
+                            
 
 
                     </ng-template>

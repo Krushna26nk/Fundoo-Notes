@@ -31,6 +31,7 @@ export class NotesComponent implements OnInit {
   isDeleted:boolean=false;
   isArchived:boolean=false;
   reminder : string[];
+  collaborator : any[];
 
   searchInput :string = this.sharedService.inputvalueArray;
 
@@ -121,6 +122,10 @@ export class NotesComponent implements OnInit {
     console.log(data);
     this.isArchived  = data;
   }
+  collab(data){
+    console.log(data);
+    this.collaborator = data;
+  }
 
   getHandle(){
     this.sharedService.change.subscribe(data =>{
@@ -198,6 +203,7 @@ export class NotesComponent implements OnInit {
                   this.note.reminder = this.reminder;
                   this.note.color = this.getcolor;
                   this.note.isArchived = this.isArchived
+                  this.note.collaborators = this.collaborator;
                   this.urlService.addNote(this.note,this.token);
                   this.refreshService.changeMessage('ghfg');
                 }

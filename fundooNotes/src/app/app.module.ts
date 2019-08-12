@@ -17,7 +17,7 @@ import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg';
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
-import {MatSelectModule,MatAutocompleteModule,MatBadgeModule} from '@angular/material';
+import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -36,7 +36,6 @@ import { SearchPipe } from './search.pipe';
 import { ListgridComponent } from './components/listgrid/listgrid.component';
 import { GetnotesComponent } from './components/getnotes/getnotes.component';
 import { IconsComponent } from './components/icons/icons.component';
-import { from } from 'rxjs';
 import { EditorComponent } from './components/editor/editor.component';
 import { QuestionanswerComponent } from './components/questionanswer/questionanswer.component';
 import { QuestionanswericonComponent } from './components/questionanswericon/questionanswericon.component';
@@ -47,6 +46,7 @@ import { ColorComponent } from './components/color/color.component';
 import { IconColorComponent } from './components/icon-color/icon-color.component';
 import { IconImageComponent } from './components/icon-image/icon-image.component';
 import { AskquestionComponent } from './components/askquestion/askquestion.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes:Routes =[
   { path:'',component:RegistrationComponent},
@@ -64,7 +64,8 @@ const routes:Routes =[
     { path:'trash',component:TrashComponent},
     { path:'label', component:LabelsComponent},
     { path:'remainder',component:RemainderComponent},
-    { path:'editor' , component:EditorComponent}
+    { path:'editor' , component:EditorComponent},
+    { path:'cart' , component:ShoppingCartComponent}
   ]},
   
 ]
@@ -98,14 +99,15 @@ const routes:Routes =[
     ColorComponent,
     IconColorComponent,
     IconImageComponent,
-    AskquestionComponent
+    AskquestionComponent,
+    ShoppingCartComponent
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
     }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
-    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,
+    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
     RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()
   ],

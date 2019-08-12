@@ -50,6 +50,7 @@ export class IconsComponent implements OnInit {
   @Output() colorevent = new EventEmitter();
   @Output() reminderevent = new EventEmitter();
   @Output() archiveEvent = new EventEmitter();
+  @Output() collaboratorEvent = new EventEmitter();
 
   cardArray = this.noteService.dataArray;
   sampleCardArray = this.noteService.noteArray;
@@ -157,22 +158,25 @@ export class IconsComponent implements OnInit {
     
   }
 
-  onCollaborate(value){
-    console.log(this.searchinput)
+  onCollaborate(value,da){
+    console.log(da);
+    console.log(this.searchinput.value)
     console.log(value);
-    console.log(value.id);
-    var id = value.id
-    console.log('value',this.searchinput.value);
+    console.log(value.userId);
+    var id = value.userId
+    console.log('value',value);
     var data : string[] = this.searchinput.value
-    
-    var url ='/notes/'+id+'/AddcollaboratorsNotes'
-    this.http.post(this.baseurl+url,this.searchinput.value,{
-      headers :{
-        'Authorization':localStorage.getItem('token')
-      }
-    }).subscribe((response:any)=>{
-      console.log(response);
-    })
+    var collabValue = value;
+    this.collaboratorEvent.emit(collabValue);
+    // var url ='/notes/'+id+'/AddcollaboratorsNotes'
+    // this.http.post(this.baseurl+url,value,{
+    //   headers :{
+    //     'Authorization':localStorage.getItem('token')
+    //   }
+    // }).subscribe((response:any)=>{
+    //   console.log(response);
+    // })
+
     this.dialog.closeAll();
   }
 
