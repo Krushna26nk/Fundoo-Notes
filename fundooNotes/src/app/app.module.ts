@@ -17,7 +17,8 @@ import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg';
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
-import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule} from '@angular/material';
+import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule,MatProgressBarModule,MatTabsModule} from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -47,10 +48,16 @@ import { IconColorComponent } from './components/icon-color/icon-color.component
 import { IconImageComponent } from './components/icon-image/icon-image.component';
 import { AskquestionComponent } from './components/askquestion/askquestion.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ProgressbarComponent } from './components/progressbar/progressbar.component';
+import { CartviewloginComponent } from './components/cartviewlogin/cartviewlogin.component';
+import { DialogcomponentComponent } from './components/dialogcomponent/dialogcomponent.component';
+import { RegisterWithServiceComponent } from './components/register-with-service/register-with-service.component';
+import { SampleComponent } from './components/sample/sample.component';
 
 const routes:Routes =[
-  { path:'',component:RegistrationComponent},
+  { path:'',component:CartviewloginComponent},
   { path:'register',component:RegistrationComponent},
+  { path:'registerWithService',component:RegisterWithServiceComponent},
   { path:'login',component:LoginComponent},
   { path:'forget',component:ForgetpasswordComponent},
   { path:'reset',component:ResetpasswordComponent},
@@ -100,14 +107,19 @@ const routes:Routes =[
     IconColorComponent,
     IconImageComponent,
     AskquestionComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProgressbarComponent,
+    CartviewloginComponent,
+    DialogcomponentComponent,
+    RegisterWithServiceComponent,
+    SampleComponent,
   ],
-  entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent],
+  entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent,DialogcomponentComponent],
   imports: [
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
-    }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,
-    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,
+    }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,MatProgressBarModule,
+    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,MatTabsModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
     RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()
   ],

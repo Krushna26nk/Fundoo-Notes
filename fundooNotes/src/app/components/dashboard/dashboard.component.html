@@ -27,6 +27,7 @@
 
                     <div>         <mat-icon>refresh</mat-icon>                              </div>
                     <div>         <mat-icon> settings </mat-icon>                           </div>
+                    <div> <mat-icon routerLink="cart">shopping_cart</mat-icon> </div>
                     <div fxHide.lt-md>         <app-listgrid class="material-icons"> </app-listgrid>     </div>
                     <div style="border-radius: 50%" [style.background]=" img.length > 0 ? 'cornsilk' : null">
                       <img [matMenuTriggerFor]="menu" class="matAvatar" src="{{ img }}" alt="{{name[0]}}">

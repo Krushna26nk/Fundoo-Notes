@@ -1,0 +1,34 @@
+.heading{
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.heading :nth-child(odd){
+    color: rgb(29, 136, 243)
+}
+.heading :nth-child(even){
+    color: red;
+}
+.heading :nth-child(3){
+    color: rgb(194, 194, 45);
+}
+.heading :nth-child(5){
+    color: green;
+}
+
+.matCard{
+    height: 200px;
+    width: 220px;
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+    margin: 5px 10px;
+}
+.subCard{
+    position:absolute;
+    width: 220px;
+    height:200px;
+    margin-top: 30px;
+    margin-left: 10px;
+    background-color: grey;
+}

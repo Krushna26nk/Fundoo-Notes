@@ -1,0 +1,84 @@
+
+<mat-card fxFlex="40" style="margin:0 auto;height: 100%;">
+
+      <div style="text-align: center">
+        <div class="heading"><span>f</span><span>u</span><span>n</span><span>d</span><span>o</span><span>o</span></div>
+        <div class="subtitle">Create Your Fundoo Account</div>
+      </div>
+
+
+      <div>
+        <form [formGroup]="registerForm" fxFlex="100" fxLayout="column" style="margin:0 auto" (ngSubmit)="onRegister(registerForm.value)"  action="">  
+
+          <div fxLayout="row" fxLayoutGap="2rem">
+
+                <div fxFlex="40">
+                  <mat-form-field  appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="firstName" placeholder="First Name">
+                  </mat-form-field>
+                </div>
+            
+                <div fxFlex="40">
+                  <mat-form-field  appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" placeholder="Last Name">
+                  </mat-form-field>
+                </div>
+        
+          </div>
+          <div fxFlex="80">
+            <mat-form-field  appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="Email Id">
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="2rem">
+
+            <div fxFlex="40">
+              <mat-form-field  appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="Password">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="40">
+              <mat-form-field  appearance="fill">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+              </mat-form-field>
+            </div>
+
+          </div>
+          
+      </form>     
+      </div>
+
+      <div *ngIf="allData.length>0" fxLayout>
+        <div fxLayout="row" *ngFor="let item of allData" fxLayoutAlign="space-around center">
+          <mat-card class="matCard"  >
+            <h6>Price : $ {{item.price}} / months </h6>
+            <mat-divider></mat-divider>
+            <p  style="color: blue"> {{item.name}} </p>
+            <ul>
+              <li> $ {{item.price}} / month </li>
+              <li> {{item.description}} </li>
+            </ul>
+          </mat-card>
+
+          <mat-card fxLayout="column" [ngStyle]="{'background-color' : item.selected ? 'rgb(194, 194, 45)' : 'grey'}" dir="rtl" class="subCard"  fxLayoutAlign="end center">
+            <mat-card-actions fxFlexAlign="end"> {{item.selected ? 'Selected' : 'Add to Cart'}} </mat-card-actions>
+          </mat-card>
+        </div>
+          
+      </div>
+
+
+      <mat-card-footer style="position: relative;margin-top: 10%;"fxLayout fxLayoutAlign="space-between center">
+        <p style="color: blue">Sign In Instead</p>
+        <button mat-raised-button style="background-color: rgb(64, 94, 241);color: aliceblue;" type="submit">Register</button>
+      </mat-card-footer>
+        
+</mat-card>
+
