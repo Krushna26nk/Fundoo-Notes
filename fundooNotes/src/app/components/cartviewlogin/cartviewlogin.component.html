@@ -10,51 +10,38 @@
   <h4> Fundoo Notes Offered. Choose The Below Service to Register. </h4>
 </div>
 
-<div fxLayout="column" fxLayoutAlign="space-around center">
+    <div style="margin:0 auto;">
+      <div fxLayout="row"  fxLayoutAlign="center center">
 
-    <div  fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center">
-
-        <div class="firstDiv" (click)="onSelectAdvance()" fxLayout fxLayoutAlign="center center">
-      
-          <mat-card class="matCard1" id="card1">
-            <h5> Price : $ 99 / months</h5>
-            <mat-divider></mat-divider>
-            <p style="color: blue"> Advance </p>
-            <ul>
-              <li class="features"> $ 99 / month </li>
-              <li class="features"> Ability to Add Title , Description , Images , Labels , Checklist and Colors. </li>
-            </ul>
-          </mat-card>
-      
-          <mat-card fxLayout="column" dir="rtl" class="subCard1" fxLayoutAlign="end center">
-            <mat-card-actions fxFlexAlign="end ">Add To Cart</mat-card-actions>
-          </mat-card>
-      
-        </div>
+        <div fxLayout="column" *ngFor="let item of products">
+  
+            <div  fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center">
         
-        <div class="secondDiv" (click)="onSelectBasic()" fxLayout fxLayoutAlign="center center">
-      
-            <mat-card class="matCard2" id="card2">
-              <h5> Price : $ 49 / months</h5>
-              <mat-divider></mat-divider>
-              <p style="color:blue;"> Basic </p>
-              <ul>
-                <li class="features"> $ 49 / month </li>
-                <li class="features"> Ability to Add Only Title and Description . </li>
-              </ul>
-            </mat-card>
+                <div class="firstDiv" (click)="onSelectService(item)" fxLayout fxLayoutAlign="center center">
+              
+                  <mat-card class="matCard1" id="card1">
+                    <h5> Price : $ {{item.price}} / months</h5>
+                    <mat-divider></mat-divider>
+                    <p style="color: blue"> {{item.name}} </p>
+                    <ul>
+                      <li class="features"> $ {{item.price}} / month </li>
+                      <li class="features"> {{item.description}}. </li>
+                    </ul>
+                  </mat-card>
+              
+                  <mat-card fxLayout="column" dir="rtl" class="subCard1" fxLayoutAlign="end center">
+                    <mat-card-actions fxFlexAlign="end ">Add To Cart</mat-card-actions>
+                  </mat-card>
+              
+                </div>
+              
+            </div>
         
-            <mat-card fxLayout="column" dir="rtl" class="subCard2" fxLayoutAlign="end center">
-              <mat-card-actions fxFlexAlign="end ">Add To Cart</mat-card-actions>
-            </mat-card>
-        
-        </div>
-      
-      
+          </div>
       </div>
-      
-<div fxLayout fxFlexAlign="end end" style="position: relative;top: 30px">
-    <span style="color: blue" routerLink="login">Sign In Instead </span>
-</div>
+    </div>
 
-</div>
+    <div fxLayout fxLayoutAlign="center center" style="position: relative;top: 30px;margin: 0 auto">
+      <span style="color: blue" routerLink="login">Sign In Instead </span>
+    </div>
+

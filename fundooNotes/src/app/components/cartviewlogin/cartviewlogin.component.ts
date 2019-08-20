@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogcomponentComponent } from '../dialogcomponent/dialogcomponent.component';
+import { CartService } from 'src/app/services/cart.service';
+import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-cartviewlogin',
@@ -9,49 +11,36 @@ import { DialogcomponentComponent } from '../dialogcomponent/dialogcomponent.com
 })
 export class CartviewloginComponent implements OnInit {
 
-  constructor( private dialog : MatDialog) { }
+  constructor( private dialog : MatDialog ,private refreshService:RefreshService, private cartService:CartService) { }
 
-  products = [
-        {
-          "price"       : 99,
-          "name"        : 'Advance',
-          "description" : 'Ability to Add Title , Description , Images , Labels , Checklist and Colors.',
-          "selected"    : false
-        },    
-        {
-          "price"       : 49,
-          "name"        : 'Basic',
-          "description" : 'Ability to Add Only Title and Description .',
-          "selected"    : false
-        }
-    
-  ]
-
+  products : any[] = []
+  isSelected: boolean = false;
+  resData : any
   ngOnInit() {
+    this.getUserService();
   }
 
-  onSelectAdvance(){
-    this.products[1].selected = false;
-    // console.log(this.products[0]);
+  getUserService(){
+    this.cartService.getServices().subscribe((res:any) =>{
+      console.log(res.data.data);
+      this.resData = res.data.data;
+      this.resData.forEach(element => {
+        this.products.push(element);
+      });
+
+    })
+    this.refreshService.changeMessage(this.products);
+  }
+
+  onSelectService(item){
     this.dialog.open(DialogcomponentComponent,{
       panelClass:'myapp-no-padding-dialog',
       data :{
-        "data":this.products,
-        "selected":this.products[0].selected = true
+        "data":item,
       }
     });
   }
 
-  onSelectBasic(){
-    // console.log(this.products[1]);
-    this.products[0].selected = false;
-    this.dialog.open(DialogcomponentComponent,{
-      panelClass:'myapp-no-padding-dialog',
-      data :{
-        "data":this.products,
-        "selected":this.products[1].selected = true
-      }
-    });
-  }
+ 
 
 }

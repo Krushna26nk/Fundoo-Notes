@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RefreshService } from 'src/app/services/refresh.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-with-service',
@@ -9,9 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterWithServiceComponent implements OnInit {
 
-  constructor(private refreshService :RefreshService) { }
+  constructor(private refreshService :RefreshService , private router:Router) { }
 
-  allData : any;
+  allData : any[] =[];
+  selectedService : boolean = false;
+
+  productId : any;
 
   registerForm = new FormGroup({
     firstName : new FormControl('',Validators.required),
@@ -22,14 +26,29 @@ export class RegisterWithServiceComponent implements OnInit {
   })
 
   ngOnInit() {
+    this.productId = localStorage.getItem('productId');
+
     this.refreshService.currentMessage.subscribe((res:any)=>{
       console.log(res);
-      this.allData =res;
+      if(typeof res === "string"){
+        console.log(res , typeof(res));        
+      }
+      else
+      {
+        this.allData = res;
+        console.log('all da',this.allData);
+      }
+
+      
     })
   }
 
   onRegister(data){
     console.log(data);
+  }
+
+  route(){
+    this.router.navigateByUrl('login');
   }
 
 }

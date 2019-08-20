@@ -1,60 +1,66 @@
-<div class="mainDiv">
+<div class="mainDiv" style="height: 100vh;">
 
-    <mat-card class="mainCard">
-      
-      <div class="row" >
-        <div class="col-lg-3"></div>
-        <div class="col-lg-4">
-            <mat-card-header>
-                <!-- <div mat-card-avatar class="cardHeader-image"></div> -->
-                <mat-card-title class="cardTitle"> 
-                    <div class="heading">  <h5>   <span>F</span><span>U</span><span>N</span><span>D</span><span>O</span><span>O</span>      </h5> </div>
-                </mat-card-title>
+  <div style="margin:auto auto" fxLayout="column" fxLayout.lg="row">
+    <div fxLayout="row" style="">
+      <div  style="">
+        <mat-card class="mainCard">
+          <div>
+            <div class="heading">    <span>F</span><span>U</span><span>N</span><span>D</span><span>O</span><span>O</span>    </div>
+          </div>
+         
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()" >
         
-                <mat-card-subtitle>
+            <div  fxLayout="column" fxLayoutGap="10px">
                     <div>
-                        <p>  Sign In   </p>
-                        <p>  With Your FUNDOO Account  </p> 
+                      <mat-form-field  appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="Email" >
+                      </mat-form-field>
                     </div>
         
-                </mat-card-subtitle> 
+                    <div>
+                      <mat-form-field  appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" type="password" placeholder="Password" >
+                      </mat-form-field>
+                    </div>
+            </div>
         
-              </mat-card-header>
-        </div>
+              <div class="btnlogin">
+                   <button mat-raised-button color="primary" type="submit">Log In</button>
+              </div>
+        
+        
+          </form>
+        
+          <span class="forgetPass" style="font-size:15px;color:blue" routerLink="/forget" > Forget Password ?</span> <br><br>
+                  <p id="registerPara"> 
+                    
+                    <span> New User ? </span>
+                    <span routerLink="/registerWithService">REGISTER-HERE</span>
+                    <!-- <span routerLink="/reset">RESET PASSWORD</span> -->
+                  </p>
+        </mat-card>
       </div>
-     
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" >
-    
-                
-                  <mat-form-field class="full-width" appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Email" >
-                  </mat-form-field>
-                
-    
-                
-                  <mat-form-field class="full-width" appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" type="password" placeholder="Password" >
-                  </mat-form-field>
-                
-    
-    
-          <div class="btnlogin">
-               <button mat-raised-button color="primary" type="submit">Log In</button>
+    </div>  
+      <div fxLayout *ngIf="allData.length>0" style="background: rgb(156, 156, 156)">
+          <div fxLayout="row" *ngFor="let item of allData" fxLayoutAlign="space-around center">
+            <mat-card class="matCard"  >
+              <h6>Price : $ {{item.price}} / months </h6>
+              <mat-divider></mat-divider>
+              <p  style="color: blue"> {{item.name}} </p>
+              <ul>
+                <li> $ {{item.price}} / month </li>
+                <li> {{item.description}} </li>
+              </ul>
+            </mat-card>
+  
+            <mat-card fxLayout="column" [ngStyle]="{'background-color' : item.id === productId ? 'rgb(194, 194, 45)' : 'grey'}" dir="rtl" class="subCard"  fxLayoutAlign="end center">
+              <mat-card-actions fxFlexAlign="end"> {{item.id === productId ? 'Selected' : 'Add to Cart'}} </mat-card-actions>
+            </mat-card>
           </div>
+      </div>
+  
+  </div>
     
-    
-      </form>
-    
-      <span class="forgetPass" style="font-size:15px;color:blue" routerLink="/forget" > Forget Password ?</span> <br><br>
-              <p id="registerPara"> 
-                
-                <span> New User ? </span>
-                <span routerLink="/register">REGISTER-HERE</span>
-                <!-- <span routerLink="/reset">RESET PASSWORD</span> -->
-              </p>
-    </mat-card>
-    
-    
-    </div>
+</div>

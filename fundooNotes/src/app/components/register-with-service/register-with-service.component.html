@@ -1,5 +1,5 @@
 
-<mat-card fxFlex="40" style="margin:0 auto;height: 100%;">
+<mat-card fxFlex="50" style="margin:0 auto;height: 100%;">
 
       <div style="text-align: center">
         <div class="heading"><span>f</span><span>u</span><span>n</span><span>d</span><span>o</span><span>o</span></div>
@@ -67,16 +67,16 @@
             </ul>
           </mat-card>
 
-          <mat-card fxLayout="column" [ngStyle]="{'background-color' : item.selected ? 'rgb(194, 194, 45)' : 'grey'}" dir="rtl" class="subCard"  fxLayoutAlign="end center">
-            <mat-card-actions fxFlexAlign="end"> {{item.selected ? 'Selected' : 'Add to Cart'}} </mat-card-actions>
+          <mat-card fxLayout="column" [ngStyle]="{'background-color' : item.id === productId ? 'rgb(194, 194, 45)' : 'grey'}" dir="rtl" class="subCard"  fxLayoutAlign="end center">
+            <mat-card-actions fxFlexAlign="end"> {{item.id === productId ? 'Selected' : 'Add to Cart'}} </mat-card-actions>
           </mat-card>
         </div>
           
       </div>
 
 
-      <mat-card-footer style="position: relative;margin-top: 10%;"fxLayout fxLayoutAlign="space-between center">
-        <p style="color: blue">Sign In Instead</p>
+      <mat-card-footer style="position: relative;margin-top: 10%;padding: 5px;"fxLayout fxLayoutAlign="space-between center">
+        <p style="color: blue;" (click)="route()">Sign In Instead</p>
         <button mat-raised-button style="background-color: rgb(64, 94, 241);color: aliceblue;" type="submit">Register</button>
       </mat-card-footer>
         
