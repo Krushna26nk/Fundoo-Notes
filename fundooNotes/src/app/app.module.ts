@@ -52,7 +52,6 @@ import { ProgressbarComponent } from './components/progressbar/progressbar.compo
 import { CartviewloginComponent } from './components/cartviewlogin/cartviewlogin.component';
 import { DialogcomponentComponent } from './components/dialogcomponent/dialogcomponent.component';
 import { RegisterWithServiceComponent } from './components/register-with-service/register-with-service.component';
-import { SampleComponent } from './components/sample/sample.component';
 
 const routes:Routes =[
   { path:'',component:CartviewloginComponent},
@@ -112,7 +111,6 @@ const routes:Routes =[
     CartviewloginComponent,
     DialogcomponentComponent,
     RegisterWithServiceComponent,
-    SampleComponent,
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent,DialogcomponentComponent],
   imports: [

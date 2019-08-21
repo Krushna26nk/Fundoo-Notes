@@ -17,6 +17,7 @@ export class CartviewloginComponent implements OnInit {
   isSelected: boolean = false;
   resData : any
   ngOnInit() {
+    localStorage.clear();
     this.getUserService();
   }
 
@@ -29,10 +30,10 @@ export class CartviewloginComponent implements OnInit {
       });
 
     })
-    this.refreshService.changeMessage(this.products);
   }
 
   onSelectService(item){
+    this.refreshService.changeMessage(this.products);
     this.dialog.open(DialogcomponentComponent,{
       panelClass:'myapp-no-padding-dialog',
       data :{

@@ -14,6 +14,7 @@ export class RegisterWithServiceComponent implements OnInit {
 
   allData : any[] =[];
   selectedService : boolean = false;
+  isData : boolean = false;
 
   productId : any;
 
@@ -35,8 +36,9 @@ export class RegisterWithServiceComponent implements OnInit {
       }
       else
       {
+        this.isData = true;
         this.allData = res;
-        console.log('all da',this.allData);
+        console.log('all data in register',this.allData);
       }
 
       
