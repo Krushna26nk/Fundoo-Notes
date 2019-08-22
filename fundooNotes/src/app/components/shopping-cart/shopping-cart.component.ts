@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
+import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cartService:CartService,private refreshService:RefreshService) { }
 
-  ngOnInit() {
+  myAllCarts : any[] =  [];
+  value : any = 100;
+
+  ngOnInit(){
+    this.refreshService.currentMessage.subscribe(res =>{
+      console.log(res);
+      this.getMyCart();      
+    })
+  }
+
+  getMyCart(){
+    this.cartService.getMyCart().subscribe((res:any) =>{
+      console.log(res.data);
+      var mycart = res.data;
+      mycart.forEach(element => {
+        this.myAllCarts.push(element);
+      });
+    })
   }
 
 }

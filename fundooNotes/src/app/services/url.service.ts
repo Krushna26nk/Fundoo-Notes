@@ -22,14 +22,14 @@ export class UrlService {
 
             onLogin(data){
                 var url='user/login';
-                this.dataService.postData(this.baseurl+url,data);
+                return this.dataService.postData(this.baseurl+url,data);
             }
 
 // registration api url
 
             onRegistration(data){
                 var url='user/userSignUp';
-                this.dataService.post(this.baseurl+url,data);
+                return this.dataService.post(this.baseurl+url,data);
             }
 
 // adding note api url            

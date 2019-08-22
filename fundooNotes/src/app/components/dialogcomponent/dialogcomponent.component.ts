@@ -23,6 +23,7 @@ export class DialogcomponentComponent implements OnInit {
   allData :any;
 
   cart : Productcart = new Productcart();
+  cartId:any;
 
   ngOnInit() {
     this.selectServiceData = this.data.data;
@@ -34,6 +35,7 @@ export class DialogcomponentComponent implements OnInit {
 
   onRemove(){
     this.dialogRef.close();
+    localStorage.clear();
   }
   onCheckOut(){
     console.log('checkout data',this.allData.price);
@@ -43,6 +45,8 @@ export class DialogcomponentComponent implements OnInit {
     }
     this.cartService.onAddToCart(data).subscribe((res:any) =>{
       console.log(res);
+      this.cartId = res.data.details.id;
+      localStorage.setItem('cartId',this.cartId);
     })
 
     this.dialog.closeAll();

@@ -8,18 +8,19 @@
             <div class="heading">    <span>F</span><span>U</span><span>N</span><span>D</span><span>O</span><span>O</span>    </div>
           </div>
          
-          <form [formGroup]="loginForm" (ngSubmit)="onLogin()" >
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" >
         
             <div  fxLayout="column" fxLayoutGap="10px">
                     <div>
-                      <mat-form-field  appearance="fill">
+                      <mat-form-field  appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" placeholder="Email" >
+                        <input matInput formControlName="email" placeholder="Email">
+                        <mat-error>* </mat-error>
                       </mat-form-field>
                     </div>
         
                     <div>
-                      <mat-form-field  appearance="fill">
+                      <mat-form-field  appearance="outline">
                         <mat-label>Password</mat-label>
                         <input matInput formControlName="password" type="password" placeholder="Password" >
                       </mat-form-field>

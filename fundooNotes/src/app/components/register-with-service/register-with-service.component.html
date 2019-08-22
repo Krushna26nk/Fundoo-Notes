@@ -1,5 +1,5 @@
 
-<mat-card fxFlex="50" style="margin:0 auto;height: 100%;">
+<mat-card fxFlex="40" style="margin:0 auto;height: 100%;">
 
       <div style="text-align: center">
         <div class="heading"><span>f</span><span>u</span><span>n</span><span>d</span><span>o</span><span>o</span></div>
@@ -7,57 +7,64 @@
       </div>
 
 
-      <div>
-        <form [formGroup]="registerForm" fxFlex="100" fxLayout="column" style="margin:0 auto" (ngSubmit)="onRegister(registerForm.value)"  action="">  
+      <div style="">
+        <form fxFlex="100" fxLayout="column" style="margin:0 auto" (ngSubmit)="onRegister()"  action="">  
 
           <div fxLayout="row" fxLayoutGap="2rem">
 
                 <div fxFlex="40">
-                  <mat-form-field  appearance="fill">
+                  <mat-form-field  appearance="outline">
                     <mat-label>Name</mat-label>
-                    <input matInput formControlName="firstName" placeholder="First Name">
+                    <input matInput [formControl]="firstName" placeholder="First Name">
+                    <mat-error> * Please Enter Your Name.</mat-error>
                   </mat-form-field>
                 </div>
             
                 <div fxFlex="40">
-                  <mat-form-field  appearance="fill">
+                  <mat-form-field  appearance="outline">
                     <mat-label>Last Name</mat-label>
-                    <input matInput formControlName="lastName" placeholder="Last Name">
+                    <input matInput [formControl]="lastName" placeholder="Last Name">
+                    <mat-error> * Please Enter Your Last Name.</mat-error>
                   </mat-form-field>
                 </div>
         
           </div>
-          <div fxFlex="80">
-            <mat-form-field  appearance="fill">
-              <mat-label>Email</mat-label>
-              <input matInput formControlName="email" placeholder="Email Id">
+          <div >
+            <mat-form-field fxFlex="90" style="" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput [formControl]="email" placeholder="Email Id">
+              <mat-hint>You can use letters,numbers & periods.</mat-hint>
+              <mat-error *ngIf="email.hasError('required')" > * Please Enter Email Id.</mat-error>
+              <mat-error *ngIf="email.hasError('email')" > * Please enter valid email Id. </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayout="row" fxLayoutGap="2rem">
 
             <div fxFlex="40">
-              <mat-form-field  appearance="fill">
+              <mat-form-field  appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password" placeholder="Password">
+                <input matInput [formControl]="password" type="password" placeholder="Password">
+                <mat-hint>Use 6 or more characters.</mat-hint>
+                <mat-error> * Password should be 6 char or more. </mat-error>
               </mat-form-field>
             </div>
 
             <div fxFlex="40">
-              <mat-form-field  appearance="fill">
+              <mat-form-field  appearance="outline">
                 <mat-label>Confirm Password</mat-label>
-                <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+                <input matInput [formControl]="confirmPassword" type="password" placeholder="Confirm Password">
+                <mat-hint> with a mix of letters, numbers & symbols.</mat-hint>
+                <mat-error> * Password does not match.</mat-error>
               </mat-form-field>
             </div>
-
           </div>
           
-      </form>     
-      </div>
-
-      <div *ngIf="allData.length>0" fxLayout>
+         
+     
+      <div *ngIf="allData.length>0" style="margin-top: 0.3rem;" fxLayout>
         <div fxLayout="row" *ngFor="let item of allData" fxLayoutAlign="space-around center">
-          <mat-card class="matCard"  >
+          <mat-card class="matCard">
             <h6>Price : $ {{item.price}} / months </h6>
             <mat-divider></mat-divider>
             <p  style="color: blue"> {{item.name}} </p>
@@ -76,9 +83,11 @@
 
 
       <mat-card-footer style="position: relative;margin-top: 10%;padding: 5px;"fxLayout fxLayoutAlign="space-between center">
-        <p style="color: blue;" (click)="route()">Sign In Instead</p>
+        <p style="color: blue;cursor: pointer;" (click)="route()">Sign In Instead</p>
         <button mat-raised-button style="background-color: rgb(64, 94, 241);color: aliceblue;" type="submit">Register</button>
       </mat-card-footer>
-        
+    </form> 
+  </div>
+
 </mat-card>
 

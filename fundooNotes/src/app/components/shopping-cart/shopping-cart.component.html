@@ -1,28 +1,32 @@
-<div style="width:50%;margin: 0 auto">
+<div>
+    <div fxLayout="column" style="width:80vw;margin: 0 auto;top: 1rem">
 
+      <div fxLayout="row" fxLayoutAlign="start center" style="position: relative;">
+        <div fxFlex="15" fxLayoutAlign="center center" style="background: rgb(231, 178, 31);padding: 5px;color: whitesmoke;border-radius: 20px;text-align: center;font-size: 1.3em;height: 2rem;">Fundoo Notes</div>
+        <div fxFlex="45" style="margin-left: 1rem">
+          <mat-icon [style.marginLeft.%]="value">shopping_cart</mat-icon>
+          <mat-progress-bar mode="determinate" style="height: 0.2rem;" [value]="value"></mat-progress-bar>
+          <div style="font-size: 12px;" fxLayoutAlign="space-between center">
+            <span [class.active]="value === 5">  SignIn  </span>
+            <span [class.active]="value === 50">  Place Order </span>
+            <span [class.active]="value === 100">  Complete Payment  </span>
+          </div>
+        </div>
+      </div>
 
-<app-progressbar></app-progressbar>
+      <div style="border: 1px solid red">
 
+          <ng-template>
+              sds
+            </ng-template>
+            <ng-template>
+              sds
+            </ng-template>
+            <ng-template>
+              dfdf
+            </ng-template>
 
-<mat-horizontal-stepper [linear]="false"  #stepper>
-  
-  <mat-step [stepControl]="firstState">
-    <div #firstState>
-      gkkkjkjk
+      </div>
+      
     </div>
-  </mat-step>
-
-  <mat-step [stepControl]="secondState">
-    <div #secondState>
-      hkjhkjhk
-    </div>
-  </mat-step>
-  
-  <mat-step [stepControl]="thirdState">
-    <div #thirdState>
-      hkjhkjhjh
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
-
 </div>

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProgressbarComponent implements OnInit {
 
   constructor() { }
+  value=10;
 
   ngOnInit() {
   }
