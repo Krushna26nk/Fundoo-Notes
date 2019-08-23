@@ -18,6 +18,7 @@ import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListMod
 import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
 import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
 import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule,MatProgressBarModule,MatTabsModule} from '@angular/material';
+import {MatTableModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -52,6 +53,7 @@ import { ProgressbarComponent } from './components/progressbar/progressbar.compo
 import { CartviewloginComponent } from './components/cartviewlogin/cartviewlogin.component';
 import { DialogcomponentComponent } from './components/dialogcomponent/dialogcomponent.component';
 import { RegisterWithServiceComponent } from './components/register-with-service/register-with-service.component';
+import { from } from 'rxjs';
 
 const routes:Routes =[
   { path:'',component:CartviewloginComponent},
@@ -117,7 +119,7 @@ const routes:Routes =[
     BrowserModule,HttpModule,RouterModule.forRoot(routes,{
       onSameUrlNavigation: 'reload'
     }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,MatProgressBarModule,
-    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,MatTabsModule,
+    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,MatTabsModule,MatTableModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
     RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()
   ],

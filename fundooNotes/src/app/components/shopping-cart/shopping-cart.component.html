@@ -1,32 +1,119 @@
 <div>
-    <div fxLayout="column" style="width:80vw;margin: 0 auto;top: 1rem">
+  <div class="mainDiv" fxLayout="column" style="">
 
-      <div fxLayout="row" fxLayoutAlign="start center" style="position: relative;">
-        <div fxFlex="15" fxLayoutAlign="center center" style="background: rgb(231, 178, 31);padding: 5px;color: whitesmoke;border-radius: 20px;text-align: center;font-size: 1.3em;height: 2rem;">Fundoo Notes</div>
-        <div fxFlex="45" style="margin-left: 1rem">
-          <mat-icon [style.marginLeft.%]="value">shopping_cart</mat-icon>
-          <mat-progress-bar mode="determinate" style="height: 0.2rem;" [value]="value"></mat-progress-bar>
-          <div style="font-size: 12px;" fxLayoutAlign="space-between center">
-            <span [class.active]="value === 5">  SignIn  </span>
-            <span [class.active]="value === 50">  Place Order </span>
-            <span [class.active]="value === 100">  Complete Payment  </span>
-          </div>
+    <div fxLayout="row"  fxLayoutAlign="start center"  style="position: relative;">
+
+      <div fxFlex="15" fxLayoutAlign="center center"
+        style="background: rgb(231, 178, 31);padding: 5px;color: whitesmoke;border-radius: 20px;text-align: center;font-size: 1em;">
+        Fundoo Notes
+      </div>
+      <div fxFlex="45" fxFlex.lt-md="50" style="margin-left: 1rem">
+        <mat-icon class="icon" [style.marginLeft.%]="value">shopping_cart</mat-icon>
+        <mat-progress-bar mode="determinate" style="height: 0.2rem;" [value]="value"></mat-progress-bar>
+        <div style="font-size: 12px;" fxLayoutAlign="space-between center">
+          <span [class.active]="value === 5"> SignIn </span>
+          <span [class.active]="value === 50"> Place Order </span>
+          <span [class.active]="value === 100"> Complete Payment </span>
         </div>
       </div>
 
-      <div style="border: 1px solid red">
-
-          <ng-template>
-              sds
-            </ng-template>
-            <ng-template>
-              sds
-            </ng-template>
-            <ng-template>
-              dfdf
-            </ng-template>
-
-      </div>
-      
     </div>
+
+
+
+    <div  *ngFor="let cart of myAllCarts" style="margin-top: 1.5rem;border: 0.051em solid rgb(184, 180, 180);padding: 5px;border-radius: 2px;" fxLayout="column" >
+
+          <div fxLayout="row" fxLayoutAlign=" center">
+              <div fxLayoutAlign="center center" fxFlex="10" style="background:rgb(167, 165, 165);border-radius: 8px;padding: 5px;height: 5rem;">
+                  <span> $ {{ cart.product.price }} / month </span>
+                </div>
+  
+                <div fxFlex="25" style="">
+                  <div>
+                    <div><h6 style="color: blue;text-align: center">Advance Pack Details</h6></div>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between" style="font-size: 12px;position: relative;margin: 0 auto">
+                        <ul>
+                            <li>Unlimited Wall Space</li> 
+                            <li> Nice Interface</li>
+                            <li style="word-wrap: break-word">  {{cart.product.description}} </li>
+                            <li> $ {{cart.product.price}} / month </li>
+                        </ul>
+                        <!-- <mat-grid-list cols="2" rowHeight="2:1">
+                            <mat-grid-tile>Unlimited Wall Space</mat-grid-tile>
+                            <mat-grid-tile> Nice Interface</mat-grid-tile>
+                            <mat-grid-tile> $ {{cart.product.price}} / month </mat-grid-tile>
+                            <mat-grid-tile> {{cart.product.description}} </mat-grid-tile>
+                        </mat-grid-list> -->
+                    </div>
+                  </div>
+  
+                </div>
+  
+                <div *ngIf="isOrderPlaced === false"  fxFlex="45" fxLayoutAlign="center center" style="">
+                    <table fxFlex="80" mat-table [dataSource]="myAllCarts">
+                        <ng-container matColumnDef="price">
+                            <th mat-header-cell *matHeaderCellDef style="padding: 5px;"> Price </th>
+                            <td mat-cell *matCellDef="let user" style="font-size: 12px;padding: 5px;"> $ {{user.product.price}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="validity">
+                            <th mat-header-cell *matHeaderCellDef> Validity </th>
+                            <td mat-cell *matCellDef="let user"> <span style="border: 1px solid;font-size: 12px;padding: 5px;border-radius: 5px;">Per Month</span> </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+
+
+                <div *ngIf="isOrderPlaced" fxLayout="column" fxLayoutAlign="space-around center" fxFlex="20" style="font-size: 12px;height: 10em">
+                  <div> <span style="color: brown">$ {{cart.product.price}}</span> <span>Per Month</span> </div>
+                  <div [style.color]="'Pending' ? 'rgba(23, 71, 214,0.8)' : 'Green'"> {{ cart.isDeleted ? 'Completed' : 'Pending'}} </div>
+                </div>
+  
+                <div *ngIf="isOrderPlaced === false"  fxLayout="column" fxLayoutAlign="space-around center" fxFlex="20" style="font-size: 12px;height: 10em">
+                  
+                      <ng-container *ngIf="checkout" >
+                          <div style="background: rgba(23, 71, 214,0.8);cursor:pointer;border-radius:2px;padding:3px 10px;font-size: 12px;color: antiquewhite;" (click)="onPlaceOrder(cart)">Place your order</div>
+                      </ng-container>
+                      
+                      <ng-container>
+                        <div>
+                          <div  fxLayoutAlign=" center"> <span> SubTotal ( {{myAllCarts.length}} items ) </span> : <span style="color: brown;"> $ {{cart.product.price * myAllCarts.length}} </span> </div>
+                        </div>
+                      </ng-container>
+                      
+                      <ng-container *ngIf="checkout === false" >
+                        <div (click)="onCheckOut()" style="background: rgba(23, 71, 214,0.8);cursor:pointer;border-radius:2px;padding:3px 10px;font-size: 12px;color: antiquewhite;">Proceed to Checkout</div>
+                      </ng-container>
+  
+                </div>
+          </div>
+    </div>
+
+    <div *ngIf="checkout" style="transition: 0.3s;" >
+        <div fxLayout fxFlex="80" style="margin: 0 auto" fxLayoutAlign="space-between center">
+            <div>
+                <ng-container>
+                    <div>
+                      <h6 style="color: brown">Delivery Address </h6>
+                      <textarea [(ngModel)] = "address" name="address" id="deliveryAddress" cols="30" rows="3"></textarea>
+                    </div>
+                  </ng-container>
+            </div>
+            <div>
+              <ng-container style="">
+                <div fxFlex style="border: 0.051em solid rgb(184, 180, 180);margin: 0 auto;padding: 5px;box-shadow: 1px 2px 4px">
+                  
+                  <mat-list>
+                      <h6 style="text-transform: uppercase">Payment Method </h6>
+                    <mat-list-item role="listitem" style="color: rgb(170, 166, 166)"> Cash On Delivery ( C O D)
+                      <mat-icon style="border-radius: 50%;color: rgba(2, 139, 2,0.8);margin: 3px;">check_circle</mat-icon>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+              </ng-container>
+            </div>
+        </div>
+    </div>
+  </div>
 </div>

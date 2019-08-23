@@ -7,4 +7,41 @@
     font-weight: 500;
     color: rgb(231, 147, 36);
     font-size:15px;
+    transition: 0.5s
 }
+.icon{
+    transition-duration: 0.5s
+}
+
+mat-grid-tile {
+    word-break: break-all;
+}
+.mainDiv{
+    width:80vw;
+    margin: 10px auto;
+}
+@media screen and (max-width:959px){
+    .mainDiv{
+        width: 90vw;
+    }
+}
+
+// .codList::after{
+//     content: url('../../../assets/images/outline_check_circle_black_18dp.png');
+//     height: 0.2rem;
+//     position: absolute;
+//     left: 50px;
+//     transform: translateX(50%);
+// }
+
+// .heading::after{
+//     content: "";
+//     height: 0.2rem;
+//     border-radius: 20px;
+//     background: rgb(243, 126, 126);
+//     width: 8rem;
+//     position: absolute;
+//     bottom: -0.5rem;
+//     left: 50%;
+//     transform: translateX(-50%)    
+// }

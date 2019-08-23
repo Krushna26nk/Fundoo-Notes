@@ -32,4 +32,9 @@ export class CartService {
     return this.http.get(this.baseUrl+url,this.httpOptions);
   }
 
+  placeOrder(data){
+    var url = 'productcarts/placeOrder';
+    return this.http.post(this.baseUrl+url,data,this.httpOptions);
+  }
+
 }
