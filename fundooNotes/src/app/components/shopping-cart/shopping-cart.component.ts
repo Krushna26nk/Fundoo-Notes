@@ -24,18 +24,20 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(){
     this.refreshService.currentMessage.subscribe(res =>{
-      console.log(res);
       this.getMyCart();
+      console.log('redsd');
     })
   }
 
   getMyCart(){
+    this.myAllCarts = []
     this.cartService.getMyCart().subscribe((res:any) =>{
       console.log(res.data);
       var mycart = res.data;
       mycart.forEach(element => {
         this.myAllCarts.push(element);
       });
+      // this.refreshService.changeMessage('jk');
     })
   }
 
@@ -53,7 +55,6 @@ export class ShoppingCartComponent implements OnInit {
     }
     else{
       this.valueAction();
-      this.isOrderPlaced = true;
       this.checkout = false;
       var data = {
         "cartId":cart.id,
@@ -62,6 +63,7 @@ export class ShoppingCartComponent implements OnInit {
       console.log(data);
       this.cartService.placeOrder(data).subscribe((res:any) => {
         console.log(res);
+        this.refreshService.changeMessage('jks');
       })
     }
   }
