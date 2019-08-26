@@ -35,12 +35,7 @@ export class RegisterWithServiceComponent implements OnInit {
   ngOnInit() {
     this.productId = localStorage.getItem('productId');
     
-    if(localStorage.getItem('cartId') === null){
-      return false;
-    }
-    else{
-      this.cartId = localStorage.getItem('cartId');
-    }
+    
 
     this.refreshService.currentMessage.subscribe((res:any)=>{
       console.log(res);
@@ -56,6 +51,12 @@ export class RegisterWithServiceComponent implements OnInit {
 
       
     })
+    if(localStorage.getItem('cartId') === null){
+      return false;
+    }
+    else{
+      this.cartId = localStorage.getItem('cartId');
+    }
   }
 
   onRegister(){

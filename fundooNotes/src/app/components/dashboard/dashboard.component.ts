@@ -105,7 +105,7 @@ export class DashboardComponent implements OnInit {
   signOut(){
     localStorage.removeItem('token');
     localStorage.clear();
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('');
   }
 
   editLabels($event){

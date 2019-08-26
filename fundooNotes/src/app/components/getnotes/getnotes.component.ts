@@ -269,7 +269,7 @@ addLabelToNote(label,items){
     setReminderTomorrow(item){
       var date =this.currentDate.getDate();
       var setDate  = this.currentDate.setDate(date + 1);
-      console.log(this.currentDate.setHours(14))
+      console.log(this.currentDate.setHours(14));
       // currentDate.setMinutes(0);
       console.log(this.currentDate , setDate);
 
@@ -378,7 +378,7 @@ addLabelToNote(label,items){
       console.log(note.id);
       var noteId = note.id;
       this.noteService.onRemoveCollaborator(collabId,noteId);
-      
+      this.refreshService.changeMessage('sds');
     }
 
 

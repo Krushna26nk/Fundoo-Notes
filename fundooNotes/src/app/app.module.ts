@@ -53,7 +53,6 @@ import { ProgressbarComponent } from './components/progressbar/progressbar.compo
 import { CartviewloginComponent } from './components/cartviewlogin/cartviewlogin.component';
 import { DialogcomponentComponent } from './components/dialogcomponent/dialogcomponent.component';
 import { RegisterWithServiceComponent } from './components/register-with-service/register-with-service.component';
-import { from } from 'rxjs';
 
 const routes:Routes =[
   { path:'',component:CartviewloginComponent},
