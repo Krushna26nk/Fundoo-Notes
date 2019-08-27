@@ -73,8 +73,8 @@ export class GetnotesComponent implements OnInit {
     // this.getNote()
     this.refreshService.currentMessage.subscribe(
       response=>{
-        this.message=response
-        console.log('refresh service response',response);
+        this.message=response;
+    console.log('refresh service response',response);
     })
     this.getNote();
     this.getHandle();
@@ -211,8 +211,10 @@ updateColor(items,$event){
   }
   console.log('asds',data);
   
-  this.urlService.updateColor(data);
-
+  this.urlService.updateColor(data).subscribe(data=>{
+    console.log('update color response',data);
+    this.refreshService.changeMessage('sdfs');   
+  });
 }
 addLabelToNote(label,items){
       var noteId = items.id;
@@ -261,9 +263,10 @@ addLabelToNote(label,items){
       console.log(reminder +", PM");
       console.log(item);
       
-      this.urlService.postReminder(data);
-      
-      
+      this.urlService.postReminder(data).subscribe((response:any) =>{
+        console.log(response);
+        this.refreshService.changeMessage('lkl');
+      });
     }
 
     setReminderTomorrow(item){

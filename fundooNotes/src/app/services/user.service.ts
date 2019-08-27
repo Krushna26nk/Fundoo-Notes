@@ -75,7 +75,7 @@ export class UrlService {
 
             archiveNotes(data){
               var url='notes/archiveNotes'
-              this.noteService.archiveNotes(this.baseurl+url,data);
+              return this.noteService.archiveNotes(this.baseurl+url,data);
             }
 
 }

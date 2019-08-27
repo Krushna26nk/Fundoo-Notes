@@ -71,11 +71,8 @@ export class NoteService {
   }
 
   updateColor(url,data){
-        this.http.post(url,data,this.httpOptions).subscribe(data=>{
-          console.log('update color response',data);
-          
-        });    
-  }
+        return this.http.post(url,data,this.httpOptions)
+      }
 
   updateNote(url,data){
     this.http.post(url,data,this.httpOptions).subscribe(
@@ -88,24 +85,11 @@ export class NoteService {
 
 
   archiveNotes(url,data){
-    this.http.post(url,data,this.httpOptions).subscribe(
-      (response:any)=>{
-        console.log(response);
-        
-      }
-    )
+    return this.http.post(url,data,this.httpOptions)
   }
 
   getTrashed(url){
-    this.http.get(url,this.httpOptions).subscribe((response:any) =>{
-      console.log(response);
-      console.log(response.data.data);
-      var trash = response.data.data;
-      trash.forEach(element =>{
-        this.trashList.push(element);
-      })
-      
-    });
+    return  this.http.get(url,this.httpOptions)
   }
 
   deleteForever(url,data){
@@ -115,13 +99,7 @@ export class NoteService {
 
  
   getArchievedlist(url){
-    this.http.get(url,this.httpOptions).subscribe((response:any)=>{
-      console.log(response);
-      var list=response.data.data;
-      list.forEach(element=>{
-        this.archivedList.push(element);
-      })
-    })
+    return this.http.get(url,this.httpOptions);
   }
 
   postLabel(data){
@@ -211,10 +189,7 @@ export class NoteService {
   }
 
   postReminder(url,data){
-    this.http.post(url,data,this.httpOptions).subscribe((response:any) =>{
-      console.log(response);
-      
-    });
+    return this.http.post(url,data,this.httpOptions);
   }
 
   postReminderTomorrow(url,data){
@@ -234,14 +209,7 @@ export class NoteService {
 
   getReminderList(){
     var url='notes/getReminderNotesList'
-    this.http.get(this.baseurl+url,this.httpOptions).subscribe((data:any) =>{
-      console.log(data.data.data);
-      var rem = data.data.data
-      rem.forEach(element =>{
-        this.reminderList.push(element);
-      })
-      
-    });
+    return this.http.get(this.baseurl+url,this.httpOptions)
   }
 
   postDeleteReminder(url,data){

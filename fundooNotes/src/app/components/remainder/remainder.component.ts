@@ -15,7 +15,7 @@ export class RemainderComponent implements OnInit {
 
   inputhandle : any;
   note : Note = new Note();
-  reminderList = this.noteService.reminderList;
+  reminderList :any[] = [];
   newColor:any;
 
   colors : string[] = [
@@ -31,7 +31,15 @@ export class RemainderComponent implements OnInit {
    * @description method to get the reminded notes list.
    */
   getReminderList(){
-    this.noteService.getReminderList();
+    this.reminderList= [];
+    this.noteService.getReminderList().subscribe((data:any) =>{
+      console.log(data.data.data);
+      var rem = data.data.data
+      rem.forEach(element =>{
+        this.reminderList.push(element);
+      })
+      
+    });;
   }
 
   /**

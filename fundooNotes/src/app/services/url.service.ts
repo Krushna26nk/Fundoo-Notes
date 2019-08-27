@@ -65,7 +65,7 @@ export class UrlService {
 
             updateColor(data){
               var url ='notes/changesColorNotes'
-              this.noteService.updateColor(this.baseurl+url,data);
+              return this.noteService.updateColor(this.baseurl+url,data);
             }
 
 // update note url
@@ -108,7 +108,7 @@ export class UrlService {
 
             postReminder(data){
               var url ='notes/addUpdateReminderNotes'
-              this.noteService.postReminder(this.baseurl+url,data);
+              return this.noteService.postReminder(this.baseurl+url,data);
             }
 
             postReminderTomorrow(data){
