@@ -2,8 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef,MatDialog } from '@angular/material';
 import { Notelabel } from 'src/app/modal/notelabel';
-import { UrlService } from 'src/app/services/user.service';
 import { NoteService } from 'src/app/services/note.service';
+import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-editlabels',
@@ -12,7 +12,8 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class EditlabelsComponent implements OnInit {
 
-  constructor(private dialogRef:MatDialogRef<EditlabelsComponent>,private dialog:MatDialog,private noteService:NoteService) { }
+  constructor(private dialogRef:MatDialogRef<EditlabelsComponent>,private dialog:MatDialog,private noteService:NoteService,
+              private refreshService:RefreshService) { }
 
   labelModal: Notelabel = new Notelabel();
   token = localStorage.getItem('token');
@@ -23,7 +24,7 @@ export class EditlabelsComponent implements OnInit {
   changeLabelOnHover : boolean = false
 
   labelArray = this.noteService.labelArray;
-
+  item = new FormControl();
   userId = localStorage.getItem('userId');
   @Output()labe : EventEmitter<string[]> = new EventEmitter<string[]>();
   ngOnInit() {
@@ -43,8 +44,10 @@ export class EditlabelsComponent implements OnInit {
       "userId":this.userId
     }
 
-    this.noteService.postLabel(data);
-
+    this.noteService.postLabel(data).subscribe((response:any)=>{
+      console.log('label add response',response);
+      this.refreshService.changeMessage(response);
+    });
     this.labels.push(this.label.value);
     console.log('input value',this.labels);
     this.labe.emit(this.labels);
@@ -70,12 +73,18 @@ export class EditlabelsComponent implements OnInit {
       "id":id,
       "userId":this.userId
     }
-    this.noteService.updateLabelValue(id,data);
+    this.noteService.updateLabelValue(id,data).subscribe((response:any)=>{
+      console.log(response);
+      this.refreshService.changeMessage(response);
+    });
   }
 
   deleteLabel(item){
     console.log(item.id);
      var data={}
-     this.noteService.deleteLabel(item.id);
+     this.noteService.deleteLabel(item.id).subscribe((response:any) =>{
+      console.log(response);
+      this.refreshService.changeMessage(response);
+    });
   }
 }

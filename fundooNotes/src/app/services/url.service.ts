@@ -36,7 +36,7 @@ export class UrlService {
 
             addNote(data,token){
               var url='notes/addNotes';
-              this.noteService.postNote(`${this.baseurl+url}`,data,{
+              return this.noteService.postNote(`${this.baseurl+url}`,data,{
                 params:{
                   'access_token':token
                 }});
@@ -72,14 +72,14 @@ export class UrlService {
     
             updateNote(data){
               var url = 'notes/updateNotes'
-              this.noteService.updateNote(this.baseurl+url,data);
+              return this.noteService.updateNote(this.baseurl+url,data);
             }
 
 // archive note url api
 
             archiveNotes(data){
               var url='notes/archiveNotes'
-              this.noteService.archiveNotes(this.baseurl+url,data);
+              return this.noteService.archiveNotes(this.baseurl+url,data);
             }
 
             postLabel(){
@@ -93,6 +93,7 @@ export class UrlService {
 
             getNoteListByLabel(item){
               this.labelname = item;
+              console.log('url srvice')
               var url ='notes/getNotesListByLabel/'+item+''
               return this.noteService.getNotesListbylabels(url);
             }
@@ -113,6 +114,7 @@ export class UrlService {
 
             postReminderTomorrow(data){
               var url = 'notes/addUpdateReminderNotes'
+              var sendData = 
               this.noteService.postReminderTomorrow(this.baseurl+url,data);
             }
             postReminderWeekly(data){

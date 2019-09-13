@@ -17,5 +17,7 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "emitDecoratorMetadata": true,
+"experimentalDecorators": true,
 }

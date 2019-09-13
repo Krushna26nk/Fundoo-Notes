@@ -38,6 +38,7 @@ export class RegisterWithServiceComponent implements OnInit {
     
 
     this.refreshService.currentMessage.subscribe((res:any)=>{
+      
       console.log(res);
       if(typeof res === "string"){
         console.log(res , typeof(res));        

@@ -26,11 +26,17 @@ export class DialogcomponentComponent implements OnInit {
   cartId:any;
 
   ngOnInit() {
+   if(this.data != null){
     this.selectServiceData = this.data.data;
     this.allData = this.data.data;
-    localStorage.setItem('productId',this.allData.id);
+    localStorage.setItem('productId',this.allData);
     console.log(this.data);
     console.log(this.allData)
+   }
+   else{
+     console.log('no data');
+     
+   }
   }
 
   onRemove(){
@@ -39,7 +45,7 @@ export class DialogcomponentComponent implements OnInit {
   }
   onCheckOut(){
     console.log('checkout data',this.allData.price);
-    this.cart.id = this.allData.id;
+    this.cart = this.allData;
     var data ={
       "productId":this.cart.id
     }

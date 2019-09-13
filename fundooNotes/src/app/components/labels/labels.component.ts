@@ -28,8 +28,13 @@ export class LabelsComponent implements OnInit {
 getLabels(){
   this.noteBylabels =[];
   this.refreshService.currentMessage.subscribe((res:any) =>{
-    console.log('label res through observables',res);
+    if(res === 'default message'){
+      console.log('no data',res);
+    }
+    else{
+      console.log('label res through observables',res);
       this.noteBylabels=res;
+    }
   });
 }
   // getNoteByLabels(){

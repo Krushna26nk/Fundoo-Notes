@@ -8,7 +8,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports:[RouterModule]
+      imports:[RouterModule,RouterTestingModule]
     }).compileComponents();
   }));
 
@@ -31,4 +31,5 @@ describe('AppComponent', () => {
   //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to fundooNotes!');
   // });
 });import { from } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
 

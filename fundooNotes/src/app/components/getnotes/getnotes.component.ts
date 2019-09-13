@@ -45,6 +45,9 @@ export class GetnotesComponent implements OnInit {
   searchinput = new FormControl();
   abc = this.searchinput.value;
 
+  question:any;
+  questionId:any;
+
   @Input() color:string
   @Output() event = new EventEmitter();
 
@@ -61,24 +64,33 @@ export class GetnotesComponent implements OnInit {
   currentDate = new Date();
 
   show : boolean = false;
+  isBoolean : boolean = false;
 
   // token = localStorage.getItem('token');
   colors : string[] = [
     '#659DBD','#F78888','#90CCF4','#B1A296','#808080','#AFD275','#FFC0CB','#D79922'
   ]
 
-  sampleData :any
+  sampleData :any;
+  status:any;
+  activeVariable :any;
 
   ngOnInit() {
     // this.getNote()
     this.refreshService.currentMessage.subscribe(
       response=>{
         this.message=response;
+        this.getNote();
     console.log('refresh service response',response);
     })
-    this.getNote();
     this.getHandle();
     // this.searchValue();
+  }
+
+  editCard(data,event){
+    this.activeVariable = data;
+    console.log(data , this.activeVariable);
+    
   }
 
 /**
@@ -213,7 +225,7 @@ updateColor(items,$event){
   
   this.urlService.updateColor(data).subscribe(data=>{
     console.log('update color response',data);
-    this.refreshService.changeMessage('sdfs');   
+    this.refreshService.changeMessage(data);   
   });
 }
 addLabelToNote(label,items){
@@ -371,6 +383,7 @@ addLabelToNote(label,items){
           'Authorization':localStorage.getItem('token')
         }
       }).subscribe((response:any)=>{
+        this.refreshService.changeMessage(response);
         console.log(response);
       })
       this.dialog.closeAll();

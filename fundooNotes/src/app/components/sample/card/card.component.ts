@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
   }
 
   getNotes(){
-    
+    var url=''
   }
 
 }

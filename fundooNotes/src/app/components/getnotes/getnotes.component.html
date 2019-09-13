@@ -3,8 +3,9 @@
   <mat-card #matCard *ngFor="let items of sampleCardArray | search: searchInput ; let i = index"
     [style.marginLeft]="this.inputhandle ? '15%' : '10px'" [style.width]="this.inputhandle ? '45vw' : null"
     [ngStyle]="{'background':items.color}"
-    style="position:relative;float: left;margin-left: 10px;margin-bottom: 10px;margin-top: 10px;word-break: break-all"
-    class="beforeNoteCard1">
+    class="beforeNoteCard1"
+    (click)="editCard(items.id)"
+    >
 
     <div (click)="updateNote(items)">
       <div id="title">{{items.title}} </div>
@@ -135,10 +136,7 @@
 
           </div>
 
-          <ng-template #reply>
-            <app-questionanswericon [question]="ques.message" [questionId]="ques.id"></app-questionanswericon>
-          </ng-template>
-
+          
         </div>
 
       </div>

@@ -17,6 +17,12 @@
     // width: 50vw;
     border-radius: 5px;
     box-shadow: 0px 5px 5px rgba(0, 0,0,0.3);
+    position:relative;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    word-break: break-all;
 }
 
 // .insidenoteCard{
@@ -96,6 +102,23 @@
 #title , #description{
     font-size: 15px;
 }
+
+
+// .editCard{
+//     position: absolute;
+//     left: 50%;
+//     transform: translate(-50%,0);
+//     width: 50vw;
+//     border-radius: 5px;
+//     box-shadow: 5px 10px 20px;
+//     background: opacify($color: #000000, $amount: 0.5);
+//     body{
+//         opacity: 0.5;
+//     }
+//     html{
+//         opacity: 0.5;
+//     }
+// }
 
 @media screen and (max-width:470px){
     .beforeNoteCard1{

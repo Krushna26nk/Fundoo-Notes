@@ -9,9 +9,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
-
-// import {DragDropModule} from '@angular/cdk/drag-drop';
-// import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg';
 
 import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
@@ -40,7 +37,6 @@ import { GetnotesComponent } from './components/getnotes/getnotes.component';
 import { IconsComponent } from './components/icons/icons.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { QuestionanswerComponent } from './components/questionanswer/questionanswer.component';
-import { QuestionanswericonComponent } from './components/questionanswericon/questionanswericon.component';
 import { IconCollaboratorComponent } from './components/icon-collaborator/icon-collaborator.component';
 import { IconReminderComponent } from './components/icon-reminder/icon-reminder.component';
 import { ImageComponent } from './components/image/image.component';
@@ -53,10 +49,9 @@ import { ProgressbarComponent } from './components/progressbar/progressbar.compo
 import { CartviewloginComponent } from './components/cartviewlogin/cartviewlogin.component';
 import { DialogcomponentComponent } from './components/dialogcomponent/dialogcomponent.component';
 import { RegisterWithServiceComponent } from './components/register-with-service/register-with-service.component';
-import { CardComponent } from './components/sample/card/card.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes:Routes =[
-  {path:'card',component:CardComponent},
   { path:'',component:CartviewloginComponent},
   { path:'register',component:RegistrationComponent},
   { path:'registerWithService',component:RegisterWithServiceComponent},
@@ -101,7 +96,6 @@ const routes:Routes =[
     IconsComponent,
     EditorComponent,
     QuestionanswerComponent,
-    QuestionanswericonComponent,
     IconCollaboratorComponent,
     IconReminderComponent,
     ImageComponent,
@@ -114,7 +108,7 @@ const routes:Routes =[
     CartviewloginComponent,
     DialogcomponentComponent,
     RegisterWithServiceComponent,
-    CardComponent,
+    CartComponent,
   ],
   entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent,DialogcomponentComponent],
   imports: [

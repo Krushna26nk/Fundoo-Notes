@@ -30,22 +30,32 @@ export class QuestionanswerComponent implements OnInit {
 
   ngOnInit() {
     this.refreshService.currentMessage.subscribe((data:any) =>{
-      data.questionAndAnswerNotes.forEach((element:any)=>{
-        this.questionarray.push(element);
-        console.log('refresh service data in QA ',data);
-
-        if(element.parentId){
-          this.replyArray.push(element);
-        }
-        console.log(this.replyArray);
-
-      });
-        this.likeCount = this.questionarray[0].like.length;
-        this.array.push(data);
-        this.title =this.array[0].title;
-        this.color = this.array[0].color;
-        this.description = this.array[0].description; 
-        console.log(this.title,this.description);        
+      if(data === 'default message'){
+        console.log('no data ');
+      }
+      else{
+        data.questionAndAnswerNotes.forEach((element:any)=>{
+          this.questionarray.push(element);
+          console.log('refresh service data in QA ',data);
+  
+          if(element.parentId){
+            this.replyArray.push(element);
+          }
+          console.log(this.replyArray);
+  
+        });
+          if(this.questionarray.length === undefined){
+            console.log('length undefine');
+          }
+          else{
+            this.likeCount = this.questionarray[0].like.length;
+          this.array.push(data);
+          this.title =this.array[0].title;
+          this.color = this.array[0].color;
+          this.description = this.array[0].description; 
+          console.log(this.title,this.description);
+          }
+      }
     })
   }
   onClose(){
@@ -56,6 +66,7 @@ export class QuestionanswerComponent implements OnInit {
     }
     this.noteService.postReply(data,this.questionarray[0].id).subscribe((res:any)=>{
       console.log(res);
+      this.refreshService.changeMessage(res);
     });
     this.router.navigateByUrl('dashboard');
   }
@@ -73,8 +84,8 @@ export class QuestionanswerComponent implements OnInit {
       "like":true
   }
     this.noteService.postLike(data,id).subscribe((response:any)=>{
-      // this.refreshService.changeMessage('fdjf');
       console.log(response);
+      this.refreshService.changeMessage(response);
 });
   }
 

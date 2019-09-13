@@ -204,9 +204,13 @@ export class NotesComponent implements OnInit {
                   this.note.color = this.getcolor;
                   this.note.isArchived = this.isArchived
                   this.note.collaborators = this.collaborator;
-                  this.urlService.addNote(this.note,this.token);
-                  this.refreshService.changeMessage('ghfg');
+                  this.urlService.addNote(this.note,this.token).subscribe(data =>{
+                    console.log('Note Add Response',data);
+                    this.refreshService.changeMessage(data); 
+                  })
                 }
+               this.card.controls.titleValue.value == '';
+               this.card.controls.descriptionValue.value == '';
               }
 
 

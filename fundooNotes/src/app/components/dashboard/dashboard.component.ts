@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
   name = this.firstname+ " " + this.lastname;
   img =  this.baseUrl1+localStorage.getItem('profilePic');
   labelArrayList : any[] = this.noteService.labelArray
-
+  labelDetails : any[] = [];
   labelname :any;
   notesbyLabel :any[] =[]
 
@@ -66,7 +66,10 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getlabel();
+    this.refreshService.currentMessage.subscribe(res =>{
+      console.log(res);
+      this.getlabel();
+    })
     // this.getNote();
     // jQuery to handle the active class onclick on the sidenav list 
 
@@ -121,7 +124,15 @@ export class DashboardComponent implements OnInit {
 
 
 getlabel(){
-  this.noteService.getlabels(this.token);
+  this.labelArrayList = [];
+  this.noteService.getlabels(this.token).subscribe((data:any) => {
+    console.log('label list response',data);
+    var labels = data.data.details;
+    labels.forEach(element =>{
+      this.labelDetails.push(element);
+      this.labelArrayList.push(element);
+    })  
+  });
 }
 
 deleteLabel(){
@@ -135,6 +146,7 @@ imageupload(){
 getNoteOfLabel(item){
   this.labelname = item.label;
   console.log(item);
+  this.notesbyLabel = [];
   this.urlService.getNoteListByLabel(this.labelname).subscribe((data:any) =>{
       
     var labelFilter = data.data.data

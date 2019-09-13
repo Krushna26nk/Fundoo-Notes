@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { RouterTestingModule} from '@angular/router/testing'
+
 import { EditorComponent } from './editor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FroalaEditorModule } from 'angular-froala-wysiwyg';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('EditorComponent', () => {
   let component: EditorComponent;
@@ -10,7 +14,9 @@ describe('EditorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EditorComponent ],
-      imports:[FormsModule,ReactiveFormsModule]
+      imports:[FormsModule,ReactiveFormsModule,
+        FroalaEditorModule,HttpClientModule,RouterTestingModule,RouterTestingModule
+      ]
     })
     .compileComponents();
   }));

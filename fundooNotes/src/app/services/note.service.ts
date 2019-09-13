@@ -37,10 +37,7 @@ export class NoteService {
 
 
   postNote(url,data,token){
-    this.http.post(url,data,token).subscribe(data =>{
-      console.log('Note Add Response',data);
-       
-    })
+    return this.http.post(url,data,token)
   }
 
   getNote(url,data1){
@@ -75,12 +72,7 @@ export class NoteService {
       }
 
   updateNote(url,data){
-    this.http.post(url,data,this.httpOptions).subscribe(
-      (data:any) =>{
-        console.log(data);
-        
-      }
-    )
+    return this.http.post(url,data,this.httpOptions);
   }
 
 
@@ -104,29 +96,17 @@ export class NoteService {
 
   postLabel(data){
     var url="noteLabels"
-    this.http.post(this.baseurl+url,data).subscribe((response:any)=>{
-      console.log('label add response',response);      
-    });
+    return this.http.post(this.baseurl+url,data);
   }
   
 
   getlabels(token){
     var url ='noteLabels/getNoteLabelList'
-    this.http.get(`${this.baseurl+url}`,{
+    return this.http.get(`${this.baseurl+url}`,{
       params :{
         'access_token':token
       }
-    }).subscribe((data:any) => {
-      console.log('label list response',data);
-      var labels = data.data.details;
-      labels.forEach(element =>{
-        this.labelDetails.push(element);
-        this.labelArray.push(element);
-      })  
     });
-
-    console.log('label aaray',this.labelArray);
-    
   }
   
   postData(url,data){
@@ -164,16 +144,12 @@ export class NoteService {
   }
   updateLabelValue(labelId,data){
     var url ='/noteLabels/'+labelId+'/updateNoteLabel'
-    this.http.post(this.baseurl+url,this.httpOptions,data).subscribe((response:any)=>{
-      console.log(response);
-    });
+    return this.http.post(this.baseurl+url,this.httpOptions,data);
   }
 
   deleteLabel(id){
     var url='noteLabels/'+id+'/deleteNoteLabel'
-    this.http.delete(this.baseurl+url,this.httpOptions).subscribe((response:any) =>{
-      console.log(response);
-    });
+    return this.http.delete(this.baseurl+url,this.httpOptions);
   }
 
   postRemovelabel(url,data){

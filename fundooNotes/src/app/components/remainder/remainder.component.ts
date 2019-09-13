@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NoteService } from 'src/app/services/note.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { Note } from 'src/app/modal/note';
-import { UrlService } from 'src/app/services/user.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-remainder',
