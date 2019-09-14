@@ -17,6 +17,8 @@ import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatN
 import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule,MatProgressBarModule,MatTabsModule} from '@angular/material';
 import {MatTableModule} from '@angular/material';
 
+// import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -50,6 +52,8 @@ import { CartviewloginComponent } from './components/cartviewlogin/cartviewlogin
 import { DialogcomponentComponent } from './components/dialogcomponent/dialogcomponent.component';
 import { RegisterWithServiceComponent } from './components/register-with-service/register-with-service.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AuthrouteGuard } from './authroute.guard';
+import { AuthService } from './services/auth.service';
 
 const routes:Routes =[
   { path:'',component:CartviewloginComponent},
@@ -62,15 +66,41 @@ const routes:Routes =[
     { path:'',component : NotesComponent,children:[
       {path:'',component:GetnotesComponent}
     ]},
-    { path:'notes',component : NotesComponent},
-    { path:'questionanswer',component:QuestionanswerComponent},
-    { path:'archives',component:ArchievComponent},
-    { path:'trash',component:TrashComponent},
-    { path:'label', component:LabelsComponent},
-    { path:'remainder',component:RemainderComponent},
-    { path:'editor' , component:EditorComponent},
-    { path:'cart' , component:ShoppingCartComponent}
-  ]},
+    { path:'notes',
+      component : NotesComponent,
+      canActivate:[AuthrouteGuard]},
+
+    { path:'questionanswer',
+      component:QuestionanswerComponent,
+      canActivate:[AuthrouteGuard]},
+
+    { path:'archives',
+      component:ArchievComponent,
+      canActivate:[AuthrouteGuard]},
+
+
+    { path:'trash',
+      component:TrashComponent,
+      canActivate:[AuthrouteGuard]},
+
+    { path:'label', 
+      component:LabelsComponent,
+      canActivate:[AuthrouteGuard]},
+
+    { path:'remainder',
+      component:RemainderComponent,
+      canActivate:[AuthrouteGuard]},
+
+    { path:'editor' ,
+      component:EditorComponent,
+      canActivate:[AuthrouteGuard]},
+
+    { path:'cart' ,
+      component:ShoppingCartComponent,
+      canActivate:[AuthrouteGuard]}
+  ],
+  canActivate:[AuthrouteGuard]
+},
   
 ]
 
@@ -119,7 +149,7 @@ const routes:Routes =[
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
     RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthrouteGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

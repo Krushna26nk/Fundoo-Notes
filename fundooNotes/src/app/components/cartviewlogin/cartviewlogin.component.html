@@ -17,7 +17,7 @@
   
             <div  fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center">
         
-                <div class="firstDiv" (click)="onSelectService(item)" fxLayout fxLayoutAlign="center center">
+                <div class="firstDiv" (click)="onSelectService(item?.id)" fxLayout fxLayoutAlign="center center">
               
                   <mat-card class="matCard1" id="card1">
                     <h5> Price : $ {{item.price}} / months</h5>

@@ -34,8 +34,7 @@ export class RegisterWithServiceComponent implements OnInit {
 
   ngOnInit() {
     this.productId = localStorage.getItem('productId');
-    
-    
+    console.log('product id',this.productId);
 
     this.refreshService.currentMessage.subscribe((res:any)=>{
       

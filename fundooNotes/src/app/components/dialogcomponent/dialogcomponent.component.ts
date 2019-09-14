@@ -29,6 +29,7 @@ export class DialogcomponentComponent implements OnInit {
    if(this.data != null){
     this.selectServiceData = this.data.data;
     this.allData = this.data.data;
+    console.log('all data',this.allData)
     localStorage.setItem('productId',this.allData);
     console.log(this.data);
     console.log(this.allData)
@@ -43,11 +44,11 @@ export class DialogcomponentComponent implements OnInit {
     this.dialogRef.close();
     localStorage.clear();
   }
-  onCheckOut(){
-    console.log('checkout data',this.allData.price);
+  onCheckOut(){ 
+    console.log('checkout data',this.allData);
     this.cart = this.allData;
     var data ={
-      "productId":this.cart.id
+      "productId":this.cart
     }
     this.cartService.onAddToCart(data).subscribe((res:any) =>{
       console.log(res);
