@@ -4,5 +4,26 @@
 
 <input type="file"  name="profile" (change)="onimageChange($event)">
 
-<input type="submit">
+<input class="btn btn-primary" type="submit">
 </form>
+<div fxLayout="row">
+   
+
+        <image-cropper 
+            [imageChangedEvent]="imageChangedEvent"
+            (imageCropped)="imageCropped($event)"
+            [aspectRatio]="1 / 1"
+            [resizeToWidth]="128"
+            [cropperMinWidth]="128"
+            [onlyScaleDown]="true"
+        >
+        
+        </image-cropper>
+        
+   
+        <div style="float: left;">
+            <h6>Preview Image</h6>
+            <img [src]="croppedImage" alt="">
+        </div>
+        
+</div>

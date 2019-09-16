@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UrlService } from 'src/app/services/url.service';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder,FormGroup} from '@angular/forms'
+import { ImageCroppedEvent } from 'ngx-image-cropper/src/interfaces/image-cropped-event.interface';
 @Component({
   selector: 'app-uploadimage',
   templateUrl: './uploadimage.component.html',
@@ -15,6 +16,8 @@ export class UploadimageComponent implements OnInit {
               private formBuilder:FormBuilder) { }
 
   profileForm:FormGroup;
+  imageChangedEvent : any ='';
+  croppedImage:any = '';
   ngOnInit() {
     this.profileForm=this.formBuilder.group(
       {
@@ -25,12 +28,20 @@ export class UploadimageComponent implements OnInit {
 
   onimageChange(event){
     console.log(event);
+    this.imageChangedEvent = event;
     this.file =<File>event.target.files[0];
     //var filename =<File>event.target.files[0].name;
     console.log("file details",this.file);
     //console.log(filename);
   
   }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    console.log(event);
+    this.file = this.croppedImage;
+  }
+
   onSubmit(){
     //var file =<File> event.target.files;
     // var filename =<File> file[0].name;

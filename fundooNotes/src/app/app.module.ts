@@ -17,7 +17,7 @@ import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatN
 import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule,MatProgressBarModule,MatTabsModule} from '@angular/material';
 import {MatTableModule} from '@angular/material';
 
-// import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -147,7 +147,7 @@ const routes:Routes =[
     }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,MatProgressBarModule,
     BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,MatTabsModule,MatTableModule,
     MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
-    RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()
+    RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot(),ImageCropperModule
   ],
   providers: [AuthrouteGuard, AuthService],
   bootstrap: [AppComponent]

@@ -139,6 +139,8 @@ deleteLabel(){
   
 }
 
+// image upload
+
 imageupload(){
   let dialogRef =  this.dialog.open(UploadimageComponent)
  }

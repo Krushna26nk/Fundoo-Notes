@@ -1,14 +1,14 @@
 <div style="height:100%;">
-  <div class="archivemainDiv">
-    <mat-card  *ngFor="let items of archivedList; let i = index"  fxLayout="row wrap" [style.background]="color"  [ngStyle]="{'background':items.color}" class="archiveCard" >
+  <div class="archivemainDiv" fxLayout="row wrap">
+    <mat-card  *ngFor="let items of archivedList; let i = index"   [ngStyle]="{'background':items.color}" class="archiveCard" >
           
-      <div (click)="updateNote(items)">
+      <div [ngStyle]="{'background':items.color}" (click)="updateNote(items)">
         <p> {{items.title}}  </p>
         <p> {{items.description}}   </p>
       </div>
     
     
-      <div class="mainIcons" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="mainIcons" [ngStyle]="{'background':items.color}" fxLayout="row" fxLayoutAlign="space-between center">
           <div>
             <app-icons (colorevent)="colorEvent($event)" (reminderevent)="reminderEvent($event)" (collaboratorEvent)="collab($event)" (archiveEvent)="archiveEvent($event)"></app-icons>
           </div>
