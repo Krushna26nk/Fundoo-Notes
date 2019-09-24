@@ -1,0 +1,48 @@
+<div>
+    <mat-card-header fxLayoutAlign="center">
+        <mat-card-title  style="font-size: 20px;letter-spacing: 2px;text-transform: capitalize;border-bottom: 1px solid red;" class="text-center">
+          Select The Respective Properties To Merge
+        </mat-card-title>
+      </mat-card-header>
+
+<mat-card>
+
+
+      <form action="" (ngSubmit)="onMerge()" >
+        <div style="padding: 5px;">
+          <mat-label> Title </mat-label>
+          <mat-radio-group [(ngModel)]="title" name="title" aria-label="Select an option" fxLayout fxLayoutAlign="space-between center" style="padding: 10px;">
+            <mat-radio-button [value]="item.title" *ngFor="let item of bothNote" >
+              {{item.title}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+<mat-divider></mat-divider>
+
+        <div style="padding: 5px;">
+          <mat-label> Description </mat-label>
+          <mat-radio-group [(ngModel)]="description" name="description" aria-label="Select an option" fxLayout fxLayoutAlign="space-between center" style="padding: 10px;">
+            <mat-radio-button *ngFor="let item of bothNote" [value]="item.description" >
+              {{item.description}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+<mat-divider></mat-divider>
+
+        <div style="padding: 5px;">
+          <mat-label> Color </mat-label>
+          <mat-radio-group [(ngModel)]="color" name="color" aria-label="Select an option" fxLayout fxLayoutAlign="space-between center" style="padding: 10px;">
+            <mat-radio-button *ngFor="let item of bothNote" [value]="item.color" >
+              <div style="height: 2rem;width: 2rem;border-radius: 50%;"[style.background]="item.color"></div>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <button mat-raised-button type="submit" color="primary">Merge</button>
+
+      </form>
+
+</mat-card>
+</div>

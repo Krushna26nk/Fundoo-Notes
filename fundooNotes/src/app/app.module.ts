@@ -2,19 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RichTextEditorAllModule} from '@syncfusion/ej2-angular-richtexteditor';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FroalaEditorModule,FroalaViewModule} from 'angular-froala-wysiwyg';
+import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 
-import {MatIconModule,MatSidenavModule,MatToolbarModule,MatMenuModule,MatListModule,MatDatepickerModule} from '@angular/material';
-import {MatCardModule,MatButtonModule,MatChipsModule,MatRadioModule,MatDialogModule,MatCheckboxModule} from '@angular/material';
-import {MatInputModule,MatTooltipModule,MatSnackBarModule,MatGridListModule,MatNativeDateModule,MatOptionModule} from '@angular/material';
-import {MatSelectModule,MatAutocompleteModule,MatBadgeModule,MatStepperModule,MatProgressBarModule,MatTabsModule} from '@angular/material';
+import {MatIconModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatListModule, MatDatepickerModule} from '@angular/material';
+import {MatCardModule, MatButtonModule, MatChipsModule, MatRadioModule, MatDialogModule, MatCheckboxModule} from '@angular/material';
+import {MatInputModule, MatTooltipModule, MatSnackBarModule, MatGridListModule, MatNativeDateModule, MatOptionModule} from '@angular/material';
+import {MatSelectModule, MatAutocompleteModule, MatBadgeModule, MatStepperModule, MatProgressBarModule, MatTabsModule} from '@angular/material';
 import {MatTableModule} from '@angular/material';
 
 import {ImageCropperModule} from 'ngx-image-cropper';
@@ -54,54 +54,55 @@ import { RegisterWithServiceComponent } from './components/register-with-service
 import { CartComponent } from './components/cart/cart.component';
 import { AuthrouteGuard } from './authroute.guard';
 import { AuthService } from './services/auth.service';
+import { SelectSecondComponent } from './components/select-second/select-second.component';
 
-const routes:Routes =[
-  { path:'',component:CartviewloginComponent},
-  { path:'register',component:RegistrationComponent},
-  { path:'registerWithService',component:RegisterWithServiceComponent},
-  { path:'login',component:LoginComponent},
-  { path:'forget',component:ForgetpasswordComponent},
-  { path:'reset',component:ResetpasswordComponent},
-  {path:'dashboard',component:DashboardComponent,children:[
-    { path:'',component : NotesComponent,children:[
-      {path:'',component:GetnotesComponent}
+const routes: Routes = [
+  { path: '', component: CartviewloginComponent},
+  { path: 'register', component: RegistrationComponent},
+  { path: 'registerWithService', component: RegisterWithServiceComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'forget', component: ForgetpasswordComponent},
+  { path: 'reset', component: ResetpasswordComponent},
+  {path: 'dashboard', component: DashboardComponent, children: [
+    { path: '', component : NotesComponent, children: [
+      {path: '', component: GetnotesComponent}
     ]},
-    { path:'notes',
+    { path: 'notes',
       component : NotesComponent,
-      canActivate:[AuthrouteGuard]},
+      canActivate: [AuthrouteGuard]},
 
-    { path:'questionanswer',
-      component:QuestionanswerComponent,
-      canActivate:[AuthrouteGuard]},
+    { path: 'questionanswer',
+      component: QuestionanswerComponent,
+      canActivate: [AuthrouteGuard]},
 
-    { path:'archives',
-      component:ArchievComponent,
-      canActivate:[AuthrouteGuard]},
+    { path: 'archives',
+      component: ArchievComponent,
+      canActivate: [AuthrouteGuard]},
 
 
-    { path:'trash',
-      component:TrashComponent,
-      canActivate:[AuthrouteGuard]},
+    { path: 'trash',
+      component: TrashComponent,
+      canActivate: [AuthrouteGuard]},
 
-    { path:'label', 
-      component:LabelsComponent,
-      canActivate:[AuthrouteGuard]},
+    { path: 'label',
+      component: LabelsComponent,
+      canActivate: [AuthrouteGuard]},
 
-    { path:'remainder',
-      component:RemainderComponent,
-      canActivate:[AuthrouteGuard]},
+    { path: 'remainder',
+      component: RemainderComponent,
+      canActivate: [AuthrouteGuard]},
 
-    { path:'editor' ,
-      component:EditorComponent,
-      canActivate:[AuthrouteGuard]},
+    { path: 'editor' ,
+      component: EditorComponent,
+      canActivate: [AuthrouteGuard]},
 
-    { path:'cart' ,
-      component:ShoppingCartComponent,
-      canActivate:[AuthrouteGuard]}
+    { path: 'cart' ,
+      component: ShoppingCartComponent,
+      canActivate: [AuthrouteGuard]}
   ],
-  canActivate:[AuthrouteGuard]
+  canActivate: [AuthrouteGuard]
 },
-  
+
 ]
 
 @NgModule({
@@ -139,15 +140,18 @@ const routes:Routes =[
     DialogcomponentComponent,
     RegisterWithServiceComponent,
     CartComponent,
+    SelectSecondComponent,
   ],
-  entryComponents:[EditnotesComponent,UploadimageComponent,EditlabelsComponent,QuestionanswerComponent,DialogcomponentComponent],
-  imports: [
-    BrowserModule,HttpModule,RouterModule.forRoot(routes,{
+  entryComponents: [EditnotesComponent, UploadimageComponent, EditlabelsComponent,
+    QuestionanswerComponent, DialogcomponentComponent, SelectSecondComponent],
+  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes, {
       onSameUrlNavigation: 'reload'
-    }),FlexLayoutModule,MatSelectModule,MatTooltipModule,ReactiveFormsModule,HttpClientModule,MatGridListModule,MatCheckboxModule,MatProgressBarModule,
-    BrowserAnimationsModule,MatListModule,MatRadioModule,FormsModule,MatInputModule,MatButtonModule,MatSnackBarModule,MatStepperModule,MatTabsModule,MatTableModule,
-    MatCardModule,MatIconModule,MatSidenavModule,MatAutocompleteModule,MatToolbarModule,MatMenuModule,MatDialogModule,MatOptionModule,MatNativeDateModule,MatDatepickerModule,MatChipsModule,
-    RichTextEditorAllModule,MatBadgeModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot(),ImageCropperModule
+    }), FlexLayoutModule, MatSelectModule, MatTooltipModule, ReactiveFormsModule, HttpClientModule, MatGridListModule,
+    MatCheckboxModule, MatProgressBarModule, BrowserAnimationsModule, MatListModule, MatRadioModule, FormsModule, MatInputModule,
+    MatButtonModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatTableModule, MatCardModule, MatIconModule,
+    MatSidenavModule, MatAutocompleteModule, MatToolbarModule, MatMenuModule, MatDialogModule, MatOptionModule, MatNativeDateModule,
+    MatDatepickerModule, MatChipsModule,
+    RichTextEditorAllModule, MatBadgeModule, FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), ImageCropperModule
   ],
   providers: [AuthrouteGuard, AuthService],
   bootstrap: [AppComponent]

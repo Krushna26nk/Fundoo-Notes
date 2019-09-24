@@ -32,10 +32,10 @@ export class UrlService {
                 return this.dataService.post(this.baseurl+url,data);
             }
 
-// adding note api url            
+// adding note api url
 
             addNote(data,token){
-              var url='notes/addNotes';
+              const url='notes/addNotes';
               return this.noteService.postNote(`${this.baseurl+url}`,data,{
                 params:{
                   'access_token':token
@@ -53,15 +53,15 @@ export class UrlService {
               });
             }
 
-// deleting the notes api url    
-        
+// deleting the notes api url
+
             trashNote(data){
               var url='notes/trashNotes';
               this.noteService.trashNote(this.baseurl+url,data);
             }
 
 
-// changing the note color api url.            
+// changing the note color api url.
 
             updateColor(data){
               var url ='notes/changesColorNotes'
@@ -69,7 +69,7 @@ export class UrlService {
             }
 
 // update note url
-    
+
             updateNote(data){
               var url = 'notes/updateNotes'
               return this.noteService.updateNote(this.baseurl+url,data);
@@ -83,7 +83,7 @@ export class UrlService {
             }
 
             postLabel(){
-              
+
             }
 
             uploadProfile(data){
@@ -99,7 +99,7 @@ export class UrlService {
             }
 
             postRemoveLabel(labelId,noteId){
-              var url = "notes/"+noteId+"/addLabelToNotes/"+labelId+"/remove" 
+              var url = "notes/"+noteId+"/addLabelToNotes/"+labelId+"/remove"
               var data ={
                 "noteId":noteId,
                 "labelId":labelId
@@ -114,7 +114,7 @@ export class UrlService {
 
             postReminderTomorrow(data){
               var url = 'notes/addUpdateReminderNotes'
-              var sendData = 
+              var sendData =
               this.noteService.postReminderTomorrow(this.baseurl+url,data);
             }
             postReminderWeekly(data){

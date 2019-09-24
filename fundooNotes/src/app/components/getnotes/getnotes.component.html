@@ -1,10 +1,16 @@
 <div fxFlex.lt-sm="100%" fxFlex.lt-lg="80" fxFlex.lt-md="80" fxFlex="60"
   style="position: relative;width: 60%;margin-bottom:0;margin: 0 auto;">
+
+  <div fxLayoutAlign="center" style="margin: 7px;" *ngIf="selectedItem.length > 1" >
+    <button mat-raised-button color="primary" (click)="onMerge()">Merge</button>
+  </div>
+
   <mat-card #matCard *ngFor="let items of sampleCardArray | search: searchInput ; let i = index"
     [style.marginLeft]="this.inputhandle ? '15%' : '10px'" [style.width]="this.inputhandle ? '45vw' : null"
     [ngStyle]="{'background':items.color}"
     class="beforeNoteCard1"
-    (click)="editCard(items.id)"
+    [ngClass]="{'active' : selectedItem.includes(items)}"
+    (click)="selectNote(items)"
     >
 
     <div (click)="updateNote(items)">
@@ -71,7 +77,7 @@
                         <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>                       -->
+                      </mat-form-field>                      -->
         </mat-list>
       </mat-menu>
       <mat-icon matTooltip="Collaborator" (click)="addCollaborator(items,myTemplate)">account_box</mat-icon>
@@ -127,16 +133,16 @@
             <div style="margin-left: 5px;word-wrap: break-word" (click)="onReply(items)" innerHTML="{{ques.message}}">
             </div>
 
-            <!--                         
-                        <div fxLayoutAlign="space-between" class="msgIcon"> 
+            <!--
+                        <div fxLayoutAlign="space-between" class="msgIcon">
                           <button mat-icon-button (click)="onReply(reply)" > <mat-icon> reply </mat-icon> </button>
-                          <button mat-icon-button> <mat-icon> thumb_up </mat-icon></button>{{ques.like.length}}   
-                          <button mat-icon-button> <mat-icon> star_border </mat-icon> </button> 
+                          <button mat-icon-button> <mat-icon> thumb_up </mat-icon></button>{{ques.like.length}}
+                          <button mat-icon-button> <mat-icon> star_border </mat-icon> </button>
                         </div> -->
 
           </div>
 
-          
+
         </div>
 
       </div>
@@ -240,14 +246,14 @@
 
   </mat-card>
 
-  <ng-container *ngIf="show">
-    <div>
+  <!-- <ng-container *ngIf="show">
+    <div> -->
       <!-- <mat-card-header> -->
-      <p> {{items.title}} ghdhdfh </p>
-      <p> {{items.description}} </p>
+      <!-- <p> {{items.title}} ghdhdfh </p>
+      <p> {{items.description}} </p> -->
       <!-- </mat-card-header> -->
-    </div>
+    <!-- </div>
     <app-editor [NoteForChild]="items"></app-editor>
-  </ng-container>
+  </ng-container> -->
 
 </div>

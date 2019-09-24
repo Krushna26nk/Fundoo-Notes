@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UrlService } from 'src/app/services/url.service';
 import { NoteService } from 'src/app/services/note.service';
 import { Notelabel } from 'src/app/modal/notelabel';
@@ -13,6 +13,7 @@ import { FormControl } from '@angular/forms';
 
 
 import { Router } from '@angular/router';
+import { SelectSecondComponent } from '../select-second/select-second.component';
 
 @Component({
   selector: 'app-getnotes',
@@ -23,74 +24,84 @@ export class GetnotesComponent implements OnInit {
   message: string;
 
 
-  constructor(private http:HttpClient,private urlService:UrlService,private sharedService:SharedService,private noteService:NoteService,private dialog:MatDialog,
-              private router:Router, private refreshService:RefreshService) { }
+  constructor(private http: HttpClient, private urlService: UrlService,
+              private sharedService: SharedService, private noteService: NoteService,
+              private dialog: MatDialog,
+              private router: Router, private refreshService: RefreshService) { }
 
   baseurl = environment.baseUrl;
 
   note: Note = new Note;
-  noteLabel :Notelabel = new Notelabel();
-  token =localStorage.getItem('token');
-  open=false;
+  noteLabel: Notelabel = new Notelabel();
+  token = localStorage.getItem('token');
+  open = false;
   showIcons = false;
   showIcon = true;
-  newColor:any;
-  noteId:any;
-  isDeleted:boolean=false;
-  isArchived:boolean=false;
-  searchArray : any[] =[];
+  newColor: any;
+  noteId: any;
+  isDeleted: boolean = false;
+  isArchived: boolean = false;
+  searchArray: any[] = [];
 
-  gettinghandle : boolean = this.sharedService.toggle;
-  searchInput :string;
+  gettinghandle: boolean = this.sharedService.toggle;
+  searchInput: string;
   searchinput = new FormControl();
   abc = this.searchinput.value;
 
-  question:any;
-  questionId:any;
+  question: any;
+  questionId: any;
 
-  @Input() color:string
+  @Input() color: string;
   @Output() event = new EventEmitter();
 
   cardArray = this.noteService.dataArray;
-  sampleCardArray :any[] = []; 
-  labelArrayList : any[] = this.noteService.labelArray;
-  labelDetails : any[] = this.noteService.labelDetails;
-  emptyArray :any[] = []
+  sampleCardArray: any[] = [];
+  labelArrayList: any[] = this.noteService.labelArray;
+  labelDetails: any[] = this.noteService.labelDetails;
+  emptyArray: any[] = [];
 
-  inputhandle : boolean;
+  inputhandle: boolean;
 
-  days= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   currentDate = new Date();
 
-  show : boolean = false;
-  isBoolean : boolean = false;
+  show: boolean = false;
+  isBoolean: boolean = false;
+
+  selectedItem: any[] = [];
 
   // token = localStorage.getItem('token');
-  colors : string[] = [
-    '#659DBD','#F78888','#90CCF4','#B1A296','#808080','#AFD275','#FFC0CB','#D79922'
-  ]
+  colors: string[] = [
+    '#659DBD', '#F78888', '#90CCF4', '#B1A296', '#808080', '#AFD275', '#FFC0CB', '#D79922'
+  ];
 
-  sampleData :any;
-  status:any;
-  activeVariable :any;
+  sampleData: any;
+  status: any;
+  activeVariable: any;
 
   ngOnInit() {
     // this.getNote()
     this.refreshService.currentMessage.subscribe(
-      response=>{
-        this.message=response;
+      response => {
+        this.message = response;
         this.getNote();
-    console.log('refresh service response',response);
+    console.log('refresh service response', response);
     })
     this.getHandle();
     // this.searchValue();
   }
 
-  editCard(data,event){
-    this.activeVariable = data;
-    console.log(data , this.activeVariable);
-    
+  selectNote(item){
+    this.selectedItem.push(item);
+    console.log(this.selectedItem);
+  }
+  onMerge(){
+
+    this.dialog.open(SelectSecondComponent, {
+      width: '50vw',
+      data: this.selectedItem,
+    });
   }
 
 /**
@@ -99,11 +110,11 @@ export class GetnotesComponent implements OnInit {
  */
 getNote(){
   this.sampleCardArray = [];
-  this.urlService.getNote(this.token).subscribe((res:any)=>{
-    console.log('get res',res.data.data);
-    var data =res.data.data;
+  this.urlService.getNote(this.token).subscribe((res: any) => {
+    console.log('get res', res.data.data);
+    const data = res.data.data;
     data.forEach(element => {
-      if(element.isDeleted == true || element.isArchived == true){
+      if (element.isDeleted === true || element.isArchived === true){
         this.emptyArray.push(element);
       }
       else{
@@ -112,38 +123,38 @@ getNote(){
     });
     });
   console.log(this.token);
-  
-  console.log('note array with trashed and archived notes',this.emptyArray);
-  console.log('without trashed and archived notes',this.sampleCardArray);
-             
-  this.sharedService.search.subscribe(data =>{
-    console.log("get notes search input....",data);
-    this.searchInput = data;  
+
+  console.log('note array with trashed and archived notes', this.emptyArray);
+  console.log('without trashed and archived notes', this.sampleCardArray);
+
+  this.sharedService.search.subscribe(data => {
+    console.log('get notes search input....', data);
+    this.searchInput = data;
   })
 
   // this.cardArray.forEach(element=>{
   //   this.sampleCardArray.push(element);
   //   console.log('sample card array',this.sampleCardArray);
-    
+
   // })
-  
+
 
   // this.cardArray.forEach(element => {
   //   console.log('adfdas',element);
   //   this.sampleCardArray.push(element);
-  // });            
+  // });
 }
 
 getHandle(){
-  this.sharedService.change.subscribe(data =>{
-    console.log('handle in notes',data);
+  this.sharedService.change.subscribe(data => {
+    console.log('handle in notes', data);
     this.inputhandle = data;
-    
+
   })
 }
 
 /**
- * 
+ *
  * @param color color input which change
  */
 
@@ -158,52 +169,52 @@ changeColor(color){
    * @param items note detail of which we want to archive
    */
 
-onArchive(items:any){
+onArchive(items: any){
   this.note.noteIdList = items.id;
   var data = {
-    "noteIdList":[this.note.noteIdList],
-    "isArchived":true
+    'noteIdList': [this.note.noteIdList],
+    'isArchived': true
   }
   this.urlService.archiveNotes(data);
 }
 
 /**
- * 
+ *
  * @param labelId label id which we want to remove from the note
  * @param noteId noteId of which label we want to remove
  */
 
-onRemoveLabel(labelId,noteId){
-  console.log('label id',labelId,'note id',noteId);
-  this.urlService.postRemoveLabel(labelId,noteId);
+onRemoveLabel(labelId, noteId){
+  console.log('label id', labelId, 'note id', noteId);
+  this.urlService.postRemoveLabel(labelId, noteId);
 }
 
-updateNote(items:any){
-  let dialogref = this.dialog.open(EditnotesComponent,{
-    height:'189px',
-    width:'450px',
-    panelClass:'myapp-no-padding-dialog',
-    data:{
-      title:items.title,
-      description:items.description,
-      color:items.color,
-      id:items.id
+updateNote(items: any){
+  let dialogref = this.dialog.open(EditnotesComponent, {
+    height: '189px',
+    width: '450px',
+    panelClass: 'myapp-no-padding-dialog',
+    data: {
+      title: items.title,
+      description: items.description,
+      color: items.color,
+      id: items.id
     }
   });
   console.log(items);
-  dialogref.afterClosed().subscribe(result =>{
+  dialogref.afterClosed().subscribe(result => {
     console.log(`dialog close :${result}`);
-    
+
   })
 }
 
 
-trashNote(items:any){
+trashNote(items: any){
   // this.urlService.trashNote(userId,noteid);
   this.note.noteIdList = items.id;
-  var data={
-    "noteIdList":[this.note.noteIdList],
-    "isDeleted":true
+  var data = {
+    'noteIdList': [this.note.noteIdList],
+    'isDeleted': true
   }
   console.log(this.note.noteIdList);
  // console.log(userId);
@@ -212,38 +223,38 @@ trashNote(items:any){
 
 // to update the color from color palette
 
-updateColor(items,$event){
+updateColor(items, $event){
   this.newColor = $event;
-  console.log('color',$event);
-  
+  console.log('color', $event);
+
   this.note.color = this.newColor;
-  var data ={
-    "color":this.newColor,
-    "noteIdList":[items.id],
+  var data = {
+    'color': this.newColor,
+    'noteIdList': [items.id],
   }
-  console.log('asds',data);
-  
-  this.urlService.updateColor(data).subscribe(data=>{
-    console.log('update color response',data);
-    this.refreshService.changeMessage(data);   
+  console.log('asds', data);
+
+  this.urlService.updateColor(data).subscribe(data => {
+    console.log('update color response', data);
+    this.refreshService.changeMessage(data);
   });
 }
-addLabelToNote(label,items){
+addLabelToNote(label, items){
       var noteId = items.id;
       var labelId = label.id;
 
-      var data ={
-        "noteIdList":[noteId],
-        "label":label.label
+      var data = {
+        'noteIdList': [noteId],
+        'label': label.label
       }
-      
+
       console.log(event);
       console.log(items);
 
-      this.noteService.addNoteToLabel(items,label)
+      this.noteService.addNoteToLabel(items, label)
       console.log(noteId);
       console.log(labelId);
-      
+
 }
 
 /**
@@ -256,33 +267,33 @@ addLabelToNote(label,items){
       // var year = d.getFullYear();
       // var total = this.days[d.getDay()] +" "+ this.months[d.getMonth()] +" "+ d.getDate() +" "+year+" "+time;
 
-      var reminder = d + ", 08:00 ";
+      var reminder = d + ', 08:00 ';
       this.note.noteIdList = item.id;
       this.note.title = item.title
       this.note.description = item.description;
       this.note.isDeleted = item.isDeleted;
       // this.note.reminder = [total];
 
-      var data = {
-        "noteIdList":[this.note.noteIdList],
-        "title": this.note.title,
-        "description": this.note.description,
-        "isDeleted" : this.note.isDeleted,
-        "reminder" : [reminder]
+      const data = {
+        'noteIdList': [this.note.noteIdList],
+        'title': this.note.title,
+        'description': this.note.description,
+        'isDeleted' : this.note.isDeleted,
+        'reminder' : [reminder]
       }
 
       console.log(d);
-      console.log(reminder +", PM");
+      console.log(reminder + ', PM');
       console.log(item);
-      
-      this.urlService.postReminder(data).subscribe((response:any) =>{
+
+      this.urlService.postReminder(data).subscribe((response: any) => {
         console.log(response);
         this.refreshService.changeMessage('lkl');
       });
     }
 
     setReminderTomorrow(item){
-      var date =this.currentDate.getDate();
+      var date = this.currentDate.getDate();
       var setDate  = this.currentDate.setDate(date + 1);
       console.log(this.currentDate.setHours(14));
       // currentDate.setMinutes(0);
@@ -294,20 +305,20 @@ addLabelToNote(label,items){
       this.note.isDeleted = item.isDeleted;
 
       var data = {
-        "noteIdList":[this.note.noteIdList],
-        "title": this.note.title,
-        "description": this.note.description,
-        "isDeleted" : this.note.isDeleted,
-        "reminder" : [this.currentDate]
+        'noteIdList': [this.note.noteIdList],
+        'title': this.note.title,
+        'description': this.note.description,
+        'isDeleted' : this.note.isDeleted,
+        'reminder' : [this.currentDate]
       }
-      
+
       this.urlService.postReminderTomorrow(data);
     }
 
     setReminderWeekly(item){
       var currentDate = new Date();
 
-      currentDate.setDate(currentDate.getDate()+7);
+      currentDate.setDate(currentDate.getDate() + 7);
 
       this.note.noteIdList = item.id;
       this.note.title = item.title
@@ -315,85 +326,85 @@ addLabelToNote(label,items){
       this.note.isDeleted = item.isDeleted;
 
       var data = {
-        "noteIdList":[this.note.noteIdList],
-        "title": this.note.title,
-        "description": this.note.description,
-        "isDeleted" : this.note.isDeleted,
-        "reminder" : [currentDate]
+        'noteIdList': [this.note.noteIdList],
+        'title': this.note.title,
+        'description': this.note.description,
+        'isDeleted' : this.note.isDeleted,
+        'reminder' : [currentDate]
       }
-      console.log(currentDate,data); 
+      console.log(currentDate, data);
       this.noteService.postReminderWeekly(data);
 
     }
 
-    onRemoveReminder(reminder,note){
-      console.log(reminder,note);
+    onRemoveReminder(reminder, note){
+      console.log(reminder, note);
       var data = {
-        "noteIdList":[note.id],
-        "title": note.title,
-        "description": note.description,
-        "isDeleted" : note.isDeleted,
-        "reminder" : [reminder]
+        'noteIdList': [note.id],
+        'title': note.title,
+        'description': note.description,
+        'isDeleted' : note.isDeleted,
+        'reminder' : [reminder]
       }
       this.urlService.deleteReminder(data);
     }
 
     // collaborator
-    // searching the user list while collaborating 
+    // searching the user list while collaborating
 
     onKey(value){
       var url = this.baseurl + 'user/searchUserList';
-      var data ={
-        "searchWord":value
+      var data = {
+        'searchWord': value
       }
-      this.http.post(url,data,{
-        headers:{
-          'Authorization':localStorage.getItem('token')
+      this.http.post(url, data, {
+        headers: {
+          'Authorization': localStorage.getItem('token')
         }
-      }).subscribe((data:any) =>{
+      }).subscribe((data: any) => {
         console.log(data.data.details);
         this.searchArray = data.data.details;
-        
+
       });
     }
 
-    addCollaborator(items:any,templateReference){
-     
+    addCollaborator(items: any, templateReference){
+
       console.log(items.user);
       console.log(this.searchArray[0]);
-      
 
-      let dialogRef = this.dialog.open(templateReference,{
-        width:'40vw'
+
+      let dialogRef = this.dialog.open(templateReference, {
+        width: '40vw'
       })
-      
+
     }
 
     onCollaborate(value){
       console.log(this.searchinput)
       console.log(value);
-      console.log('noteid',value.id);
+      console.log('noteid', value.id);
       var id = value.id
-      console.log('value',this.searchinput.value);
-      var data : string[] = this.searchinput.value
-      
-      var url ='notes/'+id+'/AddcollaboratorsNotes'
-      this.http.post(this.baseurl+url,this.searchinput.value,{
-        headers :{
-          'Authorization':localStorage.getItem('token')
+      console.log('value', this.searchinput.value);
+      var data: string[] = this.searchinput.value
+
+      var url = 'notes/' + id + '/AddcollaboratorsNotes'
+      this.http.post(this.baseurl + url, this.searchinput.value, {
+        headers : {
+          'Authorization': localStorage.getItem('token')
         }
-      }).subscribe((response:any)=>{
+      }).subscribe((response: any) => {
         this.refreshService.changeMessage(response);
         console.log(response);
       })
       this.dialog.closeAll();
     }
 
-    onRemoveCollaborator(collabId,note){
+    onRemoveCollaborator(collabId, note){
       console.log(collabId);
       console.log(note.id);
       var noteId = note.id;
-      this.noteService.onRemoveCollaborator(collabId,noteId);
+      this.noteService.onRemoveCollaborator(collabId, noteId);
       this.refreshService.changeMessage('sds');
     }
 
@@ -415,6 +426,10 @@ addLabelToNote(label,items){
       // this.dialog.open(template,{
       //   width:'50vw'
       // });
+    }
+
+    onImage() {
+
     }
 
 }

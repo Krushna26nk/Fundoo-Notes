@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { RefreshService } from './refresh.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router, private refreshService:RefreshService) { }
 
   dataArray     :any = [];
   noteArray     :any = [];
@@ -55,15 +56,15 @@ export class NoteService {
   //     });
   //     console.log('note response',array);
       // console.log("note service array",this.dataArray);
-      
-      
-    // });    
+
+
+    // });
   }
 
   trashNote(url,data){
     this.http.post(url,data,this.httpOptions).subscribe(data =>{
       console.log(data);
-      
+      this.refreshService.changeMessage(data);
     })
   }
 
@@ -89,7 +90,7 @@ export class NoteService {
     return this.http.post(this.baseurl+url, data,this.httpOptions);
   }
 
- 
+
   getArchievedlist(url){
     return this.http.get(url,this.httpOptions);
   }
@@ -98,7 +99,7 @@ export class NoteService {
     var url="noteLabels"
     return this.http.post(this.baseurl+url,data);
   }
-  
+
 
   getlabels(token){
     var url ='noteLabels/getNoteLabelList'
@@ -108,10 +109,10 @@ export class NoteService {
       }
     });
   }
-  
+
   postData(url,data){
     console.log(data);
-    
+
     return this.http.post(url,data,{
       headers : new HttpHeaders({
         //'Content-Type': 'application/json',
@@ -122,7 +123,7 @@ export class NoteService {
       var imageUrl = data.status.imageUrl;
       console.log(imageUrl);
       localStorage.setItem('profilePic',imageUrl)
-      
+
     })
   }
 
@@ -160,7 +161,7 @@ export class NoteService {
       })
     }).subscribe((response:any)=>{
       console.log(response);
-      
+
     })
   }
 
@@ -171,7 +172,7 @@ export class NoteService {
   postReminderTomorrow(url,data){
     this.http.post(url,data,this.httpOptions).subscribe((response:any) =>{
       console.log(response);
-      
+
     });
   }
 
@@ -179,7 +180,7 @@ export class NoteService {
     var url = 'notes/addUpdateReminderNotes'
     this.http.post(this.baseurl+url,data,this.httpOptions).subscribe((response:any) =>{
       console.log(response);
-      
+
     });
   }
 
@@ -195,7 +196,7 @@ export class NoteService {
       }
     }).subscribe((data:any)=>{
       console.log(data);
-      
+
     })
   }
 
@@ -203,7 +204,7 @@ export class NoteService {
     var url='notes/'+noteId+'/removeCollaboratorsNotes/'+collabId
     this.http.delete(this.baseurl+url,this.httpOptions).subscribe((data:any)=>{
       console.log(data);
-      
+
     })
   }
 
@@ -220,6 +221,6 @@ export class NoteService {
     return this.http.post(this.baseurl+url,data,this.httpOptions);
   }
 
-  
+
 
 }
