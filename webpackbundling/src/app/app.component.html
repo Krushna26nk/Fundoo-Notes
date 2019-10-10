@@ -1,3 +1,13 @@
-<h1>
-  hi...
-</h1>
+<mat-toolbar style="background-color: rgb(103, 103, 192)">
+  <h4 style="color: aqua;">
+    Webpack Head
+  </h4>
+</mat-toolbar>
+
+<div style="border: 1px solid gray">
+  <button style="outline: none;text-decoration: none" mat-button routerLink="/first"> First Page </button>
+  <button  style="outline: none;text-decoration: none" mat-button routerLink="/second"> Second Page </button>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
