@@ -1,0 +1,123 @@
+.boxContainer{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+.boxContainer span{
+  position: absolute;
+  font-size: 50px;
+}
+.boxContainer span:nth-child(1){
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  animation: animate1 12s linear;
+}
+.boxContainer span:nth-child(2){
+  position: absolute;
+  top: 40%;
+  left: 43%;
+  animation: animate2 12s linear ;
+}
+.boxContainer span:nth-child(3){
+  position: absolute;
+  top: 40%;
+  left: 46%;
+  animation: animate3 12s linear ;
+}
+.boxContainer span:nth-child(4){
+  position: absolute;
+  top: 40%;
+  left: 49%;
+  animation: animate4 12s linear ;
+}
+.boxContainer span:nth-child(5){
+  position: absolute;
+  top: 40%;
+  left: 52%;
+  animation: animate5 12s linear ;
+}
+.boxContainer span:nth-child(6){
+  position: absolute;
+  top: 40%;
+  left: 55%;
+  animation: animate6 12s linear;
+}
+
+
+
+@keyframes animate1 {
+  0%{
+    transform: scale(0);
+    top: 10%;
+    left: 8%;
+  }
+  100%{
+    transform: scale(1);
+    top: 40%;
+    left: 40%;
+  }
+}
+
+@keyframes animate2 {
+  0%{
+    transform: scale(0);
+    top: 10%;
+    left: 16%;
+  }
+  100%{
+    transform: scale(1);
+    top: 40%;
+    left: 43%;
+  }
+}
+@keyframes animate3 {
+  0%{
+    transform: scale(0);
+    top: 10%;
+    left: 33%;
+  }
+  100%{
+    transform: scale(1);
+    top: 40%;
+    left: 46%;
+  }
+}
+@keyframes animate4 {
+  0%{
+    transform: scale(0);
+    top: 10%;
+    left: 48%;
+  }
+  100%{
+    transform: scale(1);
+    top: 40%;
+    left: 49%;
+  }
+}
+@keyframes animate5 {
+  0%{
+    transform: scale(0);
+    top: 10%;
+    left: 65%;
+  }
+  100%{
+    transform: scale(1);
+    top: 40%;
+    left: 52%;
+  }
+}
+@keyframes animate6 {
+  0%{
+    transform: scale(0);
+    top: 10%;
+    left: 80%;
+  }
+  100%{
+    transform: scale(1);
+    top: 40%;
+    left: 55%;
+  }
+}

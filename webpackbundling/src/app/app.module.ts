@@ -11,6 +11,8 @@ import {MatToolbarModule, MatButtonModule, MatCardModule, MatFormFieldModule, } 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FirstComponent } from './components/first/first.component';
 import { SecondComponent } from './components/second/second.component';
+import { AnimationComponent } from './components/animation/animation.component';
+import { SecondanimationComponent } from './components/secondanimation/secondanimation.component';
 
 const routes: Routes = [
   { path: '', component: FirstComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     FirstComponent,
-    SecondComponent
+    SecondComponent,
+    AnimationComponent,
+    SecondanimationComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes),BrowserAnimationsModule,
